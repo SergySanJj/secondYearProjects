@@ -14,8 +14,10 @@
 #include <stdlib.h>
 #include <algorithm>
 #include <array>
+#include <iostream>
 
  using std::array;
+ using std::size_t;
 
 class VFMatrix
 {
@@ -24,6 +26,8 @@ public:
     ~VFMatrix();
     VFMatrix(const VFMatrix& other);
     VFMatrix& operator=(VFMatrix rhs);
+
+    const void print();
 
     void swap(VFMatrix & other);
 
