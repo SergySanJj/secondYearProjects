@@ -13,7 +13,9 @@
 
 #include <stdlib.h>
 #include <algorithm>
+#include <array>
 
+ using std::array;
 
 class VFMatrix
 {
