@@ -1,3 +1,3 @@
 secondYearProjects
 
-My university projects for second year term.
+My university projects for second year.
