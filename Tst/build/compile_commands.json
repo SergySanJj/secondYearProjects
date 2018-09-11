@@ -1,0 +1,12 @@
+[
+{
+  "directory": "/home/sergei/work/secondYearProjects/Tst/build",
+  "command": "/usr/bin/g++-7   -I/home/sergei/work/secondYearProjects/Tst/include  -g   -o CMakeFiles/Grid2D.dir/src/VFMatrix.cpp.o -c /home/sergei/work/secondYearProjects/Tst/src/VFMatrix.cpp",
+  "file": "/home/sergei/work/secondYearProjects/Tst/src/VFMatrix.cpp"
+},
+{
+  "directory": "/home/sergei/work/secondYearProjects/Tst/build",
+  "command": "/usr/bin/g++-7   -I/home/sergei/work/secondYearProjects/Tst/include  -g   -o CMakeFiles/Grid2D.dir/src/main.cpp.o -c /home/sergei/work/secondYearProjects/Tst/src/main.cpp",
+  "file": "/home/sergei/work/secondYearProjects/Tst/src/main.cpp"
+}
+]

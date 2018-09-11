@@ -1,0 +1,28 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+../include/VFMatrix.h
+stdlib.h
+-
+algorithm
+-
+array
+-
+iostream
+-
+
+/home/sergei/work/secondYearProjects/Tst/src/VFMatrix.cpp
+VFMatrix.h
+/home/sergei/work/secondYearProjects/Tst/src/VFMatrix.h
+
+/home/sergei/work/secondYearProjects/Tst/src/main.cpp
+iostream
+-
+VFMatrix.h
+/home/sergei/work/secondYearProjects/Tst/src/VFMatrix.h
+
