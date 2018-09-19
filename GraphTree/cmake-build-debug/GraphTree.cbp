@@ -44,6 +44,7 @@
 				<Option type="1"/>
 				<Option compiler="gcc"/>
 				<Compiler>
+					<Add directory="/home/sergei/work/secondYearProjects/GraphTree/include"/>
 					<Add directory="/usr/include/c++/7"/>
 					<Add directory="/usr/include/x86_64-linux-gnu/c++/7"/>
 					<Add directory="/usr/include/c++/7/backward"/>
@@ -67,6 +68,7 @@
 				<Option type="1"/>
 				<Option compiler="gcc"/>
 				<Compiler>
+					<Add directory="/home/sergei/work/secondYearProjects/GraphTree/include"/>
 					<Add directory="/usr/include/c++/7"/>
 					<Add directory="/usr/include/x86_64-linux-gnu/c++/7"/>
 					<Add directory="/usr/include/c++/7/backward"/>
@@ -84,12 +86,6 @@
 				</MakeCommands>
 			</Target>
 		</Build>
-		<Unit filename="/home/sergei/work/secondYearProjects/GraphTree/include/Graph.h">
-			<Option target="GraphTree"/>
-		</Unit>
-		<Unit filename="/home/sergei/work/secondYearProjects/GraphTree/include/Tree.h">
-			<Option target="GraphTree"/>
-		</Unit>
 		<Unit filename="/home/sergei/work/secondYearProjects/GraphTree/src/main.cpp">
 			<Option target="GraphTree"/>
 		</Unit>
