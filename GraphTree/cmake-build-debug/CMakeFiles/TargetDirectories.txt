@@ -1,0 +1,3 @@
+/home/sergei/work/secondYearProjects/GraphTree/cmake-build-debug/CMakeFiles/rebuild_cache.dir
+/home/sergei/work/secondYearProjects/GraphTree/cmake-build-debug/CMakeFiles/edit_cache.dir
+/home/sergei/work/secondYearProjects/GraphTree/cmake-build-debug/CMakeFiles/GraphTree.dir
