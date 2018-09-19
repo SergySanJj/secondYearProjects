@@ -1,6 +1,7 @@
 #include <iostream>
+#include "Tree.h"
 
 int main() {
-    std::cout << "Hello, World!" << std::endl;
+    GraphTree::Graph g(5);
     return 0;
 }

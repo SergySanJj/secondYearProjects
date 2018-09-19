@@ -3,4 +3,8 @@ project(GraphTree)
 
 set(CMAKE_CXX_STANDARD 17)
 
-add_executable(GraphTree src/main.cpp include/Graph.h include/Tree.h)
+include_directories(include)
+
+add_executable(GraphTree src/main.cpp )
+
+#include/Graph.h include/Tree.h for some case save it here.
