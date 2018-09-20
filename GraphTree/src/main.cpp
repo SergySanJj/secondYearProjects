@@ -1,7 +1,8 @@
 #include <iostream>
-#include "Tree.h"
+#include <Graph.h>
+
 
 int main() {
-    GraphTree::Graph g(5);
+    GraphTree::Graph<int> g(5);
     return 0;
 }

@@ -1,4 +1,4 @@
-/snap/clion/39/bin/cmake/linux/bin/cmake -DCMAKE_BUILD_TYPE=Debug -G "CodeBlocks - Unix Makefiles" /home/sergei/work/secondYearProjects/GraphTree
+/snap/clion/39/bin/cmake/linux/bin/cmake -DCMAKE_BUILD_TYPE=Debug -G "CodeBlocks - Unix Makefiles" /home/sju/work/secondYearProjects/GraphTree
 -- Configuring done
 -- Generating done
--- Build files have been written to: /home/sergei/work/secondYearProjects/GraphTree/cmake-build-debug
+-- Build files have been written to: /home/sju/work/secondYearProjects/GraphTree/cmake-build-debug

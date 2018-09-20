@@ -9,6 +9,8 @@
 ../include/Graph.h
 stdlib.h
 -
+iostream
+-
 array
 -
 vector
@@ -17,14 +19,12 @@ map
 -
 set
 -
+memory
+-
 
-../include/Tree.h
-Graph.h
-../include/Graph.h
-
-/home/sergei/work/secondYearProjects/GraphTree/src/main.cpp
+/home/sju/work/secondYearProjects/GraphTree/src/main.cpp
 iostream
 -
-Tree.h
-/home/sergei/work/secondYearProjects/GraphTree/src/Tree.h
+Graph.h
+-
 

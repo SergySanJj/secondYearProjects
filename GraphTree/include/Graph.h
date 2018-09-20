@@ -11,7 +11,8 @@
 #include <vector>
 #include <map>
 #include <set>
-#include <bits/shared_ptr.h>
+#include <memory>
+
 
 namespace GraphTree {
 
@@ -28,6 +29,7 @@ namespace GraphTree {
     class Vertex {
 
     public:
+        Vertex<T>() {}
         explicit Vertex<T>(T data) : vertexData(data) {}
 
         ~Vertex<T>() {}
@@ -63,8 +65,10 @@ namespace GraphTree {
     protected:
         // Vertex number.
         std::size_t N;
+        // Here will be stored pointers to verts.
+        std::vector< std::shared_ptr< Vertex<T> > > vertexList;
         // Adjacency list.
-        std::vector< std::set< Vertex<T>* > > adjList;  // TODO: think once more about using hash map insted
+        std::vector< std::set< std::size_t > > adjList;  // TODO: think once more about using hash map insted
     };
 
 /********--------Implementation--------********/
@@ -74,7 +78,9 @@ namespace GraphTree {
 
         try
         {
+            vertexList.resize(N);
             adjList.resize(N);
+
         }
         catch (std::bad_alloc& ba)
         {
@@ -82,9 +88,9 @@ namespace GraphTree {
             throw Errors::BadAlloc;
         }
 
-        for (auto vert = adjList.begin(); vert++; vert<adjList.end())
+        for (auto vert = vertexList.begin(); vert != vertexList.end(); vert++)
         {
-            vert
+            vert(new Vertex<T>());
         }
     }
 
