@@ -12,7 +12,26 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="06f28bb5-2c83-40e9-96be-9bc754e1a1da" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/GraphTree/cmake-build-debug/CMakeCache.txt" beforeDir="false" afterPath="$PROJECT_DIR$/GraphTree/cmake-build-debug/CMakeCache.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/GraphTree/cmake-build-debug/CMakeFiles/CMakeDirectoryInformation.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/GraphTree/cmake-build-debug/CMakeFiles/CMakeDirectoryInformation.cmake" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/GraphTree/cmake-build-debug/CMakeFiles/CMakeOutput.log" beforeDir="false" afterPath="$PROJECT_DIR$/GraphTree/cmake-build-debug/CMakeFiles/CMakeOutput.log" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/GraphTree/cmake-build-debug/CMakeFiles/GraphTree.dir/CXX.includecache" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/GraphTree/cmake-build-debug/CMakeFiles/GraphTree.dir/DependInfo.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/GraphTree/cmake-build-debug/CMakeFiles/GraphTree.dir/DependInfo.cmake" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/GraphTree/cmake-build-debug/CMakeFiles/GraphTree.dir/build.make" beforeDir="false" afterPath="$PROJECT_DIR$/GraphTree/cmake-build-debug/CMakeFiles/GraphTree.dir/build.make" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/GraphTree/cmake-build-debug/CMakeFiles/GraphTree.dir/depend.internal" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/GraphTree/cmake-build-debug/CMakeFiles/GraphTree.dir/depend.make" beforeDir="false" afterPath="$PROJECT_DIR$/GraphTree/cmake-build-debug/CMakeFiles/GraphTree.dir/depend.make" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/GraphTree/cmake-build-debug/CMakeFiles/GraphTree.dir/flags.make" beforeDir="false" afterPath="$PROJECT_DIR$/GraphTree/cmake-build-debug/CMakeFiles/GraphTree.dir/flags.make" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/GraphTree/cmake-build-debug/CMakeFiles/GraphTree.dir/src/main.cpp.o" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/GraphTree/cmake-build-debug/CMakeFiles/GraphTree.dir/src/tests.cpp.o" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/GraphTree/cmake-build-debug/CMakeFiles/Makefile2" beforeDir="false" afterPath="$PROJECT_DIR$/GraphTree/cmake-build-debug/CMakeFiles/Makefile2" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/GraphTree/cmake-build-debug/CMakeFiles/TargetDirectories.txt" beforeDir="false" afterPath="$PROJECT_DIR$/GraphTree/cmake-build-debug/CMakeFiles/TargetDirectories.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/GraphTree/cmake-build-debug/CMakeFiles/clion-log.txt" beforeDir="false" afterPath="$PROJECT_DIR$/GraphTree/cmake-build-debug/CMakeFiles/clion-log.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/GraphTree/cmake-build-debug/GraphTree.cbp" beforeDir="false" afterPath="$PROJECT_DIR$/GraphTree/cmake-build-debug/GraphTree.cbp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/GraphTree/cmake-build-debug/Makefile" beforeDir="false" afterPath="$PROJECT_DIR$/GraphTree/cmake-build-debug/Makefile" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/GraphTree/cmake-build-debug/cmake_install.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/GraphTree/cmake-build-debug/cmake_install.cmake" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/GraphTree/include/Graph.h" beforeDir="false" afterPath="$PROJECT_DIR$/GraphTree/include/Graph.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/GraphTree/src/main.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/GraphTree/src/main.cpp" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/GraphTree/cmake-build-debug/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -26,10 +45,10 @@
     <session id="1455529592">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="2" />
+          <entry key="project.closed" value="4" />
           <entry key="project.open.time.6" value="1" />
-          <entry key="project.open.time.7" value="1" />
-          <entry key="project.opened" value="2" />
+          <entry key="project.open.time.7" value="3" />
+          <entry key="project.opened" value="4" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
@@ -47,13 +66,13 @@
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="cpp" value="10" />
-          <entry key="h" value="207" />
+          <entry key="cpp" value="15" />
+          <entry key="h" value="596" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="ObjectiveC" value="217" />
+          <entry key="ObjectiveC" value="611" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.vcs.git.usages" />
@@ -65,10 +84,11 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/GraphTree/include/Graph.h">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="605">
-              <caret line="90" column="34" lean-forward="true" selection-start-line="90" selection-start-column="34" selection-end-line="90" selection-end-column="34" />
+            <state relative-caret-position="590">
+              <caret line="204" column="34" selection-start-line="204" selection-start-column="34" selection-end-line="204" selection-end-column="34" />
               <folding>
                 <element signature="e#98#117#0" expanded="true" />
+                <element signature="e#4291#4303#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -77,8 +97,11 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/GraphTree/src/main.cpp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="15">
-              <caret line="1" selection-start-line="1" selection-end-line="1" />
+            <state relative-caret-position="105">
+              <caret line="7" selection-start-line="7" selection-end-line="7" />
+              <folding>
+                <element signature="e#0#19#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -102,10 +125,10 @@
     <detection-done>true</detection-done>
     <sorting>DEFINITION_ORDER</sorting>
   </component>
-  <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="297" />
-    <option name="y" value="27" />
-    <option name="width" value="1463" />
+  <component name="ProjectFrameBounds">
+    <option name="x" value="210" />
+    <option name="y" value="41" />
+    <option name="width" value="1453" />
     <option name="height" value="1000" />
   </component>
   <component name="ProjectView">
@@ -147,6 +170,7 @@
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/GraphTree/CMakeLists.txt" />
+    <property name="settings.editor.selected.configurable" value="project.propVCSSupport.Mappings" />
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -188,16 +212,18 @@
       <updated>1537479045959</updated>
       <workItem from="1537479049505" duration="1195000" />
       <workItem from="1537521875968" duration="386000" />
+      <workItem from="1537544218017" duration="115000" />
+      <workItem from="1537562529557" duration="2623000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="1581000" />
+    <option name="totallyTimeSpent" value="4319000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="293" y="53" width="1463" height="1000" extended-state="0" />
+    <frame x="210" y="41" width="1453" height="1000" extended-state="0" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.24206069" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.25017768" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -243,20 +269,24 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/GraphTree/include/Graph.h">
+    <entry file="file://$PROJECT_DIR$/GraphTree/src/main.cpp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="605">
-          <caret line="90" column="34" lean-forward="true" selection-start-line="90" selection-start-column="34" selection-end-line="90" selection-end-column="34" />
+        <state relative-caret-position="105">
+          <caret line="7" selection-start-line="7" selection-end-line="7" />
           <folding>
-            <element signature="e#98#117#0" expanded="true" />
+            <element signature="e#0#19#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/GraphTree/src/main.cpp">
+    <entry file="file://$PROJECT_DIR$/GraphTree/include/Graph.h">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="15">
-          <caret line="1" selection-start-line="1" selection-end-line="1" />
+        <state relative-caret-position="590">
+          <caret line="204" column="34" selection-start-line="204" selection-start-column="34" selection-end-line="204" selection-end-column="34" />
+          <folding>
+            <element signature="e#98#117#0" expanded="true" />
+            <element signature="e#4291#4303#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

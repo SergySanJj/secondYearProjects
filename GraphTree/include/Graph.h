@@ -95,18 +95,21 @@ namespace GraphTree {
         // Add oriented edge from u to v (numeration from 0).
         void addOrientedEdge(std::size_t  u, std::size_t v);
 
-        // Returns pointer to the new graph that contains Spanning Tree of .self
+        // Returns pointer to the new graph that contains Spanning Tree forest of .self
         std::shared_ptr<Graph<T>> getSpanningTree();
 
     private:
 
     protected:
+
+        void copyVertexData(const Graph<T>& rhs);
+
         // Vertex number.
         std::size_t N;
         // Edge number.
         std::size_t E;
         // Here will be stored pointers to verts.
-        std::vector< Vertex<T>* > vertexList;
+        std::vector< Vertex<T> > vertexList;
         // Adjacency list.
         std::vector<std::set<std::size_t> > adjList;  // TODO: think once more about using hash map insted
     };
@@ -119,15 +122,13 @@ namespace GraphTree {
         adjList.resize(N);
 
         for (auto vert : vertexList) {
-            vert = new Vertex<T>();
+            vert = Vertex<T>();
         }
     }
 
 
     template<typename T>
     Graph<T>::~Graph() {
-        for (auto vert : vertexList)
-            delete vert;
     }
 
 
@@ -180,10 +181,30 @@ namespace GraphTree {
         }
     }
 
+    template <typename T>
+    void Graph<T>::copyVertexData(const GraphTree::Graph<T> &rhs) {
+        vertexList.clear();
+        vertexList = rhs.vertexList;
+        adjList.clear();
+        adjList.resize(rhs.size());
+        N=rhs.size();
+        E=0;
+
+    }
 
     template <typename T>
     std::shared_ptr<Graph<T>> Graph<T>::getSpanningTree() {
+        using std::vector, std::array;
+        array<bool,N> visited(0);
+        std::shared_ptr<Graph<T>> resTree = Graph<T>();
+        resTree.copyVertexData(this);
 
+        for(std::size_t i=0;i<N;i++)
+        {
+            if(!visited[i]){
+                // TODO start here
+            }
+        }
     }
 
 

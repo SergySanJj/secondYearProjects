@@ -59,10 +59,10 @@ RM = /snap/clion/39/bin/cmake/linux/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/sergei/work/secondYearProjects/GraphTree
+CMAKE_SOURCE_DIR = /home/sju/work/secondYearProjects/GraphTree
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/sergei/work/secondYearProjects/GraphTree/cmake-build-debug
+CMAKE_BINARY_DIR = /home/sju/work/secondYearProjects/GraphTree/cmake-build-debug
 
 #=============================================================================
 # Target rules for target CMakeFiles/GraphTree.dir
@@ -71,7 +71,7 @@ CMAKE_BINARY_DIR = /home/sergei/work/secondYearProjects/GraphTree/cmake-build-de
 CMakeFiles/GraphTree.dir/all:
 	$(MAKE) -f CMakeFiles/GraphTree.dir/build.make CMakeFiles/GraphTree.dir/depend
 	$(MAKE) -f CMakeFiles/GraphTree.dir/build.make CMakeFiles/GraphTree.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/sergei/work/secondYearProjects/GraphTree/cmake-build-debug/CMakeFiles --progress-num=1,2,3 "Built target GraphTree"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/sju/work/secondYearProjects/GraphTree/cmake-build-debug/CMakeFiles --progress-num=1,2,3 "Built target GraphTree"
 .PHONY : CMakeFiles/GraphTree.dir/all
 
 # Include target in all.
@@ -81,9 +81,9 @@ all: CMakeFiles/GraphTree.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/GraphTree.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/sergei/work/secondYearProjects/GraphTree/cmake-build-debug/CMakeFiles 3
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/sju/work/secondYearProjects/GraphTree/cmake-build-debug/CMakeFiles 3
 	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/GraphTree.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/sergei/work/secondYearProjects/GraphTree/cmake-build-debug/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/sju/work/secondYearProjects/GraphTree/cmake-build-debug/CMakeFiles 0
 .PHONY : CMakeFiles/GraphTree.dir/rule
 
 # Convenience name for target.

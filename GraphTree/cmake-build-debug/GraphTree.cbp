@@ -8,43 +8,43 @@
 		<Option virtualFolders="CMake Files\;"/>
 		<Build>
 			<Target title="all">
-				<Option working_dir="/home/sergei/work/secondYearProjects/GraphTree/cmake-build-debug"/>
+				<Option working_dir="/home/sju/work/secondYearProjects/GraphTree/cmake-build-debug"/>
 				<Option type="4"/>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j8 -f &quot;/home/sergei/work/secondYearProjects/GraphTree/cmake-build-debug/Makefile&quot;  VERBOSE=1 all"/>
-					<CompileFile command="/usr/bin/make -j8 -f &quot;/home/sergei/work/secondYearProjects/GraphTree/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j8 -f &quot;/home/sergei/work/secondYearProjects/GraphTree/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j8 -f &quot;/home/sergei/work/secondYearProjects/GraphTree/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make -j4 -f &quot;/home/sju/work/secondYearProjects/GraphTree/cmake-build-debug/Makefile&quot;  VERBOSE=1 all"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/sju/work/secondYearProjects/GraphTree/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/home/sju/work/secondYearProjects/GraphTree/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/home/sju/work/secondYearProjects/GraphTree/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="rebuild_cache">
-				<Option working_dir="/home/sergei/work/secondYearProjects/GraphTree/cmake-build-debug"/>
+				<Option working_dir="/home/sju/work/secondYearProjects/GraphTree/cmake-build-debug"/>
 				<Option type="4"/>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j8 -f &quot;/home/sergei/work/secondYearProjects/GraphTree/cmake-build-debug/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
-					<CompileFile command="/usr/bin/make -j8 -f &quot;/home/sergei/work/secondYearProjects/GraphTree/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j8 -f &quot;/home/sergei/work/secondYearProjects/GraphTree/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j8 -f &quot;/home/sergei/work/secondYearProjects/GraphTree/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make -j4 -f &quot;/home/sju/work/secondYearProjects/GraphTree/cmake-build-debug/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/sju/work/secondYearProjects/GraphTree/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/home/sju/work/secondYearProjects/GraphTree/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/home/sju/work/secondYearProjects/GraphTree/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="edit_cache">
-				<Option working_dir="/home/sergei/work/secondYearProjects/GraphTree/cmake-build-debug"/>
+				<Option working_dir="/home/sju/work/secondYearProjects/GraphTree/cmake-build-debug"/>
 				<Option type="4"/>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j8 -f &quot;/home/sergei/work/secondYearProjects/GraphTree/cmake-build-debug/Makefile&quot;  VERBOSE=1 edit_cache"/>
-					<CompileFile command="/usr/bin/make -j8 -f &quot;/home/sergei/work/secondYearProjects/GraphTree/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j8 -f &quot;/home/sergei/work/secondYearProjects/GraphTree/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j8 -f &quot;/home/sergei/work/secondYearProjects/GraphTree/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make -j4 -f &quot;/home/sju/work/secondYearProjects/GraphTree/cmake-build-debug/Makefile&quot;  VERBOSE=1 edit_cache"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/sju/work/secondYearProjects/GraphTree/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/home/sju/work/secondYearProjects/GraphTree/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/home/sju/work/secondYearProjects/GraphTree/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="GraphTree">
-				<Option output="/home/sergei/work/secondYearProjects/GraphTree/cmake-build-debug/GraphTree" prefix_auto="0" extension_auto="0"/>
-				<Option working_dir="/home/sergei/work/secondYearProjects/GraphTree/cmake-build-debug"/>
+				<Option output="/home/sju/work/secondYearProjects/GraphTree/cmake-build-debug/GraphTree" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/sju/work/secondYearProjects/GraphTree/cmake-build-debug"/>
 				<Option object_output="./"/>
 				<Option type="1"/>
 				<Option compiler="gcc"/>
 				<Compiler>
-					<Add directory="/home/sergei/work/secondYearProjects/GraphTree/include"/>
+					<Add directory="/home/sju/work/secondYearProjects/GraphTree/include"/>
 					<Add directory="/usr/include/c++/7"/>
 					<Add directory="/usr/include/x86_64-linux-gnu/c++/7"/>
 					<Add directory="/usr/include/c++/7/backward"/>
@@ -55,20 +55,20 @@
 					<Add directory="/usr/include"/>
 				</Compiler>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j8 -f &quot;/home/sergei/work/secondYearProjects/GraphTree/cmake-build-debug/Makefile&quot;  VERBOSE=1 GraphTree"/>
-					<CompileFile command="/usr/bin/make -j8 -f &quot;/home/sergei/work/secondYearProjects/GraphTree/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j8 -f &quot;/home/sergei/work/secondYearProjects/GraphTree/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j8 -f &quot;/home/sergei/work/secondYearProjects/GraphTree/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make -j4 -f &quot;/home/sju/work/secondYearProjects/GraphTree/cmake-build-debug/Makefile&quot;  VERBOSE=1 GraphTree"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/sju/work/secondYearProjects/GraphTree/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/home/sju/work/secondYearProjects/GraphTree/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/home/sju/work/secondYearProjects/GraphTree/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="GraphTree/fast">
-				<Option output="/home/sergei/work/secondYearProjects/GraphTree/cmake-build-debug/GraphTree" prefix_auto="0" extension_auto="0"/>
-				<Option working_dir="/home/sergei/work/secondYearProjects/GraphTree/cmake-build-debug"/>
+				<Option output="/home/sju/work/secondYearProjects/GraphTree/cmake-build-debug/GraphTree" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/sju/work/secondYearProjects/GraphTree/cmake-build-debug"/>
 				<Option object_output="./"/>
 				<Option type="1"/>
 				<Option compiler="gcc"/>
 				<Compiler>
-					<Add directory="/home/sergei/work/secondYearProjects/GraphTree/include"/>
+					<Add directory="/home/sju/work/secondYearProjects/GraphTree/include"/>
 					<Add directory="/usr/include/c++/7"/>
 					<Add directory="/usr/include/x86_64-linux-gnu/c++/7"/>
 					<Add directory="/usr/include/c++/7/backward"/>
@@ -79,20 +79,20 @@
 					<Add directory="/usr/include"/>
 				</Compiler>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j8 -f &quot;/home/sergei/work/secondYearProjects/GraphTree/cmake-build-debug/Makefile&quot;  VERBOSE=1 GraphTree/fast"/>
-					<CompileFile command="/usr/bin/make -j8 -f &quot;/home/sergei/work/secondYearProjects/GraphTree/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j8 -f &quot;/home/sergei/work/secondYearProjects/GraphTree/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j8 -f &quot;/home/sergei/work/secondYearProjects/GraphTree/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make -j4 -f &quot;/home/sju/work/secondYearProjects/GraphTree/cmake-build-debug/Makefile&quot;  VERBOSE=1 GraphTree/fast"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/sju/work/secondYearProjects/GraphTree/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/home/sju/work/secondYearProjects/GraphTree/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/home/sju/work/secondYearProjects/GraphTree/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 		</Build>
-		<Unit filename="/home/sergei/work/secondYearProjects/GraphTree/src/main.cpp">
+		<Unit filename="/home/sju/work/secondYearProjects/GraphTree/src/main.cpp">
 			<Option target="GraphTree"/>
 		</Unit>
-		<Unit filename="/home/sergei/work/secondYearProjects/GraphTree/src/tests.cpp">
+		<Unit filename="/home/sju/work/secondYearProjects/GraphTree/src/tests.cpp">
 			<Option target="GraphTree"/>
 		</Unit>
-		<Unit filename="/home/sergei/work/secondYearProjects/GraphTree/CMakeLists.txt">
+		<Unit filename="/home/sju/work/secondYearProjects/GraphTree/CMakeLists.txt">
 			<Option virtualFolder="CMake Files\"/>
 		</Unit>
 	</Project>
