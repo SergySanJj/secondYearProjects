@@ -3,4 +3,7 @@
 
 CMakeFiles/GraphTree.dir/src/main.cpp.o
  ../include/Graph.h
- /home/sju/work/secondYearProjects/GraphTree/src/main.cpp
+ /home/sergei/work/secondYearProjects/GraphTree/src/main.cpp
+CMakeFiles/GraphTree.dir/src/tests.cpp.o
+ ../include/Graph.h
+ /home/sergei/work/secondYearProjects/GraphTree/src/tests.cpp

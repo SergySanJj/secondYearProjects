@@ -1,5 +1,6 @@
 file(REMOVE_RECURSE
   "CMakeFiles/GraphTree.dir/src/main.cpp.o"
+  "CMakeFiles/GraphTree.dir/src/tests.cpp.o"
   "GraphTree.pdb"
   "GraphTree"
 )

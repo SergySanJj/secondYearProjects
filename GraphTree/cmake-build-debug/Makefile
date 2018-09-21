@@ -48,10 +48,10 @@ RM = /snap/clion/39/bin/cmake/linux/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/sju/work/secondYearProjects/GraphTree
+CMAKE_SOURCE_DIR = /home/sergei/work/secondYearProjects/GraphTree
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/sju/work/secondYearProjects/GraphTree/cmake-build-debug
+CMAKE_BINARY_DIR = /home/sergei/work/secondYearProjects/GraphTree/cmake-build-debug
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -80,9 +80,9 @@ edit_cache/fast: edit_cache
 
 # The main all target
 all: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/sju/work/secondYearProjects/GraphTree/cmake-build-debug/CMakeFiles /home/sju/work/secondYearProjects/GraphTree/cmake-build-debug/CMakeFiles/progress.marks
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/sergei/work/secondYearProjects/GraphTree/cmake-build-debug/CMakeFiles /home/sergei/work/secondYearProjects/GraphTree/cmake-build-debug/CMakeFiles/progress.marks
 	$(MAKE) -f CMakeFiles/Makefile2 all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/sju/work/secondYearProjects/GraphTree/cmake-build-debug/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/sergei/work/secondYearProjects/GraphTree/cmake-build-debug/CMakeFiles 0
 .PHONY : all
 
 # The main clean target
@@ -150,6 +150,33 @@ src/main.cpp.s:
 	$(MAKE) -f CMakeFiles/GraphTree.dir/build.make CMakeFiles/GraphTree.dir/src/main.cpp.s
 .PHONY : src/main.cpp.s
 
+src/tests.o: src/tests.cpp.o
+
+.PHONY : src/tests.o
+
+# target to build an object file
+src/tests.cpp.o:
+	$(MAKE) -f CMakeFiles/GraphTree.dir/build.make CMakeFiles/GraphTree.dir/src/tests.cpp.o
+.PHONY : src/tests.cpp.o
+
+src/tests.i: src/tests.cpp.i
+
+.PHONY : src/tests.i
+
+# target to preprocess a source file
+src/tests.cpp.i:
+	$(MAKE) -f CMakeFiles/GraphTree.dir/build.make CMakeFiles/GraphTree.dir/src/tests.cpp.i
+.PHONY : src/tests.cpp.i
+
+src/tests.s: src/tests.cpp.s
+
+.PHONY : src/tests.s
+
+# target to generate assembly for a file
+src/tests.cpp.s:
+	$(MAKE) -f CMakeFiles/GraphTree.dir/build.make CMakeFiles/GraphTree.dir/src/tests.cpp.s
+.PHONY : src/tests.cpp.s
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -162,6 +189,9 @@ help:
 	@echo "... src/main.o"
 	@echo "... src/main.i"
 	@echo "... src/main.s"
+	@echo "... src/tests.o"
+	@echo "... src/tests.i"
+	@echo "... src/tests.s"
 .PHONY : help
 
 

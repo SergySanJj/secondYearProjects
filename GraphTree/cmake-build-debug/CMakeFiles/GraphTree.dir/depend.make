@@ -4,3 +4,6 @@
 CMakeFiles/GraphTree.dir/src/main.cpp.o: ../include/Graph.h
 CMakeFiles/GraphTree.dir/src/main.cpp.o: ../src/main.cpp
 
+CMakeFiles/GraphTree.dir/src/tests.cpp.o: ../include/Graph.h
+CMakeFiles/GraphTree.dir/src/tests.cpp.o: ../src/tests.cpp
+

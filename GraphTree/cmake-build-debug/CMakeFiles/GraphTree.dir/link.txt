@@ -1,1 +1,1 @@
-/usr/bin/c++  -g   CMakeFiles/GraphTree.dir/src/main.cpp.o  -o GraphTree 
+/usr/bin/c++  -g   CMakeFiles/GraphTree.dir/src/main.cpp.o CMakeFiles/GraphTree.dir/src/tests.cpp.o  -o GraphTree 
