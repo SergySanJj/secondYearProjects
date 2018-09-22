@@ -43,10 +43,10 @@ RM = /snap/clion/39/bin/cmake/linux/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/sju/work/secondYearProjects/GraphTree
+CMAKE_SOURCE_DIR = /home/sergei/work/secondYearProjects/GraphTree
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/sju/work/secondYearProjects/GraphTree/cmake-build-debug
+CMAKE_BINARY_DIR = /home/sergei/work/secondYearProjects/GraphTree/cmake-build-debug
 
 # Include any dependencies generated for this target.
 include CMakeFiles/GraphTree.dir/depend.make
@@ -59,29 +59,29 @@ include CMakeFiles/GraphTree.dir/flags.make
 
 CMakeFiles/GraphTree.dir/src/main.cpp.o: CMakeFiles/GraphTree.dir/flags.make
 CMakeFiles/GraphTree.dir/src/main.cpp.o: ../src/main.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/sju/work/secondYearProjects/GraphTree/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/GraphTree.dir/src/main.cpp.o"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/GraphTree.dir/src/main.cpp.o -c /home/sju/work/secondYearProjects/GraphTree/src/main.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/sergei/work/secondYearProjects/GraphTree/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/GraphTree.dir/src/main.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/GraphTree.dir/src/main.cpp.o -c /home/sergei/work/secondYearProjects/GraphTree/src/main.cpp
 
 CMakeFiles/GraphTree.dir/src/main.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/GraphTree.dir/src/main.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/sju/work/secondYearProjects/GraphTree/src/main.cpp > CMakeFiles/GraphTree.dir/src/main.cpp.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/sergei/work/secondYearProjects/GraphTree/src/main.cpp > CMakeFiles/GraphTree.dir/src/main.cpp.i
 
 CMakeFiles/GraphTree.dir/src/main.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/GraphTree.dir/src/main.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/sju/work/secondYearProjects/GraphTree/src/main.cpp -o CMakeFiles/GraphTree.dir/src/main.cpp.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/sergei/work/secondYearProjects/GraphTree/src/main.cpp -o CMakeFiles/GraphTree.dir/src/main.cpp.s
 
 CMakeFiles/GraphTree.dir/src/tests.cpp.o: CMakeFiles/GraphTree.dir/flags.make
 CMakeFiles/GraphTree.dir/src/tests.cpp.o: ../src/tests.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/sju/work/secondYearProjects/GraphTree/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/GraphTree.dir/src/tests.cpp.o"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/GraphTree.dir/src/tests.cpp.o -c /home/sju/work/secondYearProjects/GraphTree/src/tests.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/sergei/work/secondYearProjects/GraphTree/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/GraphTree.dir/src/tests.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/GraphTree.dir/src/tests.cpp.o -c /home/sergei/work/secondYearProjects/GraphTree/src/tests.cpp
 
 CMakeFiles/GraphTree.dir/src/tests.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/GraphTree.dir/src/tests.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/sju/work/secondYearProjects/GraphTree/src/tests.cpp > CMakeFiles/GraphTree.dir/src/tests.cpp.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/sergei/work/secondYearProjects/GraphTree/src/tests.cpp > CMakeFiles/GraphTree.dir/src/tests.cpp.i
 
 CMakeFiles/GraphTree.dir/src/tests.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/GraphTree.dir/src/tests.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/sju/work/secondYearProjects/GraphTree/src/tests.cpp -o CMakeFiles/GraphTree.dir/src/tests.cpp.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/sergei/work/secondYearProjects/GraphTree/src/tests.cpp -o CMakeFiles/GraphTree.dir/src/tests.cpp.s
 
 # Object files for target GraphTree
 GraphTree_OBJECTS = \
@@ -95,7 +95,7 @@ GraphTree: CMakeFiles/GraphTree.dir/src/main.cpp.o
 GraphTree: CMakeFiles/GraphTree.dir/src/tests.cpp.o
 GraphTree: CMakeFiles/GraphTree.dir/build.make
 GraphTree: CMakeFiles/GraphTree.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/sju/work/secondYearProjects/GraphTree/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Linking CXX executable GraphTree"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/sergei/work/secondYearProjects/GraphTree/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Linking CXX executable GraphTree"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/GraphTree.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
@@ -108,6 +108,6 @@ CMakeFiles/GraphTree.dir/clean:
 .PHONY : CMakeFiles/GraphTree.dir/clean
 
 CMakeFiles/GraphTree.dir/depend:
-	cd /home/sju/work/secondYearProjects/GraphTree/cmake-build-debug && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/sju/work/secondYearProjects/GraphTree /home/sju/work/secondYearProjects/GraphTree /home/sju/work/secondYearProjects/GraphTree/cmake-build-debug /home/sju/work/secondYearProjects/GraphTree/cmake-build-debug /home/sju/work/secondYearProjects/GraphTree/cmake-build-debug/CMakeFiles/GraphTree.dir/DependInfo.cmake --color=$(COLOR)
+	cd /home/sergei/work/secondYearProjects/GraphTree/cmake-build-debug && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/sergei/work/secondYearProjects/GraphTree /home/sergei/work/secondYearProjects/GraphTree /home/sergei/work/secondYearProjects/GraphTree/cmake-build-debug /home/sergei/work/secondYearProjects/GraphTree/cmake-build-debug /home/sergei/work/secondYearProjects/GraphTree/cmake-build-debug/CMakeFiles/GraphTree.dir/DependInfo.cmake --color=$(COLOR)
 .PHONY : CMakeFiles/GraphTree.dir/depend
 

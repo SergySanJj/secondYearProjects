@@ -6,5 +6,5 @@ CXX_FLAGS = -g   -std=gnu++1z
 
 CXX_DEFINES = 
 
-CXX_INCLUDES = -I/home/sju/work/secondYearProjects/GraphTree/include 
+CXX_INCLUDES = -I/home/sergei/work/secondYearProjects/GraphTree/include 
 

@@ -1,0 +1,36 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+../include/Graph.h
+cstdlib
+-
+iostream
+-
+array
+-
+vector
+-
+map
+-
+set
+-
+memory
+-
+stack
+-
+type_traits
+-
+typeinfo
+-
+
+/home/sergei/work/secondYearProjects/GraphTree/src/main.cpp
+iostream
+-
+Graph.h
+-
+
