@@ -26,48 +26,9 @@ namespace GraphTree {
         NoSuchVertexNumber = 1
     };
 
-    enum Print {
-        vertices = 0,
-        data = 1
-    };
-
-    class Empt {};
-
-    // Inherit from this class and rewrite print() method.
-    template <typename T>
-    class Printable : public Empt{
-    public:
-        explicit Printable(T value): data(value) {}
-
-        ~Printable() = default;
-
-        virtual void print() = 0;
-        T getData() { return  data; }
-    private:
-    protected:
-        T data;
-    };
-
-
-    template <typename T>
-    void printSpecificData(T& arg)
-    {
-        //static_assert(std::is_base_of<Printable<T>, T>::value, "Data class is not derived from Printable.");
-        if (dynamic_cast<Printable<T> >(&arg))
-            arg.print();
-        else {
-            std::cout << "Data class is not derived from Printable.";
-            return;
-        }
-    }
-
-
-
-
 
     template<typename T>
     class Vertex {
-
     public:
         Vertex<T>() : vertexData() {}
 
@@ -83,25 +44,23 @@ namespace GraphTree {
             return *this;
         }
 
-        T getData()  { return  vertexData; }
+        T getData() { return vertexData; }
 
         ~Vertex<T>() = default;
 
     private:
-
         T vertexData;
     };
 
 
     template<typename T>
     class Graph {
-
     public:
 
         // Create an empty graph with n verticies.
-        explicit Graph(std::size_t n );
+        explicit Graph(std::size_t n);
 
-        explicit Graph():N(0),E(0) {}
+        explicit Graph() : N(0), E(0) {}
 
         explicit Graph(const std::vector<T> &values);
 
@@ -115,7 +74,10 @@ namespace GraphTree {
 
         std::size_t edgeCount() const { return E; }
 
-        void print(Print option);
+        void print();
+
+        template<typename OP>
+        void print(OP op);
 
         // Call as .addVertex(Vertex(data));
         void addVertex(const Vertex<T> &v);
@@ -128,6 +90,9 @@ namespace GraphTree {
 
     private:
         void spanningDFS(Graph<T> *resGraph, std::vector<bool> &visited, std::size_t v);
+
+        template<typename OP>
+        void prnt(T val, OP op) { op(val); }
 
     protected:
 
@@ -190,48 +155,40 @@ namespace GraphTree {
 
 
     template<typename T>
-    void Graph<T>::print(Print option) {
-        if (option == Print::vertices) {
-            std::cout << "Adjecency list:\n";
-            for (std::size_t i = 0; i < N; i++) {
-                std::cout << " " << i << ": ";
-                if (adjList[i].empty())
-                    std::cout << "--empty--";
-                else {
-                    for (auto connection : adjList[i]) {
-                        std::cout << connection << " ";
-                    }
-                }
-                std::cout << ";\n";
-            }
-        } else if(option == Print::data) {
-            if (std::is_base_of<Printable<T>, T>::value)
-            {
-                std::cout << "Adjecency list:\n";
-                for (std::size_t i = 0; i < N; i++) {
-                    vertexList[i].getData().print();
-                    std::cout << ": ";
-                    if (adjList[i].empty())
-                        std::cout << "--empty--";
-                    else {
-                        /*  for (auto* connection : vertexList[i]) {
-                              printSpecificData(connection->getData());
+    void Graph<T>::print() {
 
-                              std::cout << " ";
-                          }*/
-                    }
-                    std::cout << ";\n";
-                }
-            }
-
+        std::cout << "Adjecency list:\n";
+        for (std::size_t i = 0; i < N; i++) {
+            std::cout << " " << i << ": ";
+            if (adjList[i].empty())
+                std::cout << "--empty--";
             else {
-                std::cout << "Data class is not derived from Printable.\n";
-                return;
+                for (auto connection : adjList[i]) {
+                    std::cout << connection << " ";
+                }
             }
-
-
+            std::cout << ";\n";
         }
+    }
 
+    template<typename T>
+    template<typename OP>
+    void Graph<T>::print(OP op) {
+        std::cout << "Adjecency list:\n";
+        for (std::size_t i = 0; i < N; i++) {
+            std::cout << " ";
+            op(vertexList[i].getData());
+            std::cout << ": ";
+            if (adjList[i].empty())
+                std::cout << "--empty--";
+            else {
+                for (auto connection : adjList[i]) {
+                    op(vertexList[connection].getData());
+                    std::cout << " ";
+                }
+            }
+            std::cout << ";\n";
+        }
     }
 
     template<typename T>
@@ -287,8 +244,6 @@ namespace GraphTree {
                     visited[w] = true;
                 }
             }
-
-
         }
 
     }
@@ -307,8 +262,6 @@ namespace GraphTree {
 
         return *this;
     }
-
-
 }
 
 #endif //GRAPHTREE_GRAPH_H
