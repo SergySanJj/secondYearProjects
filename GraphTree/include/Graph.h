@@ -7,6 +7,7 @@
 
 #include <cstdlib>
 #include <iostream>
+#include <iomanip>
 #include <array>
 #include <vector>
 #include <map>
@@ -35,7 +36,7 @@ namespace GraphTree {
         explicit Vertex<T>(T data) : vertexData(data) {}
 
         Vertex &operator=(const Vertex<T> &rsv) {
-            vertexData = static_cast<T>(rsv.vertexData);
+            vertexData = rsv.vertexData;
             return *this;
         }
 
@@ -44,7 +45,8 @@ namespace GraphTree {
             return *this;
         }
 
-        T getData() { return vertexData; }
+        // TODO: analize once more:
+        T& getData() { return vertexData; }
 
         ~Vertex<T>() = default;
 
@@ -66,6 +68,18 @@ namespace GraphTree {
 
         ~Graph() = default;
 
+        T& operator[](std::size_t index)
+        {
+            if (index < vertexList.size())
+                return (vertexList[index].getData());
+            else
+            {
+                std::cerr << "\n out of range";
+                static_assert(1, "oor");
+            }
+
+        }
+
         // TODO: write copy constructor, assigment operator
 
         Graph &operator=(const Graph<T> &rhs);
@@ -85,6 +99,7 @@ namespace GraphTree {
         // Connect u wirh v (numeration from 0, DOESN'T supports multiedges).
         void addEdge(std::size_t u, std::size_t v);
 
+        // TODO: revrite so it will assign span tree
         // Returns pointer to the new graph that contains Spanning Tree forest of .self
         Graph<T> *getSpanningTree();
 
@@ -141,7 +156,7 @@ namespace GraphTree {
 
     template<typename T>
     void Graph<T>::addEdge(std::size_t u, std::size_t v) {
-        if (u < N && v < N) {
+        if (u < N && v < N  && u!=v) {
             // Won't insert once more if and create multiedg.
             if (adjList[u].find(v) == adjList[u].end()) {
                 adjList[u].insert(v);
@@ -149,7 +164,10 @@ namespace GraphTree {
                 E++;
             }
         } else {
-            std::cerr << "\nError: u or v vert not in graph.\n";
+            if (u!=v)
+                std::cerr << "\nError: u or v vert not in graph.\n";
+            else
+                std::cerr << "\nError: graph data structure can't contain loops.\n";
         }
     }
 
@@ -159,7 +177,7 @@ namespace GraphTree {
 
         std::cout << "Adjecency list:\n";
         for (std::size_t i = 0; i < N; i++) {
-            std::cout << " " << i << ": ";
+            std::cout << " " << std::setw(3) << i << ": ";
             if (adjList[i].empty())
                 std::cout << "--empty--";
             else {
