@@ -38,13 +38,17 @@ int main() {
 
     g[2] = 666;
 
+    std::cout << "Adjecency list:\n";
     g.print();
+    std::cout << "Adjecency list:\n";
     g.print(intPrintHelper);
 
 
     GraphTree::Graph<int> *spanG = g.getSpanningTree();
     std::cout << "\n\nSpan Graph\n";
+    std::cout << "Adjecency list:\n";
     spanG->print();
+    std::cout << "Adjecency list:\n";
     spanG->print(intPrintHelper);
     std::cout << "\n\nVector Graph\n";
     std::vector<std::vector<int> > setOfvec = {
@@ -60,6 +64,7 @@ int main() {
     gVec.addEdge(0, 2);
     gVec.addEdge(2, 1);
     gVec.addEdge(1, 4);
+    std::cout << "Adjecency list:\n";
     gVec.print(vecPrintHelper<int>);
     delete spanG;
     return 0;
