@@ -44,6 +44,8 @@ namespace DateTime {
         std::uint32_t convertToSecons(std::uint8_t m, std::uint8_t d, std::uint16_t y,
                                       std::uint8_t h, std::uint8_t minute, std::uint8_t s);
 
+        void validateDate(std::uint8_t m, std::uint8_t d, std::uint16_t y);
+
     protected:
         // Total seconds from Jan 1st, 1970
         uint32_t total = 0;

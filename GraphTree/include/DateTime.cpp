@@ -40,25 +40,37 @@ namespace DateTime {
 
     };
 
-    class Day {
+    class WeekDay {
     public:
-        static Day Mon() { return Day(1); }
+        static WeekDay Mon() { return WeekDay(1); }
 
-        static Day Tue() { return Day(2); }
+        static WeekDay Tue() { return WeekDay(2); }
 
-        static Day Wed() { return Day(3); }
+        static WeekDay Wed() { return WeekDay(3); }
 
-        static Day Thu() { return Day(4); }
+        static WeekDay Thu() { return WeekDay(4); }
 
-        static Day Fri() { return Day(5); }
+        static WeekDay Fri() { return WeekDay(5); }
 
-        static Day Sat() { return Day(6); }
+        static WeekDay Sat() { return WeekDay(6); }
 
-        static Day Sun() { return Day(7); }
+        static WeekDay Sun() { return WeekDay(7); }
 
     private:
-        explicit Day(std::uint8_t d) : val(d) {}
+        explicit WeekDay(std::uint8_t d) : val(d) {}
 
+        std::uint8_t val;
+    };
+
+    class Day{
+    public:
+        explicit Day(std::uint8_t d){
+            if (d>0 && d<31)
+                val = d;
+            else
+                throw("Invalid day");
+        }
+    private:
         std::uint8_t val;
     };
 
@@ -115,7 +127,37 @@ namespace DateTime {
     std::uint32_t
     DateTime::convertToSecons(std::uint8_t m, std::uint8_t d, std::uint16_t y, std::uint8_t h, std::uint8_t minute,
                               std::uint8_t s) {
-        std::uint32_t res = s + minute*60 + h*3600;
+        auto res = static_cast<uint32_t>(s + minute * 60 + h * 3600);
         return 0;
+    }
+
+    void DateTime::validateDate(const std::uint8_t m, const std::uint8_t d, const std::uint16_t y) {
+        if(y>=1900 && y<=9999)
+        {
+            //check month
+            if(m>=1 && m<=12)
+            {
+                //check days
+                if((d>=1 && d<=31) && (m==1 || m==3 || m==5 || m==7 || m==8 || m==10 || m==12))
+                    return;
+                else if((d>=1 && d<=30) && (m==4 || m==6 || m==9 || m==11))
+                    return;
+                else if((d>=1 && d<=28) && (m==2))
+                    return;
+                else if(d==29 && m==2 && (y%400==0 ||(y%4==0 && y%100!=0)))
+                    return;
+                else
+                    throw("Day is invalid.\n");
+            }
+            else
+            {
+                throw("Month is not valid.\n");
+            }
+        }
+        else
+        {
+            throw("Year is not valid.\n");
+        }
+
     }
 }
