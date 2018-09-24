@@ -1,8 +1,0 @@
-{
-    "files.associations": {
-        "array": "cpp",
-        "istream": "cpp",
-        "tuple": "cpp",
-        "utility": "cpp"
-    }
-}

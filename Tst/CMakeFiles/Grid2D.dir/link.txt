@@ -1,1 +1,0 @@
-/usr/bin/c++    -rdynamic CMakeFiles/Grid2D.dir/src/VFMatrix.cpp.o CMakeFiles/Grid2D.dir/src/main.cpp.o  -o Grid2D 
