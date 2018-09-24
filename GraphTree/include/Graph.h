@@ -59,7 +59,7 @@ namespace GraphTree {
     class Graph {
     public:
 
-        // Create an empty graph with n verticies.
+        // Create an empty graph with n vertices.
         explicit Graph(std::size_t n);
 
         explicit Graph() : N(0), E(0) {}

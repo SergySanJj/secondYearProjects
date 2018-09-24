@@ -61,5 +61,6 @@ int main() {
     gVec.addEdge(2, 1);
     gVec.addEdge(1, 4);
     gVec.print(vecPrintHelper<int>);
+    delete spanG;
     return 0;
 }
