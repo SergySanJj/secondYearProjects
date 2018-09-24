@@ -2,3 +2,5 @@
 GraphTree/\.idea/
 
 GraphTree/cmake-build-debug/
+MatrixModule/
+Tst/
