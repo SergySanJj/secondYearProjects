@@ -46,7 +46,7 @@ namespace GraphTree {
         }
 
         // TODO: analize once more:
-        T& getData() { return vertexData; }
+        T &getData() { return vertexData; }
 
         ~Vertex<T>() = default;
 
@@ -68,12 +68,10 @@ namespace GraphTree {
 
         ~Graph() = default;
 
-        T& operator[](std::size_t index)
-        {
+        T &operator[](std::size_t index) {
             if (index < vertexList.size())
                 return (vertexList[index].getData());
-            else
-            {
+            else {
                 std::cerr << "\n out of range";
                 static_assert(1, "oor");
             }
@@ -156,7 +154,7 @@ namespace GraphTree {
 
     template<typename T>
     void Graph<T>::addEdge(std::size_t u, std::size_t v) {
-        if (u < N && v < N  && u!=v) {
+        if (u < N && v < N && u != v) {
             // Won't insert once more if and create multiedg.
             if (adjList[u].find(v) == adjList[u].end()) {
                 adjList[u].insert(v);
@@ -164,7 +162,7 @@ namespace GraphTree {
                 E++;
             }
         } else {
-            if (u!=v)
+            if (u != v)
                 std::cerr << "\nError: u or v vert not in graph.\n";
             else
                 std::cerr << "\nError: graph data structure can't contain loops.\n";
