@@ -91,15 +91,10 @@ namespace GraphTree {
         // Returns by value new graph that contains Spanning Tree forest of .self
         Graph<T> getSpanningTree();
 
-        // Returns true if graph is acyclic, false - otherwise.
-        bool checkAcyclic();
-
     private:
         void spanningDFS(Graph<T> *resGraph, std::vector<bool> &visited, std::size_t v);
 
         void copyVertexData(Graph<T> *rhs);
-
-        bool acyclicDFS(std::vector<char> &visited, std::size_t v);
 
     protected:
 
@@ -276,49 +271,6 @@ namespace GraphTree {
             std::cerr << "\n out of range";
             static_assert(1, "oor");
         }
-    }
-
-    template<typename T>
-    bool Graph<T>::checkAcyclic() {
-
-        std::vector<char> color(N, 0);
-
-        for (std::size_t i = 0; i < N; i++) {
-            if (color[i] != 2) {
-                if (!acyclicDFS(color, i))
-                    return false;
-            }
-        }
-        return true;
-    }
-
-    template<typename T>
-    bool Graph<T>::acyclicDFS(std::vector<char> &visited, std::size_t v) {
-        // We will do it non-recursive.
-
-        // Emulate recursion with stack.
-        std::stack<std::size_t> S;
-        S.push(v);
-
-        while (!S.empty()) {
-            v = S.top();
-            S.pop();
-
-            if (visited[v] == 0 || visited[v] == 1) {
-                visited[v] = 2;
-            }
-
-            for (auto w: this->adjList[v]) {
-                if (visited[w] == 1)
-                    return false; // We found cycle.
-                else {
-                    S.push(w);
-                    visited[w] = 1;
-                }
-            }
-        }
-
-        return true;
     }
 
 }
