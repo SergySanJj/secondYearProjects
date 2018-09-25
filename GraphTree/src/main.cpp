@@ -9,6 +9,7 @@
 
 #include "Graph.h"
 #include "tests.cpp"
+#include "DateTime.h"
 
 void intPrintHelper(int val) {
     std::cout << "v(" << val << ")";
@@ -25,9 +26,13 @@ void vecPrintHelper(std::vector<T> val) {
 
 
 int main() {
+
+    std::cout << DateTime::getDayOfWeek(9,25,2018) << "\n";
+    std::cout << DateTime::getDayOfWeek(10,10,2018) << "\n";
+    std::cout << DateTime::getDayOfWeek(10,10,2042) << "\n";
+
     GraphTree::Graph<int> zero(0);
     zero.print();
-    std::cout << zero.checkAcyclic() << '\n';
 
 
     GraphTree::Graph<int> g(3);
@@ -48,17 +53,17 @@ int main() {
 
     g[2] = 666;
 
-    std::cout << "Adjacency list:\n";
+    std::cout << "\n";
     g.print();
-    std::cout << "Adjacency list:\n";
+    std::cout << "\n";
     g.print(intPrintHelper);
 
 
     GraphTree::Graph<int> spG = g.getSpanningTree();
-    std::cout << g.checkAcyclic() << "\n" << spG.checkAcyclic() << "\n";
+
 
     std::cout << "\n\nSpan Graph\n";
-    std::cout << "Adjacency list:\n";
+    std::cout << "\n";
     spG.print();
     return 0;
 }

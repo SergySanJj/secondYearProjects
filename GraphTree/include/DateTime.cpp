@@ -41,29 +41,6 @@ namespace DateTime {
 
     };
 
-    class WeekDay {
-    public:
-
-        explicit WeekDay(std::uint8_t d) : val(d) {}
-
-        static WeekDay Mon() { return WeekDay(1); }
-
-        static WeekDay Tue() { return WeekDay(2); }
-
-        static WeekDay Wed() { return WeekDay(3); }
-
-        static WeekDay Thu() { return WeekDay(4); }
-
-        static WeekDay Fri() { return WeekDay(5); }
-
-        static WeekDay Sat() { return WeekDay(6); }
-
-        static WeekDay Sun() { return WeekDay(7); }
-
-    private:
-        std::uint8_t val;
-    };
-
     class Day {
     public:
         explicit Day(std::uint8_t d) {
@@ -157,6 +134,7 @@ namespace DateTime {
 
     }
 
+
     bool validateDate(const std::uint8_t m, const std::uint8_t d, const std::uint16_t y) {
         if (y >= 1970 && y <= 2038) {
             //check month
@@ -188,5 +166,15 @@ namespace DateTime {
             return false;
         }
 
+    }
+
+    std::int32_t getDayOfWeek(std::uint8_t m, std::uint8_t d, std::uint16_t y) {
+        if (!validateDate(m,d,y))
+        {
+            std::cerr << "INVALID DATE\n";
+            return -1;
+        }
+        // 1990, Michael Keith and Tom Craver expression.
+        return (d+=m<3?y--:y-2,23*m/9+d+4+y/4-y/100+y/400)%7 ;
     }
 }

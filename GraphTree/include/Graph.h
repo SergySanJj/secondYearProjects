@@ -159,6 +159,11 @@ namespace GraphTree {
 
     template<typename T>
     void Graph<T>::print() const {
+        if (!N)
+        {
+            std::cout<<"----EMPTY GRAPH----\n";
+            return;
+        }
         for (std::size_t i = 0; i < N; i++) {
             std::cout << " " << std::setw(3) << i << ": ";
             if (adjList[i].empty())
@@ -175,6 +180,11 @@ namespace GraphTree {
     template<typename T>
     template<typename OP>
     void Graph<T>::print(OP op) {
+        if (!N)
+        {
+            std::cout<<"----EMPTY GRAPH----\n";
+            return;
+        }
         for (std::size_t i = 0; i < N; i++) {
             std::cout << " ";
             op(vertexList[i].accessData());
