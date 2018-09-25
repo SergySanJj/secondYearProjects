@@ -13,10 +13,10 @@
 namespace DateTime {
 
     class Month;
-    class Day;
-    class Year;
 
-    class Time;
+    class Day;
+
+    class Year;
 
     // Return true if date is valid, return false otherwise.
     bool validateDate(std::uint8_t m, std::uint8_t d, std::uint16_t y);
@@ -24,38 +24,77 @@ namespace DateTime {
     // Returns an integer that represents week day (Mon=1, Tue=2...)
     std::int32_t getDayOfWeek(std::uint8_t m, std::uint8_t d, std::uint16_t y);
 
+    class Date {
+    public:
+        explicit Date(std::uint8_t m, std::uint8_t d, std::uint16_t y);
+
+        std::uint8_t Month() { return month; }
+
+        std::uint8_t Day() { return day; }
+
+        std::uint16_t Year() { return year; }
+
+    private:
+        std::uint8_t month;
+        std::uint8_t day;
+        std::uint16_t year;
+    };
+
+    class Time {
+    public:
+        explicit Time(std::uint8_t h, std::uint8_t m, std::uint8_t s);
+
+        std::uint8_t Hour() { return hour; }
+
+        std::uint8_t Minute() { return minute; }
+
+        std::uint8_t Seconds() { return seconds; }
+
+
+    private:
+        std::uint8_t hour, minute, seconds;
+
+        bool checkInRange(std::uint8_t val, std::uint8_t a, std::uint8_t b) { return (val >= a && val <= b); }
+
+        double getFrac() {
+            double days = seconds;
+            days = minute + days / 60.0;
+            days = hour + days / 60.0;
+            return days / 24.0;
+        }
+    };
+
     class DateTime {
     public:
         // represents both date and time
-        explicit DateTime(std::uint32_t seconds) :
-                total(seconds), justDate(0), justTime(0) {}
-
-        // represents both date and time
-        explicit DateTime(const Month m, const Day d, const Year y, const Time t);
+        explicit DateTime(Date date_, Time time_) :
+                date(date_), time(time_), justDate(false), justTime(false) {}
 
         // represents dates only
-        explicit DateTime(const Month m, const Day d, const Year y);
-        // represents dates only
-        explicit DateTime(const Day d, const Month m, const Year y);
+        explicit DateTime(Date date_) :
+                date(date_), time(Time(0, 0, 0)), justDate(true), justTime(false) {}
 
         // represents time only
-        explicit DateTime(const Time t);
+        explicit DateTime(Time time_) :
+                date(Date(1, 1, 1970)), time(time_), justDate(0), justTime(true) {}
 
-        std::uint8_t month();
-        std::uint8_t day();
-        std::uint16_t year();
+
+        std::uint8_t month() { return date.Month(); }
+
+        std::uint8_t day() { return date.Day(); }
+
+        std::uint16_t year() { return date.Year(); }
 
     private:
+        bool justDate;
+        bool justTime;
+
+        Time time;
+        Date date;
+
         std::uint32_t convertToSecons(std::uint8_t m, std::uint8_t d, std::uint16_t y,
                                       std::uint8_t h, std::uint8_t minute, std::uint8_t s);
 
-        double julianFloat(const Month m, const Day d, const Year y)
-
-    protected:
-        // Total seconds from Jan 1st, 1970
-        uint32_t total = 0;
-        bool justDate;
-        bool justTime;
     };
 }
 

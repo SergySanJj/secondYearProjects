@@ -69,69 +69,26 @@ namespace DateTime {
     };
 
 
-    class Time {
-    public:
-        explicit Time(std::uint8_t h, std::uint8_t m, std::uint8_t s) {
-            try {
-                if (checkInRange(h, 0, 23))
-                    hour = h;
-                else
-                    throw ("Hour val must be between 0 and 23");
-
-                if (checkInRange(m, 0, 59))
-                    minute = m;
-                else
-                    throw ("Minute val must be between 0 and 60");
-
-                if (checkInRange(s, 0, 60))
-                    second = s;
-                else
-                    throw ("Second value must be between 0 and 60");
-
-            } catch (const char* msg){
-                std::cerr << msg << '\n';
-            }
-        }
-
-        void Hour(std::uint8_t h) {
+    Time::Time(std::uint8_t h, std::uint8_t m, std::uint8_t s) {
+        try {
             if (checkInRange(h, 0, 23))
                 hour = h;
             else
                 throw ("Hour val must be between 0 and 23");
-        }
 
-        void Minute(std::uint8_t m) {
             if (checkInRange(m, 0, 59))
                 minute = m;
             else
                 throw ("Minute val must be between 0 and 60");
-        }
 
-        void Second(std::uint8_t s) {
             if (checkInRange(s, 0, 60))
-                second = s;
+                seconds = s;
             else
                 throw ("Second value must be between 0 and 60");
 
-
+        } catch (const char *msg) {
+            std::cerr << msg << '\n';
         }
-
-
-    private:
-        std::uint8_t hour, minute, second;
-
-        bool checkInRange(std::uint8_t val, std::uint8_t a, std::uint8_t b) { return (val >= a && val <= b); }
-    };
-
-    std::uint32_t
-    DateTime::convertToSecons(std::uint8_t m, std::uint8_t d, std::uint16_t y,
-                              std::uint8_t h, std::uint8_t minute, std::uint8_t s) {
-        auto res = static_cast<uint32_t>(s + minute * 60 + h * 3600);
-        return 0;
-    }
-
-    DateTime::DateTime(const Month m, const Day d, const Year y, const Time t) {
-
     }
 
 
@@ -169,12 +126,25 @@ namespace DateTime {
     }
 
     std::int32_t getDayOfWeek(std::uint8_t m, std::uint8_t d, std::uint16_t y) {
-        if (!validateDate(m,d,y))
-        {
+        if (!validateDate(m, d, y)) {
             std::cerr << "INVALID DATE\n";
             return -1;
         }
         // 1990, Michael Keith and Tom Craver expression.
-        return (d+=m<3?y--:y-2,23*m/9+d+4+y/4-y/100+y/400)%7 ;
+        return (d += m < 3 ? y-- : y - 2, 23 * m / 9 + d + 4 + y / 4 - y / 100 + y / 400) % 7;
     }
+
+    bool checkInRange(std::uint8_t val, std::uint8_t a, std::uint8_t b) { return (val >= a && val <= b); }
+
+    Date::Date(std::uint8_t m, std::uint8_t d, std::uint16_t y) {
+        if (validateDate(m,d,y))
+        {
+            month = m;
+            day = d;
+            year = y;
+        }
+        else
+            throw("Invalid Date\n");
+    }
+
 }
