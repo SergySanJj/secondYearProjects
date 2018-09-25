@@ -1,4 +1,5 @@
 //
+// DateTime module
 // Created by sju on 24.09.18.
 //
 
@@ -62,14 +63,15 @@ namespace DateTime {
         std::uint8_t val;
     };
 
-    class Day{
+    class Day {
     public:
-        explicit Day(std::uint8_t d){
-            if (d>0 && d<31)
+        explicit Day(std::uint8_t d) {
+            if (d > 0 && d < 31)
                 val = d;
             else
-                throw("Invalid day");
+                throw ("Invalid day");
         }
+
     private:
         std::uint8_t val;
     };
@@ -92,9 +94,25 @@ namespace DateTime {
     class Time {
     public:
         explicit Time(std::uint8_t h, std::uint8_t m, std::uint8_t s) {
-            Hour(h);
-            Minute(m);
-            Second(s);
+            try {
+                if (checkInRange(h, 0, 23))
+                    hour = h;
+                else
+                    throw ("Hour val must be between 0 and 23");
+
+                if (checkInRange(m, 0, 59))
+                    minute = m;
+                else
+                    throw ("Minute val must be between 0 and 60");
+
+                if (checkInRange(s, 0, 60))
+                    second = s;
+                else
+                    throw ("Second value must be between 0 and 60");
+
+            } catch (const char* msg){
+                std::cerr << msg << '\n';
+            }
         }
 
         void Hour(std::uint8_t h) {
@@ -116,7 +134,10 @@ namespace DateTime {
                 second = s;
             else
                 throw ("Second value must be between 0 and 60");
+
+
         }
+
 
     private:
         std::uint8_t hour, minute, second;
@@ -125,38 +146,41 @@ namespace DateTime {
     };
 
     std::uint32_t
-    DateTime::convertToSecons(std::uint8_t m, std::uint8_t d, std::uint16_t y, std::uint8_t h, std::uint8_t minute,
-                              std::uint8_t s) {
+    DateTime::convertToSecons(std::uint8_t m, std::uint8_t d, std::uint16_t y,
+                              std::uint8_t h, std::uint8_t minute, std::uint8_t s) {
         auto res = static_cast<uint32_t>(s + minute * 60 + h * 3600);
         return 0;
     }
 
-    void DateTime::validateDate(const std::uint8_t m, const std::uint8_t d, const std::uint16_t y) {
-        if(y>=1900 && y<=9999)
-        {
+    bool validateDate(const std::uint8_t m, const std::uint8_t d, const std::uint16_t y) {
+        if (y >= 1970 && y <= 2038) {
             //check month
-            if(m>=1 && m<=12)
-            {
+            if (m >= 1 && m <= 12) {
                 //check days
-                if((d>=1 && d<=31) && (m==1 || m==3 || m==5 || m==7 || m==8 || m==10 || m==12))
-                    return;
-                else if((d>=1 && d<=30) && (m==4 || m==6 || m==9 || m==11))
-                    return;
-                else if((d>=1 && d<=28) && (m==2))
-                    return;
-                else if(d==29 && m==2 && (y%400==0 ||(y%4==0 && y%100!=0)))
-                    return;
-                else
-                    throw("Day is invalid.\n");
+                if ((d >= 1 && d <= 31) && (m == 1 || m == 3 || m == 5 || m == 7 || m == 8 || m == 10 || m == 12))
+                    return true;
+                else if ((d >= 1 && d <= 30) && (m == 4 || m == 6 || m == 9 || m == 11))
+                    return true;
+                else if ((d >= 1 && d <= 28) && (m == 2))
+                    return true;
+                    // Leap year check.
+                else if (d == 29 && m == 2) {
+                    if (1 && (y % 400 == 0 || (y % 4 == 0 && y % 100 != 0)))
+                        return true;
+                    else {
+                        //throw("Day is invalid.\n");
+                        return false;
+                    }
+                } else {
+                    return false;
+                }
+            } else {
+                //throw("Month is not valid.\n");
+                return false;
             }
-            else
-            {
-                throw("Month is not valid.\n");
-            }
-        }
-        else
-        {
-            throw("Year is not valid.\n");
+        } else {
+            //throw("Year is not valid.\n");
+            return false;
         }
 
     }

@@ -7,4 +7,4 @@ include_directories(include)
 
 add_executable(GraphTree src/main.cpp src/tests.cpp include/DateTime.cpp include/DateTime.h)
 
-#include/Graph.h include/Tree.h for some case save it here.
+#include/Graph.h for some case save it here.

@@ -1,4 +1,5 @@
 //
+// DateTime module
 // Created by sju on 24.09.18.
 //
 
@@ -12,39 +13,35 @@
 namespace DateTime {
 
     class Month;
-
     class Day;
-
     class Year;
 
     class Time;
 
+    // Return true if date is valid, return false otherwise.
+    bool validateDate(std::uint8_t m, std::uint8_t d, std::uint16_t y);
 
     class DateTime {
     public:
         // represents both date and time
         explicit DateTime(std::uint32_t seconds) :
                 total(seconds), justDate(0), justTime(0) {}
-
+        // represents both date and time
         explicit DateTime(const Month m, const Day d, const Year y, const Time t);
 
         // represents dates only
         explicit DateTime(const Month m, const Day d, const Year y);
-
+        // represents dates only
         explicit DateTime(const Day d, const Month m, const Year y);
 
-        DateTime(const std::tuple<Month, Day, Year>);
-
-        DateTime(const std::tuple<Day, Month, Year>);
-
         // represents time only
+        explicit DateTime(const Time t);
+
 
 
     private:
         std::uint32_t convertToSecons(std::uint8_t m, std::uint8_t d, std::uint16_t y,
                                       std::uint8_t h, std::uint8_t minute, std::uint8_t s);
-
-        void validateDate(std::uint8_t m, std::uint8_t d, std::uint16_t y);
 
     protected:
         // Total seconds from Jan 1st, 1970

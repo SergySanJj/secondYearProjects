@@ -1,4 +1,5 @@
 //
+// Graph module
 // Created by sergysanjj on 19.09.18.
 //
 
@@ -35,6 +36,8 @@ namespace GraphTree {
 
         explicit Vertex<T>(T data) : vertexData(data) {}
 
+        ~Vertex<T>() = default;
+
         Vertex &operator=(const Vertex<T> &rsv) {
             vertexData = rsv.vertexData;
             return *this;
@@ -45,10 +48,7 @@ namespace GraphTree {
             return *this;
         }
 
-        // TODO: analize once more:
-        T &getData() { return vertexData; }
-
-        ~Vertex<T>() = default;
+        T &accessData() { return vertexData; }
 
     private:
         T vertexData;
@@ -62,54 +62,49 @@ namespace GraphTree {
         // Create an empty graph with n vertices.
         explicit Graph(std::size_t n);
 
+        // Create an empty graph.
         explicit Graph() : N(0), E(0) {}
 
+        // Create graph with data in vertices from values vector.
         explicit Graph(const std::vector<T> &values);
 
+        // As we don't store any heap data.
         ~Graph() = default;
 
-        T &operator[](std::size_t index) {
-            if (index < vertexList.size())
-                return (vertexList[index].getData());
-            else {
-                std::cerr << "\n out of range";
-                static_assert(1, "oor");
-            }
+        // Gives access to data inside index vertex.
+        T &operator[](std::size_t index);
 
-        }
-
-        // TODO: write copy constructor, assigment operator
-
+        // Assignment operator.
         Graph &operator=(const Graph<T> &rhs);
 
+        // Returns number of vertices.
         std::size_t size() const { return N; }
 
+        // Returns number of edges.
         std::size_t edgeCount() const { return E; }
 
-        void print();
+        // Print adjacency list with numeration.
+        void print() const;
 
+        // Print adjacency list with data in form defined by op function.
         template<typename OP>
         void print(OP op);
 
-        // Call as .addVertex(Vertex(data));
+        // Adds new vertex. Call as .addVertex(Vertex(data));
         void addVertex(const Vertex<T> &v);
 
-        // Connect u wirh v (numeration from 0, DOESN'T supports multiedges).
+        // Connect u with v (numeration from 0, DOESN'T supports multiedges and loops).
         void addEdge(std::size_t u, std::size_t v);
 
-        // TODO: revrite so it will assign span tree
-        // Returns pointer to the new graph that contains Spanning Tree forest of .self
-        Graph<T> *getSpanningTree();
+        // Returns by value new graph that contains Spanning Tree forest of .self
+        Graph<T> getSpanningTree();
 
     private:
         void spanningDFS(Graph<T> *resGraph, std::vector<bool> &visited, std::size_t v);
 
-        template<typename OP>
-        void prnt(T val, OP op) { op(val); }
+        void copyVertexData(Graph<T> *rhs);
 
     protected:
-
-        void copyVertexData(Graph<T> *rhs);
 
         // Vertex number.
         std::size_t N;
@@ -118,7 +113,7 @@ namespace GraphTree {
         // Here will be stored pointers to verts.
         std::vector<Vertex<T> > vertexList;
         // Adjacency list.
-        std::vector<std::set<std::size_t> > adjList;  // TODO: think once more about using hash map insted
+        std::vector<std::set<std::size_t> > adjList;
     };
 
 /********--------Implementation--------********/
@@ -154,24 +149,28 @@ namespace GraphTree {
 
     template<typename T>
     void Graph<T>::addEdge(std::size_t u, std::size_t v) {
-        if (u < N && v < N && u != v) {
-            // Won't insert once more if and create multiedg.
-            if (adjList[u].find(v) == adjList[u].end()) {
-                adjList[u].insert(v);
-                adjList[v].insert(u);
-                E++;
+        try {
+            if (u < N && v < N && u != v) {
+                // Won't insert once more if and create multiedge.
+                if (adjList[u].find(v) == adjList[u].end()) {
+                    adjList[u].insert(v);
+                    adjList[v].insert(u);
+                    E++;
+                }
+            } else {
+                if (u != v)
+                    throw ("\nError: u or v vertex not in graph.\n");
+                else
+                    throw ("\nError: graph data structure can't contain loops.\n");
             }
-        } else {
-            if (u != v)
-                std::cerr << "\nError: u or v vert not in graph.\n";
-            else
-                std::cerr << "\nError: graph data structure can't contain loops.\n";
+        } catch (const char* msg) {
+            std::cerr << msg << '\n';
         }
     }
 
 
     template<typename T>
-    void Graph<T>::print() {
+    void Graph<T>::print() const {
         for (std::size_t i = 0; i < N; i++) {
             std::cout << " " << std::setw(3) << i << ": ";
             if (adjList[i].empty())
@@ -190,13 +189,13 @@ namespace GraphTree {
     void Graph<T>::print(OP op) {
         for (std::size_t i = 0; i < N; i++) {
             std::cout << " ";
-            op(vertexList[i].getData());
+            op(vertexList[i].accessData());
             std::cout << ": ";
             if (adjList[i].empty())
                 std::cout << "--empty--";
             else {
                 for (auto connection : adjList[i]) {
-                    op(vertexList[connection].getData());
+                    op(vertexList[connection].accessData());
                     std::cout << " ";
                 }
             }
@@ -216,20 +215,18 @@ namespace GraphTree {
     }
 
     template<typename T>
-    Graph<T> *Graph<T>::getSpanningTree() {
-        using std::vector, std::array;
-
+    Graph<T> Graph<T>::getSpanningTree() {
         std::vector<bool> visited(N, false);
-        auto *resTree = new Graph<T>();
-
-        resTree->copyVertexData(this);
+        Graph<T> resTree(0);
+        resTree.copyVertexData(this);
 
         for (std::size_t i = 0; i < N; i++) {
             if (!visited[i]) {
-                spanningDFS(resTree, visited, i);
+                spanningDFS(&resTree, visited, i);
             }
         }
 
+        // Return by value
         return resTree;
     }
 
@@ -261,6 +258,7 @@ namespace GraphTree {
 
     }
 
+
     template<typename T>
     Graph<T> &Graph<T>::operator=(const Graph<T> &rhs) {
         vertexList.clear();
@@ -270,11 +268,23 @@ namespace GraphTree {
         adjList = rhs.adjList;
 
         N = rhs.size();
-        E = rhs.size();
+        E = rhs.edgeCount();
 
 
         return *this;
     }
+
+    template<typename T>
+    T &Graph<T>::operator[](std::size_t index) {
+
+        if (index < vertexList.size())
+            return (vertexList[index].accessData());
+        else {
+            std::cerr << "\n out of range";
+            static_assert(1, "oor");
+        }
+    }
+
 }
 
 #endif //GRAPHTREE_GRAPH_H
