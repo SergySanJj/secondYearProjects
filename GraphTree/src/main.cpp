@@ -25,7 +25,12 @@ void vecPrintHelper(std::vector<T> val) {
 
 
 int main() {
-    GraphTree::Graph<int> g(0);
+    GraphTree::Graph<int> zero(0);
+    zero.print();
+    std::cout << zero.checkAcyclic() << '\n';
+
+
+    GraphTree::Graph<int> g(3);
     g.addVertex(GraphTree::Vertex(213));
     g.addVertex(GraphTree::Vertex(324));
     g.addVertex(GraphTree::Vertex(883));
@@ -50,6 +55,8 @@ int main() {
 
 
     GraphTree::Graph<int> spG = g.getSpanningTree();
+    std::cout << g.checkAcyclic() << "\n" << spG.checkAcyclic() << "\n";
+
     std::cout << "\n\nSpan Graph\n";
     std::cout << "Adjacency list:\n";
     spG.print();

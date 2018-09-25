@@ -21,14 +21,6 @@
 
 namespace GraphTree {
 
-    // TODO: separate errors handler/message printer to a different file/class.
-    // TODO: mb add Error return value from functions.
-    enum Errors {
-        BadAlloc = 0,
-        NoSuchVertexNumber = 1
-    };
-
-
     template<typename T>
     class Vertex {
     public:
@@ -83,8 +75,8 @@ namespace GraphTree {
         // Returns number of edges.
         std::size_t edgeCount() const { return E; }
 
-        // Print adjacency list with numeration.
-        void print() const;
+        // Print adjacency list with numeration. (any derived class can reimplement)
+        virtual void print() const;
 
         // Print adjacency list with data in form defined by op function.
         template<typename OP>
@@ -99,10 +91,15 @@ namespace GraphTree {
         // Returns by value new graph that contains Spanning Tree forest of .self
         Graph<T> getSpanningTree();
 
+        // Returns true if graph is acyclic, false - otherwise.
+        bool checkAcyclic();
+
     private:
         void spanningDFS(Graph<T> *resGraph, std::vector<bool> &visited, std::size_t v);
 
         void copyVertexData(Graph<T> *rhs);
+
+        bool acyclicDFS(std::vector<char> &visited, std::size_t v);
 
     protected:
 
@@ -122,10 +119,6 @@ namespace GraphTree {
     Graph<T>::Graph(std::size_t n): N(n), E(0) {
         vertexList.resize(N);
         adjList.resize(N);
-
-        for (auto vert : vertexList) {
-            vert = Vertex<T>();
-        }
     }
 
     template<typename T>
@@ -163,7 +156,7 @@ namespace GraphTree {
                 else
                     throw ("\nError: graph data structure can't contain loops.\n");
             }
-        } catch (const char* msg) {
+        } catch (const char *msg) {
             std::cerr << msg << '\n';
         }
     }
@@ -283,6 +276,49 @@ namespace GraphTree {
             std::cerr << "\n out of range";
             static_assert(1, "oor");
         }
+    }
+
+    template<typename T>
+    bool Graph<T>::checkAcyclic() {
+
+        std::vector<char> color(N, 0);
+
+        for (std::size_t i = 0; i < N; i++) {
+            if (color[i] != 2) {
+                if (!acyclicDFS(color, i))
+                    return false;
+            }
+        }
+        return true;
+    }
+
+    template<typename T>
+    bool Graph<T>::acyclicDFS(std::vector<char> &visited, std::size_t v) {
+        // We will do it non-recursive.
+
+        // Emulate recursion with stack.
+        std::stack<std::size_t> S;
+        S.push(v);
+
+        while (!S.empty()) {
+            v = S.top();
+            S.pop();
+
+            if (visited[v] == 0 || visited[v] == 1) {
+                visited[v] = 2;
+            }
+
+            for (auto w: this->adjList[v]) {
+                if (visited[w] == 1)
+                    return false; // We found cycle.
+                else {
+                    S.push(w);
+                    visited[w] = 1;
+                }
+            }
+        }
+
+        return true;
     }
 
 }

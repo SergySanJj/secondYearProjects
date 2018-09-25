@@ -43,6 +43,9 @@ namespace DateTime {
 
     class WeekDay {
     public:
+
+        explicit WeekDay(std::uint8_t d) : val(d) {}
+
         static WeekDay Mon() { return WeekDay(1); }
 
         static WeekDay Tue() { return WeekDay(2); }
@@ -58,8 +61,6 @@ namespace DateTime {
         static WeekDay Sun() { return WeekDay(7); }
 
     private:
-        explicit WeekDay(std::uint8_t d) : val(d) {}
-
         std::uint8_t val;
     };
 
@@ -150,6 +151,10 @@ namespace DateTime {
                               std::uint8_t h, std::uint8_t minute, std::uint8_t s) {
         auto res = static_cast<uint32_t>(s + minute * 60 + h * 3600);
         return 0;
+    }
+
+    DateTime::DateTime(const Month m, const Day d, const Year y, const Time t) {
+
     }
 
     bool validateDate(const std::uint8_t m, const std::uint8_t d, const std::uint16_t y) {
