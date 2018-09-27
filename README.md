@@ -66,10 +66,9 @@ g.print(intPrintHelper);
 
  Graph module also has method to create a spanning tree of your graph:
 ```c++
-GraphTree::Graph<some_type> *spanG = g.getSpanningTree();
+GraphTree::Graph<some_type> spanG = g.getSpanningTree();
 //..usage..//
-delete spanG;
 ```
 
-### Feel free to post issues, fork, star etc.
+#### Feel free to post issues, fork, star etc.
  
