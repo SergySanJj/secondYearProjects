@@ -91,6 +91,13 @@ namespace DateTime {
         }
     }
 
+    double Time::getFrac() {
+        double days = seconds;
+        days = minute + days / 60.0;
+        days = hour + days / 60.0;
+        return days / 24.0;
+    }
+
 
     bool validateDate(const std::uint8_t m, const std::uint8_t d, const std::uint16_t y) {
         if (y >= 1970 && y <= 2038) {

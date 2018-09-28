@@ -12,12 +12,6 @@
 
 namespace DateTime {
 
-    class Month;
-
-    class Day;
-
-    class Year;
-
     // Return true if date is valid, return false otherwise.
     bool validateDate(std::uint8_t m, std::uint8_t d, std::uint16_t y);
 
@@ -56,12 +50,7 @@ namespace DateTime {
 
         bool checkInRange(std::uint8_t val, std::uint8_t a, std::uint8_t b) { return (val >= a && val <= b); }
 
-        double getFrac() {
-            double days = seconds;
-            days = minute + days / 60.0;
-            days = hour + days / 60.0;
-            return days / 24.0;
-        }
+        double getFrac();
     };
 
     class DateTime {
@@ -76,7 +65,7 @@ namespace DateTime {
 
         // represents time only
         explicit DateTime(Time time_) :
-                date(Date(1, 1, 1970)), time(time_), justDate(0), justTime(true) {}
+                date(Date(1, 1, 1970)), time(time_), justDate(false), justTime(true) {}
 
 
         std::uint8_t month() { return date.Month(); }

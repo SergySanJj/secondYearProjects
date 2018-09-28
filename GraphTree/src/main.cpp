@@ -26,10 +26,9 @@ void vecPrintHelper(std::vector<T> val) {
 
 
 int main() {
-
     std::cout << DateTime::getDayOfWeek(9,25,2018) << "\n";
     std::cout << DateTime::getDayOfWeek(10,10,2018) << "\n";
-    std::cout << DateTime::getDayOfWeek(10,10,2042) << "\n";
+    std::cout << DateTime::getDayOfWeek(10,10,2042) << "\n"; // Is invalid date due to UNIX time.
 
     GraphTree::Graph<int> zero(0);
     zero.print();
