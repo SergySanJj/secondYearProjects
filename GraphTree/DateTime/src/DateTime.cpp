@@ -164,6 +164,14 @@ namespace DT {
             return true;
     }
 
+    Date &Date::operator=(const Date &rsv) {
+        day = rsv.day;
+        month = rsv.month;
+        year = rsv.year;
+
+        return *this;
+    }
+
     void DateTime::print() const {
         using std::cout;
         cout << toDayOfWeek(getDayOfWeek(date.Day(), date.Month(), date.Year())) << " ";
@@ -234,5 +242,15 @@ namespace DT {
             default:
                 return "INVALID";
         }
+    }
+
+    //TODO:
+    bool isLeapYear(std::uint32_t year) {
+        if (year % 4 == 0)
+            return true;
+        else if ((year % 100 == 0) && (year % 400 == 0))
+            return true;
+        else
+            return false;
     }
 }

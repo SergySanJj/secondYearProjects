@@ -20,9 +20,7 @@ namespace DT {
 
         ~DateTimeDelta()= default;
 
-        std::uint32_t getTotalSeconds();
-        std::uint32_t getTotalDays();
-        std::uint32_t getTotalYears();
+        void print();
 
         std::uint16_t Day() { return day; }
 
@@ -45,8 +43,6 @@ namespace DT {
         std::uint16_t minute;
         std::uint16_t seconds;
     };
-
-
 
 }
 

@@ -26,11 +26,14 @@ void vecPrintHelper(std::vector<T> val) {
 
 
 int main() {
-    for (std::uint16_t i=20;i<=31;i++)
-        std::cout << i << " " << DT::getDayOfWeek(i,9,2080) << "\n";
+    DT::DateTime d1(DT::Date(27, 9, 2018), DT::Time(18, 22, 45));
+    DT::DateTime d2(DT::Date(29, 9, 2018), DT::Time(11, 20, 55));
+    DT::DateTimeDelta(d1, d2).print();
 
-    DT::DateTime d1(DT::Date(29,9,2018),DT::Time(15,10,0));
-    d1.print();
+
+    for (std::uint16_t i = 20; i <= 31; i++)
+        std::cout << i << " " << DT::getDayOfWeek(i, 9, 2080) << "\n";
+
     GraphTree::Graph<int> zero(0);
     zero.print();
 

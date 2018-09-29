@@ -28,11 +28,16 @@ namespace DT {
     // Returns day name from integer 1..7
     std::string toDayOfWeek(std::int32_t day);
 
+    // Return true if year is a leap year, false otherwise.
+    bool isLeapYear(std::uint32_t year);
+
     class Date {
     public:
         explicit Date(std::uint16_t d, std::uint16_t m, std::uint16_t y);
 
         ~Date() = default;
+
+        Date &operator=(const Date &rsv);
 
         bool const operator==(const Date &rsv);
 
