@@ -228,6 +228,10 @@ namespace DT {
             return true;
     }
 
+    DateTimeDelta DateTime::operator-(const DateTime &rsv) {
+        return DateTimeDelta(*this, rsv);
+    }
+
 
     std::string toDayOfWeek(const std::int32_t day) {
         switch (day) {
@@ -252,7 +256,6 @@ namespace DT {
         }
     }
 
-    //TODO:
     bool isLeapYear(std::uint32_t year) {
         if (year % 4 == 0)
             return true;

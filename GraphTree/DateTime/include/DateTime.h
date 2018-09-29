@@ -109,6 +109,8 @@ namespace DT {
 
         bool const operator>(const DateTime &rsv);
 
+        DateTimeDelta operator-(const DateTime& rsv);
+
         std::int32_t dayOfWeek() const;
 
         std::uint16_t Month() const { return date.Month(); }

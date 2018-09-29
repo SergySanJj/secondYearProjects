@@ -18,30 +18,30 @@ namespace DT {
     public:
         DateTimeDelta(DT::DateTime dt1, DT::DateTime dt2);
 
-        ~DateTimeDelta()= default;
+        ~DateTimeDelta() = default;
 
-        void print();
+        void print() const;
 
-        std::uint16_t Day() { return day; }
+        std::uint32_t Day() { return day; }
 
-        std::uint16_t Month() { return month; }
+        std::uint32_t Month() { return month; }
 
-        std::uint16_t Year() { return year; }
+        std::uint32_t Year() { return year; }
 
-        std::uint16_t Hour() { return hour; }
+        std::uint32_t Hour() { return hour; }
 
-        std::uint16_t Minute() { return minute; }
+        std::uint32_t Minute() { return minute; }
 
-        std::uint16_t Seconds() { return seconds; }
+        std::uint32_t Seconds() { return seconds; }
 
     private:
-        std::uint16_t day;
-        std::uint16_t month;
-        std::uint16_t year;
+        std::uint32_t day;
+        std::uint32_t month;
+        std::uint32_t year;
 
-        std::uint16_t hour;
-        std::uint16_t minute;
-        std::uint16_t seconds;
+        std::uint32_t hour;
+        std::uint32_t minute;
+        std::uint32_t seconds;
     };
 
 }

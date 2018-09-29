@@ -26,10 +26,10 @@ DT::DateTimeDelta::DateTimeDelta(DateTime dt1, DateTime dt2) {
         toDate = dt2;
     }
 
-    int increment = 0;
-    int _day = 0;
-    int _month = 0;
-    int _year = 0;
+    std::int32_t increment = 0;
+    std::int32_t _day = 0;
+    std::int32_t _month = 0;
+    std::int32_t _year = 0;
 
     // Day calc.
 
@@ -67,28 +67,28 @@ DT::DateTimeDelta::DateTimeDelta(DateTime dt1, DateTime dt2) {
 
 
     // Final assignment.
-    this->day = static_cast<uint16_t>(_day-1);
-    this->month = static_cast<uint16_t>(_month);
-    this->year = static_cast<uint16_t>(_year);
+    this->day = (_day - 1);
+    this->month = (_month);
+    this->year = (_year);
 
 
     // Time part.
 
-    int totSec1 = 3600*24 - (fromDate.Hour() * 3600 + fromDate.Minute() * 60 + fromDate.Seconds());
-    int totSec2 = toDate.Hour() * 3600 + toDate.Minute() * 60 + toDate.Seconds();
+    std::uint32_t totSec1 = 3600 * 24 - (fromDate.Hour() * 3600 + fromDate.Minute() * 60 + fromDate.Seconds());
+    std::uint32_t totSec2 = toDate.Hour() * 3600 + toDate.Minute() * 60 + toDate.Seconds();
 
-    int timeDiff = totSec1 + totSec2;
+    std::uint32_t timeDiff = totSec1 + totSec2;
     this->hour = timeDiff / 3600;
     this->minute = ((timeDiff - ((this->hour) * 3600)) / 60);
     this->seconds = (timeDiff - ((this->hour) * 3600) - (this->minute) * 60);
 
     if (this->hour == 24) {
-        this->day =  this->day +1;
+        this->day = this->day + 1;
         this->hour = 0;
     }
 }
 
-void DT::DateTimeDelta::print() {
+void DT::DateTimeDelta::print() const {
     using std::cout;
     cout << year << " Year(s) " << month << " Month(s) " << day << " Day(s) | ";
     cout << hour << " Hour(s) " << minute << " Minute(s) " << seconds << " Second(s)\n";

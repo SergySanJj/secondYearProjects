@@ -28,7 +28,7 @@ void vecPrintHelper(std::vector<T> val) {
 int main() {
     DT::DateTime d1(DT::Date(5, 1, 2011), DT::Time(0, 0, 0));
     DT::DateTime d2(DT::Date(6, 3, 2011), DT::Time(0, 0, 0));
-    DT::DateTimeDelta(d1, d2).print();
+    (d1-d2).print();
 
 /*
     for (std::uint16_t i = 20; i <= 31; i++)
