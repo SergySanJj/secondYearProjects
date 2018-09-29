@@ -10,7 +10,7 @@
 
 namespace DT {
 
-    Time::Time(const std::uint16_t h, const std::uint16_t m, const std::uint16_t s) {
+    Time::Time(const std::uint32_t h, const std::uint32_t m, const std::uint32_t s) {
         try {
             if (checkInRange(h, 0, 23))
                 hour = h;
@@ -81,7 +81,7 @@ namespace DT {
     }
 
 
-    bool validateDate(const std::uint16_t d, const std::uint16_t m, const std::uint16_t y) {
+    bool validateDate(const std::uint32_t d, const std::uint32_t m, const std::uint32_t y) {
         if (y >= 0 && y <= 9999) {
             //check month
             if (m >= 1 && m <= 12) {
@@ -114,7 +114,7 @@ namespace DT {
 
     }
 
-    std::int32_t getDayOfWeek(std::uint16_t d, std::uint16_t m, std::uint16_t y) {
+    std::int32_t getDayOfWeek(std::uint32_t d, std::uint32_t m, std::uint32_t y) {
         if (!validateDate(d, m, y)) {
             return -1;
         }
@@ -124,11 +124,11 @@ namespace DT {
         return (day == 0 ? 7 : day);
     }
 
-    bool checkInRange(const std::uint16_t val, const std::uint16_t a, const std::uint16_t b) {
+    bool checkInRange(const std::uint32_t val, const std::uint32_t a, const std::uint32_t b) {
         return (val >= a && val <= b);
     }
 
-    Date::Date(const std::uint16_t d, const std::uint16_t m, const std::uint16_t y) {
+    Date::Date(const std::uint32_t d, const std::uint32_t m, const std::uint32_t y) {
         if (validateDate(d, m, y)) {
             month = m;
             day = d;
@@ -232,6 +232,26 @@ namespace DT {
         return DateTimeDelta(*this, rsv);
     }
 
+    DateTime DateTime::operator+(const DateTimeDelta &rsv) {
+        std::uint32_t newDay = date.Day();
+        std::uint32_t newMonth = date.Month();
+        std::uint32_t newYear = date.Year();
+
+        std::uint32_t newHour = time.Hour();
+        std::uint32_t newMinute = time.Minute();
+        std::uint32_t newSeconds = time.Seconds();
+
+
+        std::uint32_t prevDays = numberOfDays(*this);
+
+        Date newDate(newDay, newMonth, newYear);
+        Time newTime(newHour, newMinute, newSeconds);
+
+        DateTime res(newDate, newTime);
+        return res;
+    }
+
+
 
     std::string toDayOfWeek(const std::int32_t day) {
         switch (day) {
@@ -263,5 +283,30 @@ namespace DT {
             return true;
         else
             return false;
+    }
+
+    std::uint32_t numberOfDays(const DateTime &dt) {       /* convert date to day number */
+        std::uint32_t y, m;
+
+        m = (dt.Month() + 9u) % 12;                /* mar=0, feb=11 */
+        y = dt.Year() - m / 10;                     /* if Jan/Feb, year-- */
+        return y * 365 + y / 4 - y / 100 + y / 400 + (m * 306 + 5) / 10 + (dt.Day() - 1);
+    }
+
+    Date daysToDate(std::uint32_t daysCount) { /* convert day number to y,m,d format */
+        std::uint32_t y, ddd, mi, mm, dd;
+        y = (10000 * daysCount + 14780) / 3652425;
+        ddd = daysCount - (365 * y + y / 4 - y / 100 + y / 400);
+        if (ddd < 0) {
+            y = y - 1;
+            ddd = daysCount - (365 * y + y / 4 - y / 100 + y / 400);
+        }
+        mi = (100 * ddd + 52) / 3060;
+        mm = (mi + 2) % 12 + 1;
+        y = y + (mi + 2) / 12;
+        dd = ddd - (mi * 306 + 5) / 10 + 1;
+        Date res(dd, mm, y);
+        return res;
+
     }
 }

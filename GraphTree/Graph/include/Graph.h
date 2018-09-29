@@ -3,11 +3,10 @@
 // Created by sergysanjj on 19.09.18.
 //
 
-#ifndef GRAPHTREE_GRAPH_H
-#define GRAPHTREE_GRAPH_H
+#pragma once
 
 #include <cstdlib>
-#include <iostream>
+#include <iostream> 
 #include <array>
 #include <vector>
 #include <set>
@@ -85,7 +84,7 @@ namespace GraphTree {
         std::size_t N;
         // Edge number.
         std::size_t E;
-        // Here will be stored pointers to verts.
+        // Here will be stored pointers to vertices.
         std::vector<Vertex<T> > vertexList;
         // Adjacency list.
         std::vector<std::set<std::size_t> > adjList;
@@ -103,4 +102,4 @@ namespace GraphTree {
 
 }
 
-#endif //GRAPHTREE_GRAPH_H
+
