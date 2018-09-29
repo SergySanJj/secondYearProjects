@@ -1,5 +1,6 @@
 #include "Graph.h"
 
+#include <random>
 // start using namespace GraphTree
 
 using namespace GraphTree;
@@ -191,6 +192,18 @@ T &Graph<T>::operator[](std::size_t index) {
         std::cerr << "\n out of range";
         static_assert(1, "oor");
     }
+}
+
+
+template<typename T>
+Graph<T> buildRandomGraph(std::size_t n) {
+    Graph<T> res(n);
+    std::size_t edgeCount = ((n*n-n)/2);
+    for (std::size_t i = 0;i<edgeCount;i++)
+    {
+
+    }
+    return Graph<T>();
 }
 
 

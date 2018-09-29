@@ -32,6 +32,15 @@ namespace DT {
     public:
         explicit Date(std::uint16_t d, std::uint16_t m, std::uint16_t y);
 
+        ~Date() = default;
+
+        bool operator==(const Date &rsv);
+
+        bool operator!=(const Date &rsv);
+
+        bool operator<(const Date &rsv);
+
+        bool operator>(const Date &rsv);
 
         std::uint16_t Month() const { return month; }
 
@@ -48,6 +57,16 @@ namespace DT {
     class Time {
     public:
         explicit Time(std::uint16_t h, std::uint16_t m, std::uint16_t s);
+
+        ~Time() = default;
+
+        bool operator==(const Time &rsv);
+
+        bool operator!=(const Time &rsv);
+
+        bool operator<(const Time &rsv);
+
+        bool operator>(const Time &rsv);
 
         std::uint16_t Hour() const { return hour; }
 
@@ -82,6 +101,13 @@ namespace DT {
 
         DateTime &operator=(const DateTime &rsv);
 
+        bool operator==(const DateTime &rsv);
+
+        bool operator!=(const DateTime &rsv);
+
+        bool operator<(const DateTime &rsv);
+
+        bool operator>(const DateTime &rsv);
 
         std::int32_t dayOfWeek() const;
 

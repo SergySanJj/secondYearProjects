@@ -39,6 +39,40 @@ namespace DT {
         return days / 24.0;
     }
 
+    bool Time::operator==(const Time &rsv) {
+        return ((hour == rsv.hour) && (minute == rsv.minute) && (seconds == rsv.seconds));
+    }
+
+    bool Time::operator<(const Time &rsv) {
+        if (hour < rsv.hour)
+            return true;
+        if (hour > rsv.hour)
+            return false;
+
+        if (minute < rsv.minute)
+            return true;
+        if (minute > rsv.minute)
+            return false;
+
+        if (seconds < rsv.seconds)
+            return true;
+        else
+            return false;
+    }
+
+    bool Time::operator!=(const Time &rsv) {
+        return (!(*this == rsv));
+    }
+
+    bool Time::operator>(const Time &rsv) {
+        if (*this == rsv)
+            return false;
+        if (*this < rsv)
+            return false;
+        else
+            return true;
+    }
+
 
     bool validateDate(const std::uint16_t d, const std::uint16_t m, const std::uint16_t y) {
         if (y >= 0 && y <= 9999) {
@@ -96,6 +130,40 @@ namespace DT {
             throw ("Invalid Date\n");
     }
 
+    bool Date::operator==(const Date &rsv) {
+        return ((month == rsv.month) && (day == rsv.day) && (year == rsv.year));
+    }
+
+    bool Date::operator<(const Date &rsv) {
+        if (year < rsv.year)
+            return true;
+        if (year > rsv.year)
+            return false;
+        // year == rsv.year.
+        if (month < rsv.month)
+            return true;
+        if (month > rsv.month)
+            return false;
+        // month == rsv.month.
+        if (day < rsv.day)
+            return true;
+        else
+            return false;
+    }
+
+    bool Date::operator!=(const Date &rsv) {
+        return (!(*this == rsv));
+    }
+
+    bool Date::operator>(const Date &rsv) {
+        if (*this == rsv)
+            return false;
+        if (*this < rsv)
+            return false;
+        else
+            return true;
+    }
+
     void DateTime::print() const {
         using std::cout;
         cout << toDayOfWeek(getDayOfWeek(date.Day(), date.Month(), date.Year())) << " ";
@@ -114,6 +182,36 @@ namespace DT {
         date = Date(rsv.Day(), rsv.Month(), rsv.Year());
         return *this;
     }
+
+    bool DateTime::operator==(const DateTime &rsv) {
+
+        return ((time == rsv.time) && (date == rsv.date));
+    }
+
+    bool DateTime::operator<(const DateTime &rsv) {
+        if (date < rsv.date)
+            return true;
+        if (date == rsv.date) {
+            if (time < rsv.time)
+                return true;
+            return false;
+        } else
+            return false;
+    }
+
+    bool DateTime::operator!=(const DateTime &rsv) {
+        return (!(*this == rsv));
+    }
+
+    bool DateTime::operator>(const DateTime &rsv) {
+        if (*this == rsv)
+            return false;
+        if (*this < rsv)
+            return false;
+        else
+            return true;
+    }
+
 
     std::string toDayOfWeek(const std::int32_t day) {
         switch (day) {

@@ -18,6 +18,12 @@ namespace DT {
     public:
         DateTimeDelta(const DT::DateTime &dt1, const DT::DateTime &dt2);
 
+        ~DateTimeDelta()= default;
+
+        std::uint32_t getTotalSeconds();
+        std::uint32_t getTotalDays();
+        std::uint32_t getTotalYears()
+
         std::uint16_t Day() { return day; }
 
         std::uint16_t Month() { return month; }
