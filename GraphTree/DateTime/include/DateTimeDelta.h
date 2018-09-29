@@ -16,13 +16,13 @@ namespace DT {
 
     class DateTimeDelta {
     public:
-        DateTimeDelta(const DT::DateTime &dt1, const DT::DateTime &dt2);
+        DateTimeDelta(DT::DateTime dt1, DT::DateTime dt2);
 
         ~DateTimeDelta()= default;
 
         std::uint32_t getTotalSeconds();
         std::uint32_t getTotalDays();
-        std::uint32_t getTotalYears()
+        std::uint32_t getTotalYears();
 
         std::uint16_t Day() { return day; }
 

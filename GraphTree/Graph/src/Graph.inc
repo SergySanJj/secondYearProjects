@@ -1,6 +1,7 @@
 #include "Graph.h"
 
-#include <random>
+
+#include<ctime>
 // start using namespace GraphTree
 
 using namespace GraphTree;
@@ -61,8 +62,6 @@ void Graph<T>::addEdge(std::size_t u, std::size_t v) {
         } else {
             if (u != v)
                 throw ("\nError: u or v vertex not in graph.\n");
-            else
-                throw ("\nError: graph data structure can't contain loops.\n");
         }
     } catch (const char *msg) {
         std::cerr << msg << '\n';
@@ -190,20 +189,22 @@ T &Graph<T>::operator[](std::size_t index) {
         return (vertexList[index].accessData());
     else {
         std::cerr << "\n out of range";
-        static_assert(1, "oor");
+        static_assert(1, "out of range");
     }
 }
 
 
 template<typename T>
 Graph<T> buildRandomGraph(std::size_t n) {
+    std::srand(static_cast<unsigned int>(std::time(0)));
     Graph<T> res(n);
-    std::size_t edgeCount = ((n*n-n)/2);
-    for (std::size_t i = 0;i<edgeCount;i++)
-    {
-
+    std::size_t edgeCount = rand() % ((n * n - n) / 2);
+    for (std::size_t i = 0; i < edgeCount; i++) {
+        std::size_t u = rand() % n;
+        std::size_t v = rand() % n;
+        res.addEdge(u, v);
     }
-    return Graph<T>();
+    return res;
 }
 
 

@@ -64,6 +64,11 @@ int main() {
 
     std::cout << "\n\nSpan Graph\n";
     std::cout << "\n";
-    spG.print();
+    std::cout << "RANDOM:\n";
+
+    GraphTree::Graph<int> rndG = GraphTree::buildRandomGraph<int>(10);
+    rndG.print();
+    std::cout << "\n Span rnd: \n";
+    (rndG.getSpanningTree()).print();
     return 0;
 }

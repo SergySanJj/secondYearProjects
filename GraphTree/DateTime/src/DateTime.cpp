@@ -39,11 +39,11 @@ namespace DT {
         return days / 24.0;
     }
 
-    bool Time::operator==(const Time &rsv) {
+    bool const Time::operator==(const Time &rsv) {
         return ((hour == rsv.hour) && (minute == rsv.minute) && (seconds == rsv.seconds));
     }
 
-    bool Time::operator<(const Time &rsv) {
+    bool const Time::operator<(const Time &rsv) {
         if (hour < rsv.hour)
             return true;
         if (hour > rsv.hour)
@@ -60,11 +60,11 @@ namespace DT {
             return false;
     }
 
-    bool Time::operator!=(const Time &rsv) {
+    bool const Time::operator!=(const Time &rsv) {
         return (!(*this == rsv));
     }
 
-    bool Time::operator>(const Time &rsv) {
+    bool const Time::operator>(const Time &rsv) {
         if (*this == rsv)
             return false;
         if (*this < rsv)
@@ -130,11 +130,11 @@ namespace DT {
             throw ("Invalid Date\n");
     }
 
-    bool Date::operator==(const Date &rsv) {
+    bool const Date::operator==(const Date &rsv) {
         return ((month == rsv.month) && (day == rsv.day) && (year == rsv.year));
     }
 
-    bool Date::operator<(const Date &rsv) {
+    bool const Date::operator<(const Date &rsv) {
         if (year < rsv.year)
             return true;
         if (year > rsv.year)
@@ -151,11 +151,11 @@ namespace DT {
             return false;
     }
 
-    bool Date::operator!=(const Date &rsv) {
+    bool const Date::operator!=(const Date &rsv) {
         return (!(*this == rsv));
     }
 
-    bool Date::operator>(const Date &rsv) {
+    bool const Date::operator>(const Date &rsv) {
         if (*this == rsv)
             return false;
         if (*this < rsv)
@@ -183,12 +183,12 @@ namespace DT {
         return *this;
     }
 
-    bool DateTime::operator==(const DateTime &rsv) {
+    bool const DateTime::operator==(const DateTime &rsv) {
 
         return ((time == rsv.time) && (date == rsv.date));
     }
 
-    bool DateTime::operator<(const DateTime &rsv) {
+    bool const DateTime::operator<(const DateTime &rsv) {
         if (date < rsv.date)
             return true;
         if (date == rsv.date) {
@@ -199,11 +199,11 @@ namespace DT {
             return false;
     }
 
-    bool DateTime::operator!=(const DateTime &rsv) {
+    bool const DateTime::operator!=(const DateTime &rsv) {
         return (!(*this == rsv));
     }
 
-    bool DateTime::operator>(const DateTime &rsv) {
+    bool const DateTime::operator>(const DateTime &rsv) {
         if (*this == rsv)
             return false;
         if (*this < rsv)

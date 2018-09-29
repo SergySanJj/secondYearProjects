@@ -95,11 +95,9 @@ namespace GraphTree {
         void copyVertexData(Graph<T> *rhs);
     };
 
-    // Returns random graph with n vertices
-    template <typename T>
+// Returns random graph with n vertices
+    template<typename T>
     Graph<T> buildRandomGraph(std::size_t n);
-
-
 
 #include "Graph.inc"
 

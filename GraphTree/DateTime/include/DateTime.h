@@ -34,13 +34,13 @@ namespace DT {
 
         ~Date() = default;
 
-        bool operator==(const Date &rsv);
+        bool const operator==(const Date &rsv);
 
-        bool operator!=(const Date &rsv);
+        bool const operator!=(const Date &rsv);
 
-        bool operator<(const Date &rsv);
+        bool const operator<(const Date &rsv);
 
-        bool operator>(const Date &rsv);
+        bool const operator>(const Date &rsv);
 
         std::uint16_t Month() const { return month; }
 
@@ -60,13 +60,13 @@ namespace DT {
 
         ~Time() = default;
 
-        bool operator==(const Time &rsv);
+        bool const operator==(const Time &rsv);
 
-        bool operator!=(const Time &rsv);
+        bool const operator!=(const Time &rsv);
 
-        bool operator<(const Time &rsv);
+        bool const operator<(const Time &rsv);
 
-        bool operator>(const Time &rsv);
+        bool const operator>(const Time &rsv);
 
         std::uint16_t Hour() const { return hour; }
 
@@ -87,27 +87,20 @@ namespace DT {
     public:
         // represents both date and time
         explicit DateTime(const Date &date_, const Time &time_) :
-                date(date_), time(time_), justDate(false), justTime(false) {}
+                date(date_), time(time_) {}
 
-        // represents dates only
-        explicit DateTime(const Date &date_) :
-                date(date_), time(Time(0, 0, 0)), justDate(true), justTime(false) {}
-
-        // represents time only
-        explicit DateTime(const Time &time_) :
-                date(Date(1, 1, 1970)), time(time_), justDate(false), justTime(true) {}
 
         ~DateTime() = default;
 
         DateTime &operator=(const DateTime &rsv);
 
-        bool operator==(const DateTime &rsv);
+        bool const operator==(const DateTime &rsv);
 
-        bool operator!=(const DateTime &rsv);
+        bool const operator!=(const DateTime &rsv);
 
-        bool operator<(const DateTime &rsv);
+        bool const operator<(const DateTime &rsv);
 
-        bool operator>(const DateTime &rsv);
+        bool const operator>(const DateTime &rsv);
 
         std::int32_t dayOfWeek() const;
 
@@ -126,12 +119,9 @@ namespace DT {
         void print() const;
 
     private:
-        bool justDate;
-        bool justTime;
 
         Time time;
         Date date;
-
     };
 }
 
