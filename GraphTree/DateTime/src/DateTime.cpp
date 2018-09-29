@@ -73,6 +73,13 @@ namespace DT {
             return true;
     }
 
+    Time &Time::operator=(const Time &rhs) {
+        hour = rhs.hour;
+        minute = rhs.minute;
+        seconds = rhs.seconds;
+        return *this;
+    }
+
 
     bool validateDate(const std::uint16_t d, const std::uint16_t m, const std::uint16_t y) {
         if (y >= 0 && y <= 9999) {
@@ -188,6 +195,7 @@ namespace DT {
 
     DateTime &DateTime::operator=(const DateTime &rsv) {
         date = Date(rsv.Day(), rsv.Month(), rsv.Year());
+        time = Time(rsv.Hour(), rsv.Minute(), rsv.Seconds());
         return *this;
     }
 

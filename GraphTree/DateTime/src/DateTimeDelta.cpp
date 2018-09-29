@@ -16,7 +16,7 @@ DT::DateTimeDelta::DateTimeDelta(DateTime dt1, DateTime dt2) {
 
 
     // Date part.
-    int monthDay[] = {31, -1, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
+    int monthDay[] = {31, 31, -1, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
 
     if (dt1 > dt2) {
         fromDate = dt2;
@@ -32,17 +32,20 @@ DT::DateTimeDelta::DateTimeDelta(DateTime dt1, DateTime dt2) {
     int _year = 0;
 
     // Day calc.
-    if (fromDate.Day() > toDate.Day()) {
-        increment = monthDay[fromDate.Month() - 1];
-    }
 
+    if (fromDate.Day() > toDate.Day()) {
+        increment = monthDay[toDate.Month() - 1];
+
+    }
     if (increment == -1) {
-        if (isLeapYear(fromDate.Year())) {
+        if (isLeapYear(toDate.Year())) {
+            // leap year february contain 29 days
             increment = 29;
         } else {
             increment = 28;
         }
     }
+
     if (increment != 0) {
         _day = (toDate.Day() + increment) - fromDate.Day();
         increment = 1;
@@ -64,20 +67,25 @@ DT::DateTimeDelta::DateTimeDelta(DateTime dt1, DateTime dt2) {
 
 
     // Final assignment.
-    this->day = static_cast<uint16_t>(_day);
+    this->day = static_cast<uint16_t>(_day-1);
     this->month = static_cast<uint16_t>(_month);
     this->year = static_cast<uint16_t>(_year);
 
 
     // Time part.
 
-    int totSec1 = fromDate.Hour() * 3600 + fromDate.Minute() * 60 + fromDate.Seconds();
+    int totSec1 = 3600*24 - (fromDate.Hour() * 3600 + fromDate.Minute() * 60 + fromDate.Seconds());
     int totSec2 = toDate.Hour() * 3600 + toDate.Minute() * 60 + toDate.Seconds();
 
-    int timeDiff = abs(totSec1 - totSec2);
+    int timeDiff = totSec1 + totSec2;
     this->hour = timeDiff / 3600;
     this->minute = ((timeDiff - ((this->hour) * 3600)) / 60);
     this->seconds = (timeDiff - ((this->hour) * 3600) - (this->minute) * 60);
+
+    if (this->hour == 24) {
+        this->day =  this->day +1;
+        this->hour = 0;
+    }
 }
 
 void DT::DateTimeDelta::print() {

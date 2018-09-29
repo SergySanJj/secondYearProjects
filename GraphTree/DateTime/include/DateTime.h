@@ -65,6 +65,8 @@ namespace DT {
 
         ~Time() = default;
 
+        Time &operator=(const Time& rhs);
+
         bool const operator==(const Time &rsv);
 
         bool const operator!=(const Time &rsv);
