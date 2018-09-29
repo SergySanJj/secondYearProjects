@@ -7,9 +7,9 @@
 #include <vector>
 #include <iomanip>
 
-#include "Graph.h"
+#include "../Graph/include/Graph.h"
 #include "tests.cpp"
-#include "DateTime.h"
+#include "../DateTime/include/DateTime.h"
 
 void intPrintHelper(int val) {
     std::cout << "v(" << val << ")";

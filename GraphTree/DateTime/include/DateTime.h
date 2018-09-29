@@ -17,7 +17,7 @@ namespace DateTime {
     // Return true if date is valid, return false otherwise.
     bool validateDate(std::uint8_t m, std::uint8_t d, std::uint16_t y);
 
-    // Returns an integer that represents week day (Mon=1, Tue=2...)
+    // Returns an integer that represents week day (Mon=1, Tue=2...) if date is invalid return -1.
     std::int32_t getDayOfWeek(std::uint8_t m, std::uint8_t d, std::uint16_t y);
 
     class Date {

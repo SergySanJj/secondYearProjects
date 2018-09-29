@@ -3,7 +3,7 @@
 // Created by sju on 24.09.18.
 //
 
-#include "DateTime.h"
+#include "../include/DateTime.h"
 
 
 namespace DateTime {
@@ -134,7 +134,7 @@ namespace DateTime {
 
     std::int32_t getDayOfWeek(std::uint8_t m, std::uint8_t d, std::uint16_t y) {
         if (!validateDate(m, d, y)) {
-            std::cerr << "INVALID DATE\n";
+            //std::cerr << "INVALID DATE\n";
             return -1;
         }
         // 1990, Michael Keith and Tom Craver expression.

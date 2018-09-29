@@ -3,9 +3,12 @@ project(GraphTree)
 
 set(CMAKE_CXX_STANDARD 17)
 
-include_directories(include)
-include_directories(implementation)
+include_directories(DateTime/include)
+include_directories(DateTime/src)
 
-add_executable(GraphTree src/main.cpp src/tests.cpp implementation/DateTime.cpp include/DateTime.h include/DateTimeDelta.h implementation/DateTimeDelta.cpp)
+include_directories(Graph/include)
+include_directories(Graph/src)
+
+add_executable(GraphTree src/main.cpp src/tests.cpp DateTime/src/DateTime.cpp DateTime/include/DateTime.h DateTime/include/DateTimeDelta.h DateTime/src/DateTimeDelta.cpp)
 
 #include/Graph.h for some case save it here.
