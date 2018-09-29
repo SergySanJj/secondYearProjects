@@ -2,9 +2,6 @@
 // Created by sergei on 29.09.18.
 //
 
-//#ifndef GRAPHTREE_DATETIMEDELTA_H
-//#define GRAPHTREE_DATETIMEDELTA_H
-
 #pragma once
 
 #include <cstdint>
@@ -17,6 +14,9 @@ namespace DT {
     class DateTimeDelta {
     public:
         DateTimeDelta(DT::DateTime dt1, DT::DateTime dt2);
+
+        explicit DateTimeDelta(std::uint32_t dd, std::uint32_t mm, std::uint32_t yy,
+                               std::uint32_t h, std::uint32_t m, std::uint32_t s);
 
         ~DateTimeDelta() = default;
 
@@ -36,6 +36,12 @@ namespace DT {
 
         std::int32_t TotalDays() { return totalDays; }
 
+        std::int32_t TotalWeeks() { return (totalDays / 7); }
+
+        std::int64_t TotalSeconds() { return totalSeconds; }
+
+        std::int32_t LastDaySeconds() { return (hour * 3600 + minute * 60 + seconds); }
+
     private:
         std::uint32_t day;
         std::uint32_t month;
@@ -47,10 +53,10 @@ namespace DT {
 
         std::int32_t totalDays;
 
+        std::int64_t totalSeconds;
+
         // Rata Die formula
         std::int32_t daysIn(int d, int m, int y);
     };
 
 }
-
-//#endif //GRAPHTREE_DATETIMEDELTA_H

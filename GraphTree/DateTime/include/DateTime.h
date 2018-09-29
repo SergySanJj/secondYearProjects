@@ -1,11 +1,8 @@
 //
 // DT module
 // Created by sju on 24.09.18.
+// ref: https://alcor.concordia.ca//~gpkatch/gdate-method.html
 //
-
-//#ifndef GRAPHTREE_DATETIME_H
-//#define GRAPHTREE_DATETIME_H
-
 
 #pragma once
 
@@ -17,13 +14,19 @@
 #include "DateTimeDelta.h"
 
 namespace DT {
+    class Time;
+
+    class Date;
+
+    class DateTime;
+
     class DateTimeDelta;
 
     // Return true if date is valid, return false otherwise.
-    bool validateDate(std::uint16_t d, std::uint16_t m, std::uint16_t y);
+    bool validateDate(std::uint32_t d, std::uint32_t m, std::uint32_t y);
 
     // Returns an integer that represents week day (Mon=1, Tue=2...) if date is invalid return -1.
-    std::int32_t getDayOfWeek(std::uint16_t d, std::uint16_t m, std::uint16_t y);
+    std::int32_t getDayOfWeek(std::uint32_t d, std::uint32_t m, std::uint32_t y);
 
     // Returns day name from integer 1..7
     std::string toDayOfWeek(std::int32_t day);
@@ -31,11 +34,24 @@ namespace DT {
     // Return true if year is a leap year, false otherwise.
     bool isLeapYear(std::uint32_t year);
 
+    // Return total number of days.
+    std::uint32_t numberOfDays(const DateTime &dt);
+
+    Date daysToDate(std::uint32_t daysCount);
+
+    
+
     class Date {
     public:
-        explicit Date(std::uint16_t d, std::uint16_t m, std::uint16_t y);
+        explicit Date(std::uint32_t d, std::uint32_t m, std::uint32_t y);
 
         ~Date() = default;
+
+        std::uint32_t Month() const { return month; }
+
+        std::uint32_t Day() const { return day; }
+
+        std::uint32_t Year() const { return year; }
 
         Date &operator=(const Date &rsv);
 
@@ -47,21 +63,15 @@ namespace DT {
 
         bool const operator>(const Date &rsv);
 
-        std::uint16_t Month() const { return month; }
-
-        std::uint16_t Day() const { return day; }
-
-        std::uint16_t Year() const { return year; }
-
     private:
-        std::uint16_t month;
-        std::uint16_t day;
-        std::uint16_t year;
+        std::uint32_t month;
+        std::uint32_t day;
+        std::uint32_t year;
     };
 
     class Time {
     public:
-        explicit Time(std::uint16_t h, std::uint16_t m, std::uint16_t s);
+        explicit Time(std::uint32_t h, std::uint32_t m, std::uint32_t s);
 
         ~Time() = default;
 
@@ -75,17 +85,17 @@ namespace DT {
 
         bool const operator>(const Time &rsv);
 
-        std::uint16_t Hour() const { return hour; }
+        std::uint32_t Hour() const { return hour; }
 
-        std::uint16_t Minute() const { return minute; }
+        std::uint32_t Minute() const { return minute; }
 
-        std::uint16_t Seconds() const { return seconds; }
+        std::uint32_t Seconds() const { return seconds; }
 
 
     private:
-        std::uint16_t hour, minute, seconds;
+        std::uint32_t hour, minute, seconds;
 
-        bool checkInRange(std::uint16_t val, std::uint16_t a, std::uint16_t b) { return (val >= a && val <= b); }
+        bool checkInRange(std::uint32_t val, std::uint32_t a, std::uint32_t b) { return (val >= a && val <= b); }
 
         double getFrac();
     };
@@ -99,6 +109,22 @@ namespace DT {
 
         ~DateTime() = default;
 
+        std::int32_t dayOfWeek() const;
+
+        std::uint32_t Month() const { return date.Month(); }
+
+        std::uint32_t Day() const { return date.Day(); }
+
+        std::uint32_t Year() const { return date.Year(); }
+
+        std::uint32_t Hour() const { return time.Hour(); }
+
+        std::uint32_t Minute() const { return time.Minute(); }
+
+        std::uint32_t Seconds() const { return time.Seconds(); }
+
+        void print() const;
+
         DateTime &operator=(const DateTime &rsv);
 
         bool const operator==(const DateTime &rsv);
@@ -111,25 +137,9 @@ namespace DT {
 
         DateTimeDelta operator-(const DateTime &rsv);
 
-        DateTime &operator+(const DateTimeDelta &rsv);
+        DateTime operator+(const DateTimeDelta &rsv);
 
-        DateTime &operator-(const DateTimeDelta &rsv);
-
-        std::int32_t dayOfWeek() const;
-
-        std::uint16_t Month() const { return date.Month(); }
-
-        std::uint16_t Day() const { return date.Day(); }
-
-        std::uint16_t Year() const { return date.Year(); }
-
-        std::uint16_t Hour() const { return time.Hour(); }
-
-        std::uint16_t Minute() const { return time.Minute(); }
-
-        std::uint16_t Seconds() const { return time.Seconds(); }
-
-        void print() const;
+        DateTime operator-(const DateTimeDelta &rsv);
 
     private:
 
@@ -137,6 +147,3 @@ namespace DT {
         Date date;
     };
 }
-
-
-//#endif //GRAPHTREE_DATETIME_H

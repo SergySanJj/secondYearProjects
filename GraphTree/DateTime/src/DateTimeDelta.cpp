@@ -81,9 +81,9 @@ DT::DateTimeDelta::DateTimeDelta(DateTime dt1, DateTime dt2) {
     this->minute = ((timeDiff - ((this->hour) * 3600)) / 60);
     this->seconds = (timeDiff - ((this->hour) * 3600) - (this->minute) * 60);
 
-    if (this->hour == 24) {
+    if (this->hour >= 24) {
         this->day = this->day + 1;
-        this->hour = 0;
+        this->hour = this->hour%24;
     }
 
 
@@ -92,6 +92,8 @@ DT::DateTimeDelta::DateTimeDelta(DateTime dt1, DateTime dt2) {
     std::int32_t tot1 = daysIn(fromDate.Day(), fromDate.Month(), fromDate.Year());
     std::int32_t tot2 = daysIn(toDate.Day(), toDate.Month(), toDate.Year());
     this->totalDays = abs(tot1 - tot2);
+
+    this->totalSeconds = totalDays * 3600 * 24 + LastDaySeconds();
 }
 
 void DT::DateTimeDelta::print() const {
@@ -105,3 +107,4 @@ std::int32_t DT::DateTimeDelta::daysIn(int d, int m, int y) { /* Rata Die day on
         y--, m += 12;
     return 365 * y + y / 4 - y / 100 + y / 400 + (153 * m - 457) / 5 + d - 306;
 }
+
