@@ -6,6 +6,6 @@ set(CMAKE_CXX_STANDARD 17)
 include_directories(include)
 include_directories(implementation)
 
-add_executable(GraphTree src/main.cpp src/tests.cpp implementation/DateTime.cpp include/DateTime.h)
+add_executable(GraphTree src/main.cpp src/tests.cpp implementation/DateTime.cpp include/DateTime.h include/DateTimeDelta.h implementation/DateTimeDelta.cpp)
 
 #include/Graph.h for some case save it here.

@@ -76,7 +76,7 @@ void Graph<T>::print() const {
         return;
     }
     for (std::size_t i = 0; i < N; i++) {
-        std::cout << " " << std::setw(3) << i << ": ";
+        std::cout << " " << i << ": ";
         if (adjList[i].empty())
             std::cout << "--empty--";
         else {

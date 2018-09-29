@@ -6,6 +6,8 @@
 #ifndef GRAPHTREE_DATETIME_H
 #define GRAPHTREE_DATETIME_H
 
+#include "DateTimeDelta.h"
+
 #include <iostream>
 #include <cstdint>
 #include <tuple>
@@ -73,6 +75,8 @@ namespace DateTime {
         std::uint8_t day() { return date.Day(); }
 
         std::uint16_t year() { return date.Year(); }
+
+        void print();
 
     private:
         bool justDate;

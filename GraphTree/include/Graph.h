@@ -11,8 +11,6 @@
 #include <array>
 #include <vector>
 #include <set>
-#include <iomanip>
-#include <memory>
 #include <stack>
 
 
@@ -83,12 +81,6 @@ namespace GraphTree {
         Graph<T> getSpanningTree();
 
     private:
-        void spanningDFS(Graph<T> *resGraph, std::vector<bool> &visited, std::size_t v);
-
-        void copyVertexData(Graph<T> *rhs);
-
-    protected:
-
         // Vertex number.
         std::size_t N;
         // Edge number.
@@ -97,6 +89,10 @@ namespace GraphTree {
         std::vector<Vertex<T> > vertexList;
         // Adjacency list.
         std::vector<std::set<std::size_t> > adjList;
+
+        void spanningDFS(Graph<T> *resGraph, std::vector<bool> &visited, std::size_t v);
+
+        void copyVertexData(Graph<T> *rhs);
     };
 
 
