@@ -246,7 +246,7 @@ namespace DT {
         std::int64_t newMinute = time.Minute();
         std::int64_t newSeconds = time.Seconds();
 
-
+// TODO: start here.
         std::int64_t prevDays = numberOfDays(*this);
 
         Date newDate(newDay, newMonth, newYear);
@@ -313,5 +313,11 @@ namespace DT {
         Date res(dd, mm, y);
         return res;
 
+    }
+
+    std::int64_t numberOfSeconds(const DateTime &dt) {
+        std::int64_t res = numberOfDays(dt)*3600*24;
+        res += dt.Hour()*3600 + dt.Minute()*60 +dt.Seconds();
+        return res;
     }
 }

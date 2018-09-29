@@ -39,7 +39,7 @@ namespace DT {
 
     Date daysToDate(std::int64_t daysCount);
 
-
+    std::int64_t numberOfSeconds(const DateTime &dt);
 
     class Date {
     public:

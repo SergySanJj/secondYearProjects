@@ -27,7 +27,7 @@ void vecPrintHelper(std::vector<T> val) {
 
 
 int main() {
-    DT::DateTime d1(DT::Date(29, 1, 2018), DT::Time(21, 58, 0));
+    DT::DateTime d1(DT::Date(29, 1, 0), DT::Time(21, 58, 0));
     DT::DateTime d2(DT::Date(31, 12, 2018), DT::Time(23, 59, 59));
     (d1-d2).print();
     std::cout << (d2-d1).TotalDays() <<  "\n";
@@ -79,4 +79,6 @@ int main() {
     (rndG.getSpanningTree()).print();
 
     return 0;
+
+    // TODO: think more about types
 }
