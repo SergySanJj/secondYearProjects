@@ -34,6 +34,8 @@ namespace DT {
 
         std::uint32_t Seconds() { return seconds; }
 
+        std::int32_t TotalDays() { return totalDays; }
+
     private:
         std::uint32_t day;
         std::uint32_t month;
@@ -42,6 +44,11 @@ namespace DT {
         std::uint32_t hour;
         std::uint32_t minute;
         std::uint32_t seconds;
+
+        std::int32_t totalDays;
+
+        // Rata Die formula
+        std::int32_t daysIn(int d, int m, int y);
     };
 
 }

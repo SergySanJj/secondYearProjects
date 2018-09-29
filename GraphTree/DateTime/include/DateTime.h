@@ -65,7 +65,7 @@ namespace DT {
 
         ~Time() = default;
 
-        Time &operator=(const Time& rhs);
+        Time &operator=(const Time &rhs);
 
         bool const operator==(const Time &rsv);
 
@@ -109,7 +109,11 @@ namespace DT {
 
         bool const operator>(const DateTime &rsv);
 
-        DateTimeDelta operator-(const DateTime& rsv);
+        DateTimeDelta operator-(const DateTime &rsv);
+
+        DateTime &operator+(const DateTimeDelta &rsv);
+
+        DateTime &operator-(const DateTimeDelta &rsv);
 
         std::int32_t dayOfWeek() const;
 

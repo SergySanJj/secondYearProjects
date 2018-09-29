@@ -94,7 +94,7 @@ namespace DT {
                     return true;
                     // Leap year check.
                 else if (d == 29 && m == 2) {
-                    if (1 && (y % 400 == 0 || (y % 4 == 0 && y % 100 != 0)))
+                    if (isLeapYear(y))
                         return true;
                     else {
                         //throw("Day is invalid.\n");
