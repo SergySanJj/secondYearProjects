@@ -35,11 +35,11 @@ namespace DT {
     bool isLeapYear(std::uint32_t year);
 
     // Return total number of days.
-    std::uint32_t numberOfDays(const DateTime &dt);
+    std::int32_t numberOfDays(const DateTime &dt);
 
     Date daysToDate(std::uint32_t daysCount);
 
-    
+
 
     class Date {
     public:
@@ -52,6 +52,8 @@ namespace DT {
         std::uint32_t Day() const { return day; }
 
         std::uint32_t Year() const { return year; }
+
+        void print();
 
         Date &operator=(const Date &rsv);
 

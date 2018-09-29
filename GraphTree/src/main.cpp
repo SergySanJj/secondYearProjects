@@ -27,10 +27,12 @@ void vecPrintHelper(std::vector<T> val) {
 
 
 int main() {
-    DT::DateTime d1(DT::Date(29, 9, 2018), DT::Time(21, 58, 0));
+    DT::DateTime d1(DT::Date(29, 1, 2018), DT::Time(21, 58, 0));
     DT::DateTime d2(DT::Date(31, 12, 2018), DT::Time(23, 59, 59));
     (d1-d2).print();
-    std::cout << (d2-d1).TotalDays() << "\n" << (d2-d1).TotalWeeks() << "\n";
+    std::cout << (d2-d1).TotalDays() <<  "\n";
+    std::cout << DT::numberOfDays(d2) - DT::numberOfDays(d1) << "\n";
+    DT::daysToDate(DT::numberOfDays(d1)).print();
 
 
     for (std::uint16_t i = 20; i <= 31; i++)

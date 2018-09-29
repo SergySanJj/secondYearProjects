@@ -179,6 +179,11 @@ namespace DT {
         return *this;
     }
 
+    void Date::print() {
+        using std::cout;
+        cout << day << "/" << month << "/" << year << "\n";
+    }
+
     void DateTime::print() const {
         using std::cout;
         cout << toDayOfWeek(getDayOfWeek(date.Day(), date.Month(), date.Year())) << " ";
@@ -285,10 +290,10 @@ namespace DT {
             return false;
     }
 
-    std::uint32_t numberOfDays(const DateTime &dt) {       /* convert date to day number */
-        std::uint32_t y, m;
+    std::int32_t numberOfDays(const DateTime &dt) {       /* convert date to day number */
+        std::int32_t y, m;
 
-        m = (dt.Month() + 9u) % 12;                /* mar=0, feb=11 */
+        m = (dt.Month() + 9) % 12;                /* mar=0, feb=11 */
         y = dt.Year() - m / 10;                     /* if Jan/Feb, year-- */
         return y * 365 + y / 4 - y / 100 + y / 400 + (m * 306 + 5) / 10 + (dt.Day() - 1);
     }
