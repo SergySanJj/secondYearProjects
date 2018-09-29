@@ -26,10 +26,10 @@ DT::DateTimeDelta::DateTimeDelta(DateTime dt1, DateTime dt2) {
         toDate = dt2;
     }
 
-    std::int32_t increment = 0;
-    std::int32_t _day = 0;
-    std::int32_t _month = 0;
-    std::int32_t _year = 0;
+    std::int64_t increment = 0;
+    std::int64_t _day = 0;
+    std::int64_t _month = 0;
+    std::int64_t _year = 0;
 
     // Day calc.
 
@@ -73,10 +73,10 @@ DT::DateTimeDelta::DateTimeDelta(DateTime dt1, DateTime dt2) {
 
 
     // Time part.
-    std::uint32_t totSec1 = 3600 * 24 - (fromDate.Hour() * 3600 + fromDate.Minute() * 60 + fromDate.Seconds());
-    std::uint32_t totSec2 = toDate.Hour() * 3600 + toDate.Minute() * 60 + toDate.Seconds();
+    std::int64_t totSec1 = 3600 * 24 - (fromDate.Hour() * 3600 + fromDate.Minute() * 60 + fromDate.Seconds());
+    std::int64_t totSec2 = toDate.Hour() * 3600 + toDate.Minute() * 60 + toDate.Seconds();
 
-    std::uint32_t timeDiff = totSec1 + totSec2;
+    std::int64_t timeDiff = totSec1 + totSec2;
     this->hour = timeDiff / 3600;
     this->minute = ((timeDiff - ((this->hour) * 3600)) / 60);
     this->seconds = (timeDiff - ((this->hour) * 3600) - (this->minute) * 60);
@@ -89,8 +89,8 @@ DT::DateTimeDelta::DateTimeDelta(DateTime dt1, DateTime dt2) {
 
     // Total Days
 
-    std::int32_t tot1 = daysIn(fromDate.Day(), fromDate.Month(), fromDate.Year());
-    std::int32_t tot2 = daysIn(toDate.Day(), toDate.Month(), toDate.Year());
+    std::int64_t tot1 = daysIn(fromDate.Day(), fromDate.Month(), fromDate.Year());
+    std::int64_t tot2 = daysIn(toDate.Day(), toDate.Month(), toDate.Year());
     this->totalDays = abs(tot1 - tot2);
 
     this->totalSeconds = totalDays * 3600 * 24 + LastDaySeconds();
@@ -102,7 +102,7 @@ void DT::DateTimeDelta::print() const {
     cout << hour << " Hour(s) " << minute << " Minute(s) " << seconds << " Second(s)\n";
 }
 
-std::int32_t DT::DateTimeDelta::daysIn(int d, int m, int y) { /* Rata Die day one is 0001-01-01 */
+std::int64_t DT::DateTimeDelta::daysIn(std::int64_t d, std::int64_t m, std::int64_t y) { /* Rata Die day one is 0001-01-01 */
     if (m < 3)
         y--, m += 12;
     return 365 * y + y / 4 - y / 100 + y / 400 + (153 * m - 457) / 5 + d - 306;
