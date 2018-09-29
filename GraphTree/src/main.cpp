@@ -7,9 +7,9 @@
 #include <vector>
 #include <iomanip>
 
-#include "../Graph/include/Graph.h"
+#include "Graph.h"
 #include "tests.cpp"
-#include "../DateTime/include/DateTime.h"
+#include "DateTime.h"
 
 void intPrintHelper(int val) {
     std::cout << "v(" << val << ")";
@@ -26,10 +26,11 @@ void vecPrintHelper(std::vector<T> val) {
 
 
 int main() {
-    std::cout << DateTime::getDayOfWeek(9,25,2018) << "\n";
-    std::cout << DateTime::getDayOfWeek(10,10,2018) << "\n";
-    std::cout << DateTime::getDayOfWeek(10,10,2042) << "\n"; // Is invalid date due to UNIX time.
+    for (std::uint16_t i=20;i<=31;i++)
+        std::cout << i << " " << DT::getDayOfWeek(i,9,2080) << "\n";
 
+    DT::DateTime d1(DT::Date(29,9,2018),DT::Time(15,10,0));
+    d1.print();
     GraphTree::Graph<int> zero(0);
     zero.print();
 

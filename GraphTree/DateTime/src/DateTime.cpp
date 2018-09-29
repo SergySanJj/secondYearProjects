@@ -1,75 +1,16 @@
 //
-// DateTime module
+// DT module
 // Created by sju on 24.09.18.
 //
 
-#include "../include/DateTime.h"
+#include <DateTime.h>
+
+#include "DateTime.h"
 
 
-namespace DateTime {
+namespace DT {
 
-    class Month {
-    public:
-        static Month Jan() { return Month(1); }
-
-        static Month Feb() { return Month(2); }
-
-        static Month Mar() { return Month(3); }
-
-        static Month Apr() { return Month(4); }
-
-        static Month May() { return Month(5); }
-
-        static Month Jun() { return Month(6); }
-
-        static Month Jul() { return Month(7); }
-
-        static Month Aug() { return Month(8); }
-
-        static Month Sep() { return Month(9); }
-
-        static Month Oct() { return Month(10); }
-
-        static Month Nov() { return Month(11); }
-
-        static Month Dec() { return Month(12); }
-
-    private:
-        explicit Month(std::uint8_t m) : val(m) {}
-
-        std::uint8_t val;
-
-    };
-
-    class Day {
-    public:
-        explicit Day(std::uint8_t d) {
-            if (d > 0 && d < 31)
-                val = d;
-            else
-                throw ("Invalid day");
-        }
-
-    private:
-        std::uint8_t val;
-    };
-
-    class Year {
-    public:
-        explicit Year(std::uint16_t y) {
-            if (y >= 1970 && y <= 2037)
-                val = y;
-            else
-                throw ("\n You can use dates only from "
-                       "Jan 1st 1970 to Dec 29th 2037. \n");
-        }
-
-    private:
-        std::uint16_t val;
-    };
-
-
-    Time::Time(std::uint8_t h, std::uint8_t m, std::uint8_t s) {
+    Time::Time(const std::uint16_t h, const std::uint16_t m, const std::uint16_t s) {
         try {
             if (checkInRange(h, 0, 23))
                 hour = h;
@@ -99,8 +40,8 @@ namespace DateTime {
     }
 
 
-    bool validateDate(const std::uint8_t m, const std::uint8_t d, const std::uint16_t y) {
-        if (y >= 1970 && y <= 2038) {
+    bool validateDate(const std::uint16_t d, const std::uint16_t m, const std::uint16_t y) {
+        if (y >= 0 && y <= 9999) {
             //check month
             if (m >= 1 && m <= 12) {
                 //check days
@@ -132,26 +73,68 @@ namespace DateTime {
 
     }
 
-    std::int32_t getDayOfWeek(std::uint8_t m, std::uint8_t d, std::uint16_t y) {
-        if (!validateDate(m, d, y)) {
-            //std::cerr << "INVALID DATE\n";
+    std::int32_t getDayOfWeek(std::uint16_t d, std::uint16_t m, std::uint16_t y) {
+        if (!validateDate(d, m, y)) {
             return -1;
         }
         // 1990, Michael Keith and Tom Craver expression.
-        return (d += m < 3 ? y-- : y - 2, 23 * m / 9 + d + 4 + y / 4 - y / 100 + y / 400) % 7;
+        std::int32_t day = (d += m < 3 ? y-- : y - 2, 23 * m / 9 + d + 4 + y / 4 - y / 100 + y / 400) % 7;
+        // To make Sun week day number 7 not 0.
+        return (day == 0 ? 7 : day);
     }
 
-    bool checkInRange(std::uint8_t val, std::uint8_t a, std::uint8_t b) { return (val >= a && val <= b); }
+    bool checkInRange(const std::uint16_t val, const std::uint16_t a, const std::uint16_t b) {
+        return (val >= a && val <= b);
+    }
 
-    Date::Date(std::uint8_t m, std::uint8_t d, std::uint16_t y) {
-        if (validateDate(m,d,y))
-        {
+    Date::Date(const std::uint16_t d, const std::uint16_t m, const std::uint16_t y) {
+        if (validateDate(d, m, y)) {
             month = m;
             day = d;
             year = y;
-        }
-        else
-            throw("Invalid Date\n");
+        } else
+            throw ("Invalid Date\n");
     }
 
+    void DateTime::print() const {
+        using std::cout;
+        cout << toDayOfWeek(getDayOfWeek(date.Day(), date.Month(), date.Year())) << " ";
+        cout << date.Day() << "/" << date.Month() << "/" << date.Year() << " ";
+        cout << time.Hour() << ":" << time.Minute() << ":";
+        if (time.Seconds() < 10)
+            cout << "0";
+        cout << time.Seconds() << '\n';
+    }
+
+    std::int32_t DateTime::dayOfWeek() const {
+        return DT::getDayOfWeek(date.Day(), date.Month(), date.Year());
+    }
+
+    DateTime &DateTime::operator=(const DateTime &rsv) {
+        date = Date(rsv.Day(), rsv.Month(), rsv.Year());
+        return *this;
+    }
+
+    std::string toDayOfWeek(const std::int32_t day) {
+        switch (day) {
+            case -1:
+                return "INVALID";
+            case 1:
+                return "Mon";
+            case 2:
+                return "Tue";
+            case 3:
+                return "Wed";
+            case 4:
+                return "Thu";
+            case 5:
+                return "Fri";
+            case 6:
+                return "Sat";
+            case 7:
+                return "Sun";
+            default:
+                return "INVALID";
+        }
+    }
 }
