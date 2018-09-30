@@ -231,7 +231,7 @@ Graph<T> &Graph<T>::operator=(const Graph<T> &rhs) {
 
 template<typename T>
 T &Graph<T>::operator[](std::size_t index) {
-    if (index < vertexList.size())
+    if (index < N)
         return (accessVertex(&vertexList[index]));
     else {
         std::cerr << "\n out of range";

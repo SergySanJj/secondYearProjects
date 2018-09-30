@@ -7,6 +7,7 @@
 #include <vector>
 #include <iomanip>
 #include <string>
+#include <cstdlib>
 
 #include "Graph.h"
 #include "DateTime.h"
@@ -31,6 +32,10 @@ void vecPrintHelper(std::vector<T> val) {
 void dateTimePrintHelper(DT::DateTime val) {
     val.print();
     std::cout << " ";
+}
+
+void stringPrintHelper(std::string val) {
+    std::cout << "\"" << val << "\" ";
 }
 /*-----------------------------------------------*/
 
@@ -216,10 +221,14 @@ void DateTimeSample() {
     /// result will be 1/1/0000 00:00:00
     DT::DateTime addDT = dt1 + toNY;
     DT::DateTime subDT = dt1 - toNY;
+    DT::DateTime zeroDate = dt1 - (DT::DateTime() - dt3); // overlap through 1/1/0 00/00/00
     std::cout << "addDT :";
     addDT.println();
     std::cout << "subDT :";
     subDT.println();
+    std::cout << "zeroDate :";
+    zeroDate.println();
+
 
     /// You can also use ==, !=, <, > for Date, Time, DateTime and DateTimeDelta
     /// to compare same type values.
@@ -243,15 +252,26 @@ void DateGraphSample() {
 
 }
 
-std::string GraphStringSample{
-    //GraphTree::Graph<std::string> strG(0);
+std::string GraphStringSample() {
 
-};
+    std::cout << "\n--GraphStringSample--\n";
 
+    GraphTree::Graph<std::string> strG(0);
+    strG.addVertex(GraphTree::Vertex(std::string("sss")));
+    strG.addVertex(GraphTree::Vertex(std::string("sss")));
+    strG.addVertex(GraphTree::Vertex(std::string("sss")));
+    strG[0] = "~(@-@~)";
+    //strG.addEdge(0, 2);
+    //strG.addEdge(4, 3);
+    strG.print(stringPrintHelper);
+
+}
+
+/*-----------------------------------------------*/
 /*-----------------------------------------------*/
 
 int main() {
-#if RUN_SAMPLES == 1
+#if RUN_SAMPLES
 
     intGraphSample();
 
@@ -261,6 +281,7 @@ int main() {
 
     DateGraphSample();
 
+    GraphStringSample();
 
 #endif
     return 0;
