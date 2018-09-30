@@ -24,17 +24,30 @@ void vecPrintHelper(std::vector<T> val) {
     std::cout << "},";
 }
 
+void dateTimePrintHelper(DT::DateTime val)
+{
+    val.print();
+}
 
 
 int main() {
-    DT::DateTime d1(DT::Date(29, 1, 0), DT::Time(21, 58, 0));
-    DT::DateTime d2(DT::Date(31, 12, 2018), DT::Time(23, 59, 59));
-    (d1-d2).print();
-    std::cout << (d2-d1).TotalDays() <<  "\n";
-    std::cout << DT::numberOfDays(d2) - DT::numberOfDays(d1) << "\n";
-    DT::daysToDate(DT::numberOfDays(d1)).print();
+    DT::DateTime d1(DT::Date(2, 10, 2018), DT::Time(10, 12, 1));
+    DT::DateTime d2(DT::Date(3, 10, 2018), DT::Time(23, 13, 3));
+    DT::DateTime zeroYear(DT::Date(3, 1, 0), DT::Time(0, 0, 0));
+    DT::DateTimeDelta dd = d2 - d1;
+    dd.print();
 
+    (d2 + dd).print();
 
+    (d2 - dd).print();
+
+    GraphTree::Graph<DT::DateTime> dtG(0);
+    dtG.addVertex(GraphTree::Vertex(d1));
+    dtG.addVertex(GraphTree::Vertex(d2));
+    dtG.addVertex(GraphTree::Vertex(zeroYear));
+
+    dtG.print(dateTimePrintHelper);
+    /*
     for (std::uint16_t i = 20; i <= 31; i++)
         std::cout << i << " " << DT::getDayOfWeek(i, 9, 2080) << "\n";
 
@@ -79,6 +92,6 @@ int main() {
     (rndG.getSpanningTree()).print();
 
     return 0;
-
+*/
     // TODO: think more about types
 }

@@ -22,25 +22,25 @@ namespace DT {
 
         void print() const;
 
-        std::int64_t Day() { return day; }
+        std::int64_t Day() const { return day; }
 
-        std::int64_t Month() { return month; }
+        std::int64_t Month() const { return month; }
 
-        std::int64_t Year() { return year; }
+        std::int64_t Year() const { return year; }
 
-        std::int64_t Hour() { return hour; }
+        std::int64_t Hour() const { return hour; }
 
-        std::int64_t Minute() { return minute; }
+        std::int64_t Minute() const { return minute; }
 
-        std::int64_t Seconds() { return seconds; }
+        std::int64_t Seconds() const { return seconds; }
 
-        std::int64_t TotalDays() { return totalDays; }
+        std::int64_t TotalDays() const { return totalDays; }
 
-        std::int64_t TotalWeeks() { return (totalDays / 7); }
+        std::int64_t TotalWeeks() const { return (totalDays / 7); }
 
-        std::int64_t TotalSeconds() { return totalSeconds; }
+        std::int64_t TotalSeconds() const { return totalSeconds; }
 
-        std::int64_t LastDaySeconds() { return (hour * 3600 + minute * 60 + seconds); }
+        std::int64_t LastDaySeconds() const { return (hour * 3600 + minute * 60 + seconds); }
 
     private:
         std::int64_t day;

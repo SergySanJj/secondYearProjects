@@ -80,6 +80,8 @@ namespace DT {
         return *this;
     }
 
+    void Time::print() {std::cout << hour << "/" << minute << "/" << seconds; }
+
 
     bool validateDate(const std::int64_t d, const std::int64_t m, const std::int64_t y) {
         if (y >= 0 && y <= 9999) {
@@ -191,7 +193,7 @@ namespace DT {
         cout << time.Hour() << ":" << time.Minute() << ":";
         if (time.Seconds() < 10)
             cout << "0";
-        cout << time.Seconds() << '\n';
+        cout << time.Seconds();
     }
 
     std::int64_t DateTime::dayOfWeek() const {
@@ -238,24 +240,36 @@ namespace DT {
     }
 
     DateTime DateTime::operator+(const DateTimeDelta &rsv) {
-        std::int64_t newDay = date.Day();
-        std::int64_t newMonth = date.Month();
-        std::int64_t newYear = date.Year();
+        std::int64_t newDays = numberOfDays(*this) + rsv.TotalDays();
+        std::int64_t newSeconds = LastDaySeconds() + rsv.LastDaySeconds();
 
-        std::int64_t newHour = time.Hour();
-        std::int64_t newMinute = time.Minute();
-        std::int64_t newSeconds = time.Seconds();
+        newDays += (newSeconds / 3600) / 24;
+        newSeconds = newSeconds - ((newSeconds / 3600) / 24) * 3600 * 24;
 
-// TODO: start here.
-        std::int64_t prevDays = numberOfDays(*this);
-
-        Date newDate(newDay, newMonth, newYear);
-        Time newTime(newHour, newMinute, newSeconds);
-
-        DateTime res(newDate, newTime);
-        return res;
+        return DateTime(daysToDate(newDays), secondsToTime(newSeconds));
     }
 
+    std::int64_t DateTime::LastDaySeconds() const {
+        return (time.Hour() * 3600 + time.Minute() * 60 + time.Seconds());
+    }
+
+    DateTime DateTime::operator-(const DateTimeDelta &rsv) {
+        std::int64_t newDays = numberOfDays(*this) - rsv.TotalDays();
+        std::int64_t newSeconds = LastDaySeconds() - rsv.LastDaySeconds();
+        if (newDays <= 0 || (newDays == 1 && newSeconds < 0)) {
+            return DateTime(Date(1, 1, 0), Time(0, 0, 0));
+        }
+
+        if (newSeconds < 0) {
+            std::int64_t absSeconds = -newSeconds;
+            newDays -= (absSeconds / 3600) / 24;
+            absSeconds = 3600 * 24 - absSeconds + ((absSeconds / 3600) / 24) * 3600 * 60;
+
+            return DateTime(daysToDate(newDays), secondsToTime(absSeconds));
+        }
+
+        return DateTime(daysToDate(newDays), secondsToTime(newSeconds));
+    }
 
 
     std::string toDayOfWeek(const std::int64_t day) {
@@ -316,8 +330,16 @@ namespace DT {
     }
 
     std::int64_t numberOfSeconds(const DateTime &dt) {
-        std::int64_t res = numberOfDays(dt)*3600*24;
-        res += dt.Hour()*3600 + dt.Minute()*60 +dt.Seconds();
+        std::int64_t res = numberOfDays(dt) * 3600 * 24;
+        res += dt.Hour() * 3600 + dt.Minute() * 60 + dt.Seconds();
+        return res;
+    }
+
+    Time secondsToTime(std::int64_t secondsCount) {
+        std::int64_t newHour = secondsCount / 3600;
+        std::int64_t newMinute = (secondsCount - newHour * 3600) / 60;
+        std::int64_t newSeconds = secondsCount % (60);
+        Time res(newHour, newMinute, newSeconds);
         return res;
     }
 }
