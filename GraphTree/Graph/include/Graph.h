@@ -65,7 +65,7 @@ namespace GraphTree {
         ~Graph() = default;
 
         /// Gives access to data inside index vertex.
-        T &operator[](std::size_t index);
+        Vertex<T> &operator[](std::size_t index);
 
         /// Assignment operator.
         Graph &operator=(const Graph<T> &rhs);

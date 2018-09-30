@@ -152,6 +152,8 @@ void vectorGraphSample() {
 
     // replace last vertex value with {1,2,3}
     vecG[vecG.size() - 1] = std::vector({1, 2, 3});
+    // replace last vertex value with {3,2,1}
+    vecG[0] = std::vector({3, 2, 1});
 
     // print
     std::cout << "\nvecG in number form:\n";
@@ -256,13 +258,18 @@ std::string GraphStringSample() {
 
     std::cout << "\n--GraphStringSample--\n";
 
-    GraphTree::Graph<std::string> strG(0);
-    strG.addVertex(GraphTree::Vertex(std::string("sss")));
-    strG.addVertex(GraphTree::Vertex(std::string("sss")));
-    strG.addVertex(GraphTree::Vertex(std::string("sss")));
-    strG[0] = "~(@-@~)";
-    //strG.addEdge(0, 2);
-    //strG.addEdge(4, 3);
+
+    std::vector<std::string> strVec = {static_cast<std::string>("aa"),
+                                       static_cast<std::string>("ab"),
+                                       static_cast<std::string>("ba")};
+
+    GraphTree::Graph<std::string> strG(strVec);
+    std::string lft = "~(@-@~)";
+    std::string rgh = "(~@-@)~";
+    strG[0] = lft;
+    strG[1] = rgh;
+
+    strG.addEdge(0, 1);
     strG.print(stringPrintHelper);
 
 }

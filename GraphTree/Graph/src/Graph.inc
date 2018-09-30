@@ -230,9 +230,9 @@ Graph<T> &Graph<T>::operator=(const Graph<T> &rhs) {
 }
 
 template<typename T>
-T &Graph<T>::operator[](std::size_t index) {
+Vertex<T> &Graph<T>::operator[](std::size_t index) {
     if (index < N)
-        return (accessVertex(&vertexList[index]));
+        return (vertexList[index]);
     else {
         std::cerr << "\n out of range";
         static_assert(1, "out of range");
