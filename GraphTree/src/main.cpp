@@ -96,6 +96,4 @@ int main() {
     (rndG.getSpanningTree()).print();
 
     return 0;
-
-    // TODO: think more about types
 }

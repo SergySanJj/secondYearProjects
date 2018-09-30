@@ -57,7 +57,7 @@ namespace DT {
 
         std::int64_t totalSeconds;
 
-        // Rata Die formula
+        /// Rata Die formula.
         std::int64_t daysIn(std::int32_t d, std::int32_t m, std::int32_t y);
     };
 

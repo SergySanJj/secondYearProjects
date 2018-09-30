@@ -47,57 +47,57 @@ namespace GraphTree {
     class Graph {
     public:
 
-        // Create an empty graph with n vertices.
+        /// Create an empty graph with n vertices.
         explicit Graph(std::size_t n);
 
-        // Create an empty graph.
+        /// Create an empty graph.
         explicit Graph() : N(0), E(0) {}
 
-        // Create graph with data in vertices from values vector.
+        /// Create graph with data in vertices from values vector.
         explicit Graph(const std::vector<T> &values);
 
-        // As we don't store any heap data.
+        /// As we don't store any heap data.
         ~Graph() = default;
 
-        // Gives access to data inside index vertex.
+        /// Gives access to data inside index vertex.
         T &operator[](std::size_t index);
 
-        // Assignment operator.
+        /// Assignment operator.
         Graph &operator=(const Graph<T> &rhs);
 
-        // Returns number of vertices.
+        /// Returns number of vertices.
         std::size_t size() const;
 
-        // Returns number of edges.
+        /// Returns number of edges.
         std::size_t edgeCount() const;
 
-        // Print adjacency list with numeration. (any derived class can reimplement)
+        /// Print adjacency list with numeration. (any derived class can reimplement).
         void print() const;
 
-        // Print adjacency list with data in form defined by op function.
+        /// Print adjacency list with data in form defined by op function.
         template<typename OP>
         void print(OP op) const;
 
-        // Adds new vertex. Call as .addVertex(Vertex(data));
+        /// Adds new vertex. Call as .addVertex(Vertex(data));
         void addVertex(const Vertex<T> &v);
 
-        // Connect u with v (numeration from 0, DOESN'T supports multiedges and loops).
+        /// Connect u with v (numeration from 0, DOESN'T supports multiedges and loops).
         void addEdge(std::size_t u, std::size_t v);
 
-        // Returns by value new graph that contains forest of spanning trees of the graph.
+        /// Returns by value new graph that contains forest of spanning trees of the graph.
         Graph<T> getSpanningTree();
 
         /* FRIEND*/
         T &accessVertex(Vertex<T> *v);
 
     private:
-        // Vertex number.
+        /// Vertex number.
         std::size_t N;
-        // Edge number.
+        /// Edge number.
         std::size_t E;
-        // Here will be stored pointers to vertices.
+        /// Here will be stored pointers to vertices.
         std::vector<Vertex<T> > vertexList;
-        // Adjacency list.
+        /// Adjacency list.
         std::vector<std::set<std::size_t> > adjList;
 
         void spanningDFS(Graph<T> &resGraph, std::vector<bool> &visited, std::size_t v);
@@ -105,7 +105,7 @@ namespace GraphTree {
         void copyVertexData(Graph<T> *rhs);
     };
 
-    // Returns random graph with n vertices
+    /// Returns random graph with n vertices
     template<typename T>
     Graph<T> buildRandomGraph(std::size_t n);
 
