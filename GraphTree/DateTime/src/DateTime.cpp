@@ -295,6 +295,10 @@ namespace DT {
         std::cout << '\n';
     }
 
+    std::string DateTime::dayOfWeekString() const {
+        return toDayOfWeek(dayOfWeek());
+    }
+
 
     std::string toDayOfWeek(const std::int64_t day) {
         switch (day) {
@@ -328,15 +332,15 @@ namespace DT {
             return false;
     }
 
-    std::int64_t numberOfDays(const DateTime &dt) {       /* convert date to day number */
+    std::int64_t numberOfDays(const DateTime &dt) {
         std::int64_t y, m;
 
-        m = (dt.Month() + 9) % 12;                /* mar=0, feb=11 */
-        y = dt.Year() - m / 10;                     /* if Jan/Feb, year-- */
+        m = (dt.Month() + 9) % 12;
+        y = dt.Year() - m / 10;
         return y * 365 + y / 4 - y / 100 + y / 400 + (m * 306 + 5) / 10 + (dt.Day() - 1);
     }
 
-    Date daysToDate(std::int64_t daysCount) { /* convert day number to y,m,d format */
+    Date daysToDate(std::int64_t daysCount) {
         std::int64_t y, ddd, mi, mm, dd;
         y = (10000 * daysCount + 14780) / 3652425;
         ddd = daysCount - (365 * y + y / 4 - y / 100 + y / 400);

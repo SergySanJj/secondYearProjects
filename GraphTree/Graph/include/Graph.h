@@ -87,6 +87,7 @@ namespace GraphTree {
         // Returns by value new graph that contains forest of spanning trees of the graph.
         Graph<T> getSpanningTree();
 
+        /* FRIEND*/
         T &accessVertex(Vertex<T> *v);
 
     private:

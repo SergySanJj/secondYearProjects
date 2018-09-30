@@ -45,7 +45,7 @@ int main() {
     dtG.addVertex(GraphTree::Vertex(d2));
     dtG.addVertex(GraphTree::Vertex(zeroYear));
 
-    dtG.addEdge(0,2);
+    dtG.addEdge(0, 2);
 
     dtG.print(dateTimePrintHelper);
 

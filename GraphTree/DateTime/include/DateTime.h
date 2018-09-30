@@ -37,12 +37,16 @@ namespace DT {
     // Return total number of days.
     std::int64_t numberOfDays(const DateTime &dt);
 
+    // Returns date equivalent to daysCount.
     Date daysToDate(std::int64_t daysCount);
 
+    // Returns number of seconds equivalent to DateTime value.
     std::int64_t numberOfSeconds(const DateTime &dt);
 
+    // Returns time equivalent to secondsCount.
     Time secondsToTime(std::int64_t secondsCount);
 
+    // Returns absolute value.
     std::int64_t abs64(std::int64_t val);
 
     class Date {
@@ -126,7 +130,11 @@ namespace DT {
 
         ~DateTime() = default;
 
+        // Return integer that represents day of week of .this date.
         std::int64_t dayOfWeek() const;
+
+        // Return string day of week of .this date.
+        std::string dayOfWeekString() const;
 
         std::int64_t Month() const { return date.Month(); }
 
@@ -144,6 +152,7 @@ namespace DT {
 
         void println() const;
 
+        // Return number of seconds that passed from the beginning of the .this date.
         std::int64_t LastDaySeconds() const;
 
         DateTime &operator=(const DateTime &rsv);
