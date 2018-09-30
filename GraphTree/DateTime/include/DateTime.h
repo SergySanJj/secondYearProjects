@@ -1,7 +1,7 @@
 //
 // DT module
 // Created by sju on 24.09.18.
-// ref: https://alcor.concordia.ca//~gpkatch/gdate-method.html
+// ref doc for conversion: https://alcor.concordia.ca//~gpkatch/gdate-method.html
 //
 
 #pragma once
