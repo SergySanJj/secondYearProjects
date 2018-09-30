@@ -9,6 +9,8 @@
 #include <DateTimeDelta.h>
 
 
+std::int64_t DT::abs64(std::int64_t val) { return (val > 0 ? val : (-val)); }
+
 DT::DateTimeDelta::DateTimeDelta(DateTime dt1, DateTime dt2) {
     // Innit with some values.
     DateTime fromDate(Date(1, 1, 0), Time(10, 10, 10));
@@ -83,7 +85,7 @@ DT::DateTimeDelta::DateTimeDelta(DateTime dt1, DateTime dt2) {
 
     if (this->hour >= 24) {
         this->day = this->day + 1;
-        this->hour = this->hour%24;
+        this->hour = this->hour % 24;
     }
 
 
@@ -91,7 +93,7 @@ DT::DateTimeDelta::DateTimeDelta(DateTime dt1, DateTime dt2) {
 
     std::int64_t tot1 = daysIn(fromDate.Day(), fromDate.Month(), fromDate.Year());
     std::int64_t tot2 = daysIn(toDate.Day(), toDate.Month(), toDate.Year());
-    this->totalDays = abs(tot1 - tot2);
+    this->totalDays = abs64(tot1 - tot2);
 
     this->totalSeconds = totalDays * 3600 * 24 + LastDaySeconds();
 }
@@ -102,9 +104,24 @@ void DT::DateTimeDelta::print() const {
     cout << hour << " Hour(s) " << minute << " Minute(s) " << seconds << " Second(s)\n";
 }
 
-std::int64_t DT::DateTimeDelta::daysIn(std::int64_t d, std::int64_t m, std::int64_t y) { /* Rata Die day one is 0001-01-01 */
+std::int64_t
+DT::DateTimeDelta::daysIn(std::int64_t d, std::int64_t m, std::int64_t y) { /* Rata Die day one is 0001-01-01 */
     if (m < 3)
         y--, m += 12;
     return 365 * y + y / 4 - y / 100 + y / 400 + (153 * m - 457) / 5 + d - 306;
 }
+
+void DT::DateTimeDelta::println() const {
+    print();
+    std::cout << '\n';
+}
+
+DT::DateTimeDelta::DateTimeDelta(std::int64_t seconsDiff) {
+    totalSeconds = seconsDiff;
+    totalDays = seconsDiff / (3600 * 24);
+}
+
+
+
+
 

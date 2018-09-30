@@ -46,7 +46,7 @@ Vertex<T> &Vertex<T>::operator=(const T &value) {
 }
 
 template<typename T>
-T &Vertex<T>::accessData() { return vertexData; }
+const T &Vertex<T>::readData() const { return vertexData; }
 
 
 template<typename T>
@@ -59,10 +59,11 @@ void Graph<T>::addEdge(std::size_t u, std::size_t v) {
                 adjList[v].insert(u);
                 E++;
             }
-        } else {
-            if (u != v)
-                throw ("\nError: u or v vertex not in graph.\n");
+        } else if (u != v) {
+            std::cerr << "\n Error: u or v vertex not in graph.";
+            throw ("\nError: u or v vertex not in graph.\n");
         }
+
     } catch (const char *msg) {
         std::cerr << msg << '\n';
     }
@@ -90,20 +91,19 @@ void Graph<T>::print() const {
 
 template<typename T>
 template<typename OP>
-void Graph<T>::print(OP op) {
+void Graph<T>::print(OP op) const {
     if (!N) {
         std::cout << "----EMPTY GRAPH----\n";
         return;
     }
     for (std::size_t i = 0; i < N; i++) {
-        std::cout << " ";
-        op(vertexList[i].accessData());
+        op(vertexList[i].readData());
         std::cout << ": ";
         if (adjList[i].empty())
             std::cout << "--empty--";
         else {
             for (auto connection : adjList[i]) {
-                op(vertexList[connection].accessData());
+                op(vertexList[connection].readData());
                 std::cout << " ";
             }
         }
@@ -119,7 +119,6 @@ void Graph<T>::copyVertexData(Graph<T> *rhs) {
     adjList.resize(rhs->size());
     N = rhs->size();
     E = 0;
-
 }
 
 template<typename T>
@@ -130,7 +129,7 @@ Graph<T> Graph<T>::getSpanningTree() {
 
     for (std::size_t i = 0; i < N; i++) {
         if (!visited[i]) {
-            spanningDFS(&resTree, visited, i);
+            spanningDFS(resTree, visited, i);
         }
     }
 
@@ -139,7 +138,7 @@ Graph<T> Graph<T>::getSpanningTree() {
 }
 
 template<typename T>
-void Graph<T>::spanningDFS(Graph<T> *resGraph, std::vector<bool> &visited, std::size_t v) {
+void Graph<T>::spanningDFS(Graph<T> &resGraph, std::vector<bool> &visited, std::size_t v) {
     // We will do it non-recursive.
 
     // Emulate recursion with stack.
@@ -157,7 +156,7 @@ void Graph<T>::spanningDFS(Graph<T> *resGraph, std::vector<bool> &visited, std::
 
         for (auto w: this->adjList[v]) {
             if (!visited[w]) {
-                resGraph->addEdge(v, w);
+                resGraph.addEdge(v, w);
                 S.push(w);
                 visited[w] = true;
             }
@@ -178,19 +177,28 @@ Graph<T> &Graph<T>::operator=(const Graph<T> &rhs) {
     N = rhs.size();
     E = rhs.edgeCount();
 
-
     return *this;
 }
 
 template<typename T>
 T &Graph<T>::operator[](std::size_t index) {
-
     if (index < vertexList.size())
-        return (vertexList[index].accessData());
+        return (accessVertex(&vertexList[index]));
     else {
         std::cerr << "\n out of range";
         static_assert(1, "out of range");
     }
+}
+
+template<typename T>
+std::size_t Graph<T>::size() const { return N; }
+
+template<typename T>
+std::size_t Graph<T>::edgeCount() const { return E; }
+
+template<typename T>
+T &Graph<T>::accessVertex(Vertex<T> *v) {
+    return v->vertexData;
 }
 
 

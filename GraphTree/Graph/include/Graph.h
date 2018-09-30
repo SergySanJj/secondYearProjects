@@ -6,7 +6,7 @@
 #pragma once
 
 #include <cstdlib>
-#include <iostream> 
+#include <iostream>
 #include <array>
 #include <vector>
 #include <set>
@@ -14,6 +14,12 @@
 
 
 namespace GraphTree {
+
+    template<typename T>
+    class Graph;
+
+    template<typename T>
+    class Vertex;
 
     template<typename T>
     class Vertex {
@@ -28,7 +34,9 @@ namespace GraphTree {
 
         Vertex &operator=(const T &value);
 
-        T &accessData();
+        const T &readData() const;
+
+        friend T &Graph<T>::accessVertex(Vertex<T> *v);
 
     private:
         T vertexData;
@@ -58,17 +66,17 @@ namespace GraphTree {
         Graph &operator=(const Graph<T> &rhs);
 
         // Returns number of vertices.
-        std::size_t size() const { return N; }
+        std::size_t size() const;
 
         // Returns number of edges.
-        std::size_t edgeCount() const { return E; }
+        std::size_t edgeCount() const;
 
         // Print adjacency list with numeration. (any derived class can reimplement)
         void print() const;
 
         // Print adjacency list with data in form defined by op function.
         template<typename OP>
-        void print(OP op);
+        void print(OP op) const;
 
         // Adds new vertex. Call as .addVertex(Vertex(data));
         void addVertex(const Vertex<T> &v);
@@ -76,8 +84,10 @@ namespace GraphTree {
         // Connect u with v (numeration from 0, DOESN'T supports multiedges and loops).
         void addEdge(std::size_t u, std::size_t v);
 
-        // Returns by value new graph that contains Spanning Tree forest of .self
+        // Returns by value new graph that contains forest of spanning trees of the graph.
         Graph<T> getSpanningTree();
+
+        T &accessVertex(Vertex<T> *v);
 
     private:
         // Vertex number.
@@ -89,12 +99,12 @@ namespace GraphTree {
         // Adjacency list.
         std::vector<std::set<std::size_t> > adjList;
 
-        void spanningDFS(Graph<T> *resGraph, std::vector<bool> &visited, std::size_t v);
+        void spanningDFS(Graph<T> &resGraph, std::vector<bool> &visited, std::size_t v);
 
         void copyVertexData(Graph<T> *rhs);
     };
 
-// Returns random graph with n vertices
+    // Returns random graph with n vertices
     template<typename T>
     Graph<T> buildRandomGraph(std::size_t n);
 

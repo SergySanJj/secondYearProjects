@@ -15,12 +15,14 @@ namespace DT {
     public:
         DateTimeDelta(DT::DateTime dt1, DT::DateTime dt2);
 
-        explicit DateTimeDelta(std::int64_t dd, std::int64_t mm, std::int64_t yy,
-                               std::int64_t h, std::int64_t m, std::int64_t s);
+        explicit DateTimeDelta(std::int64_t seconsDiff);
+
 
         ~DateTimeDelta() = default;
 
         void print() const;
+
+        void println() const;
 
         std::int64_t Day() const { return day; }
 

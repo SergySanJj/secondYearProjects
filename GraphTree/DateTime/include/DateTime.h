@@ -43,6 +43,8 @@ namespace DT {
 
     Time secondsToTime(std::int64_t secondsCount);
 
+    std::int64_t abs64(std::int64_t val);
+
     class Date {
     public:
         explicit Date(std::int64_t d, std::int64_t m, std::int64_t y);
@@ -57,7 +59,9 @@ namespace DT {
 
         std::int64_t Year() const { return year; }
 
-        void print();
+        void print() const;
+
+        void println() const;
 
         Date &operator=(const Date &rsv);
 
@@ -85,7 +89,9 @@ namespace DT {
 
         Time &operator=(const Time &rhs);
 
-        void print();
+        void print() const;
+
+        void println() const;
 
         bool const operator==(const Time &rsv);
 
@@ -116,7 +122,7 @@ namespace DT {
         explicit DateTime(const Date &date_, const Time &time_) :
                 date(date_), time(time_) {}
 
-        DateTime(): date(), time() {}
+        DateTime() : date(), time() {}
 
         ~DateTime() = default;
 
@@ -135,6 +141,8 @@ namespace DT {
         std::int64_t Seconds() const { return time.Seconds(); }
 
         void print() const;
+
+        void println() const;
 
         std::int64_t LastDaySeconds() const;
 

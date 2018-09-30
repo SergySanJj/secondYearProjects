@@ -80,7 +80,18 @@ namespace DT {
         return *this;
     }
 
-    void Time::print() {std::cout << hour << "/" << minute << "/" << seconds; }
+    void Time::print() const {
+        using std::cout;
+        cout << hour << ":" << minute << ":";
+        if (seconds < 10)
+            cout << "0";
+        cout << seconds;
+    }
+
+    void Time::println() const {
+        print();
+        std::cout << '\n';
+    }
 
 
     bool validateDate(const std::int64_t d, const std::int64_t m, const std::int64_t y) {
@@ -181,19 +192,27 @@ namespace DT {
         return *this;
     }
 
-    void Date::print() {
+    void Date::print() const {
         using std::cout;
-        cout << day << "/" << month << "/" << year << "\n";
+        if (day < 10)
+            cout << 0;
+        cout << day << "/";
+        if (month<10)
+            cout << 0;
+        cout << month << "/" << year;
+    }
+
+    void Date::println() const {
+        print();
+        std::cout << '\n';
     }
 
     void DateTime::print() const {
         using std::cout;
         cout << toDayOfWeek(getDayOfWeek(date.Day(), date.Month(), date.Year())) << " ";
-        cout << date.Day() << "/" << date.Month() << "/" << date.Year() << " ";
-        cout << time.Hour() << ":" << time.Minute() << ":";
-        if (time.Seconds() < 10)
-            cout << "0";
-        cout << time.Seconds();
+        date.print();
+        cout << " ";
+        time.print();
     }
 
     std::int64_t DateTime::dayOfWeek() const {
@@ -269,6 +288,11 @@ namespace DT {
         }
 
         return DateTime(daysToDate(newDays), secondsToTime(newSeconds));
+    }
+
+    void DateTime::println() const {
+        print();
+        std::cout << '\n';
     }
 
 
