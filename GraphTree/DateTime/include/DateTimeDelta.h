@@ -15,7 +15,7 @@ namespace DT {
     public:
         DateTimeDelta(DT::DateTime dt1, DT::DateTime dt2);
 
-        explicit DateTimeDelta(std::int64_t seconsDiff);
+        explicit DateTimeDelta(std::int64_t secondsDiff);
 
 
         ~DateTimeDelta() = default;
@@ -24,17 +24,17 @@ namespace DT {
 
         void println() const;
 
-        std::int64_t Day() const { return day; }
+        std::int32_t Day() const { return day; }
 
-        std::int64_t Month() const { return month; }
+        std::int32_t Month() const { return month; }
 
-        std::int64_t Year() const { return year; }
+        std::int32_t Year() const { return year; }
 
-        std::int64_t Hour() const { return hour; }
+        std::int32_t Hour() const { return hour; }
 
-        std::int64_t Minute() const { return minute; }
+        std::int32_t Minute() const { return minute; }
 
-        std::int64_t Seconds() const { return seconds; }
+        std::int32_t Seconds() const { return seconds; }
 
         std::int64_t TotalDays() const { return totalDays; }
 
@@ -45,20 +45,20 @@ namespace DT {
         std::int64_t LastDaySeconds() const { return (hour * 3600 + minute * 60 + seconds); }
 
     private:
-        std::int64_t day;
-        std::int64_t month;
-        std::int64_t year;
+        std::int32_t day;
+        std::int32_t month;
+        std::int32_t year;
 
-        std::int64_t hour;
-        std::int64_t minute;
-        std::int64_t seconds;
+        std::int32_t hour;
+        std::int32_t minute;
+        std::int32_t seconds;
 
         std::int64_t totalDays;
 
         std::int64_t totalSeconds;
 
         // Rata Die formula
-        std::int64_t daysIn(std::int64_t d, std::int64_t m, std::int64_t y);
+        std::int64_t daysIn(std::int32_t d, std::int32_t m, std::int32_t y);
     };
 
 }

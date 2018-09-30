@@ -33,8 +33,11 @@ int main() {
     DT::DateTime d1(DT::Date(2, 10, 2018), DT::Time(10, 12, 1));
     DT::DateTime d2(DT::Date(3, 10, 2018), DT::Time(23, 13, 3));
     DT::DateTime zeroYear(DT::Date(3, 1, 0), DT::Time(0, 0, 0));
+    std::cout << (DT::daysToDate(DT::numberOfDays(d1))==d1.getDate()) << "\n";
     DT::DateTimeDelta dd = d2 - d1;
     dd.println();
+
+
 
     (d2 + dd).println();
 

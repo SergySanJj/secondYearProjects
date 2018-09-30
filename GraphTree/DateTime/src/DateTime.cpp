@@ -10,7 +10,7 @@
 
 namespace DT {
 
-    Time::Time(const std::int64_t h, const std::int64_t m, const std::int64_t s) {
+    Time::Time(const std::int32_t h, const std::int32_t m, const std::int32_t s) {
         try {
             if (checkInRange(h, 0, 23))
                 hour = h;
@@ -94,7 +94,7 @@ namespace DT {
     }
 
 
-    bool validateDate(const std::int64_t d, const std::int64_t m, const std::int64_t y) {
+    bool validateDate(const std::int32_t d, const std::int32_t m, const std::int32_t y) {
         if (y >= 0 && y <= 9999) {
             //check month
             if (m >= 1 && m <= 12) {
@@ -127,21 +127,21 @@ namespace DT {
 
     }
 
-    std::int64_t getDayOfWeek(std::int64_t d, std::int64_t m, std::int64_t y) {
+    std::int32_t getDayOfWeek(std::int32_t d, std::int32_t m, std::int32_t y) {
         if (!validateDate(d, m, y)) {
             return -1;
         }
         // 1990, Michael Keith and Tom Craver expression.
-        std::int64_t day = (d += m < 3 ? y-- : y - 2, 23 * m / 9 + d + 4 + y / 4 - y / 100 + y / 400) % 7;
+        std::int32_t day = (d += m < 3 ? y-- : y - 2, 23 * m / 9 + d + 4 + y / 4 - y / 100 + y / 400) % 7;
         // To make Sun week day number 7 not 0.
         return (day == 0 ? 7 : day);
     }
 
-    bool checkInRange(const std::int64_t val, const std::int64_t a, const std::int64_t b) {
+    bool checkInRange(const std::int32_t val, const std::int32_t a, const std::int32_t b) {
         return (val >= a && val <= b);
     }
 
-    Date::Date(const std::int64_t d, const std::int64_t m, const std::int64_t y) {
+    Date::Date(const std::int32_t d, const std::int32_t m, const std::int32_t y) {
         if (validateDate(d, m, y)) {
             month = m;
             day = d;
@@ -197,7 +197,7 @@ namespace DT {
         if (day < 10)
             cout << 0;
         cout << day << "/";
-        if (month<10)
+        if (month < 10)
             cout << 0;
         cout << month << "/" << year;
     }
@@ -215,7 +215,7 @@ namespace DT {
         time.print();
     }
 
-    std::int64_t DateTime::dayOfWeek() const {
+    std::int32_t DateTime::dayOfWeek() const {
         return DT::getDayOfWeek(date.Day(), date.Month(), date.Year());
     }
 
@@ -300,7 +300,7 @@ namespace DT {
     }
 
 
-    std::string toDayOfWeek(const std::int64_t day) {
+    std::string toDayOfWeek(const std::int32_t day) {
         switch (day) {
             case -1:
                 return "INVALID";
@@ -323,7 +323,7 @@ namespace DT {
         }
     }
 
-    bool isLeapYear(std::int64_t year) {
+    bool isLeapYear(std::int32_t year) {
         if (year % 4 == 0)
             return true;
         else if ((year % 100 == 0) && (year % 400 == 0))
@@ -352,7 +352,9 @@ namespace DT {
         mm = (mi + 2) % 12 + 1;
         y = y + (mi + 2) / 12;
         dd = ddd - (mi * 306 + 5) / 10 + 1;
-        Date res(dd, mm, y);
+        Date res(static_cast<int32_t>(dd),
+                 static_cast<int32_t>(mm),
+                 static_cast<int32_t>(y));
         return res;
 
     }
@@ -367,7 +369,9 @@ namespace DT {
         std::int64_t newHour = secondsCount / 3600;
         std::int64_t newMinute = (secondsCount - newHour * 3600) / 60;
         std::int64_t newSeconds = secondsCount % (60);
-        Time res(newHour, newMinute, newSeconds);
+        Time res(static_cast<int32_t>(newHour),
+                 static_cast<int32_t>(newMinute),
+                 static_cast<int32_t>(newSeconds));
         return res;
     }
 }

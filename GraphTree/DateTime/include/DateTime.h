@@ -23,16 +23,16 @@ namespace DT {
     class DateTimeDelta;
 
     // Return true if date is valid, return false otherwise.
-    bool validateDate(std::int64_t d, std::int64_t m, std::int64_t y);
+    bool validateDate(std::int32_t d, std::int32_t m, std::int32_t y);
 
     // Returns an integer that represents week day (Mon=1, Tue=2...) if date is invalid return -1.
-    std::int64_t getDayOfWeek(std::int64_t d, std::int64_t m, std::int64_t y);
+    std::int32_t getDayOfWeek(std::int32_t d, std::int32_t m, std::int32_t y);
 
     // Returns day name from integer 1..7
-    std::string toDayOfWeek(std::int64_t day);
+    std::string toDayOfWeek(std::int32_t day);
 
     // Return true if year is a leap year, false otherwise.
-    bool isLeapYear(std::int64_t year);
+    bool isLeapYear(std::int32_t year);
 
     // Return total number of days.
     std::int64_t numberOfDays(const DateTime &dt);
@@ -51,17 +51,17 @@ namespace DT {
 
     class Date {
     public:
-        explicit Date(std::int64_t d, std::int64_t m, std::int64_t y);
+        explicit Date(std::int32_t d, std::int32_t m, std::int32_t y);
 
         Date() : day(1), month(1), year(0) {}
 
         ~Date() = default;
 
-        std::int64_t Month() const { return month; }
+        std::int32_t Month() const { return month; }
 
-        std::int64_t Day() const { return day; }
+        std::int32_t Day() const { return day; }
 
-        std::int64_t Year() const { return year; }
+        std::int32_t Year() const { return year; }
 
         void print() const;
 
@@ -78,14 +78,14 @@ namespace DT {
         bool const operator>(const Date &rsv);
 
     private:
-        std::int64_t month;
-        std::int64_t day;
-        std::int64_t year;
+        std::int32_t month;
+        std::int32_t day;
+        std::int32_t year;
     };
 
     class Time {
     public:
-        explicit Time(std::int64_t h, std::int64_t m, std::int64_t s);
+        explicit Time(std::int32_t h, std::int32_t m, std::int32_t s);
 
         Time() : hour(0), minute(0), seconds(0) {}
 
@@ -105,17 +105,17 @@ namespace DT {
 
         bool const operator>(const Time &rsv);
 
-        std::int64_t Hour() const { return hour; }
+        std::int32_t Hour() const { return hour; }
 
-        std::int64_t Minute() const { return minute; }
+        std::int32_t Minute() const { return minute; }
 
-        std::int64_t Seconds() const { return seconds; }
+        std::int32_t Seconds() const { return seconds; }
 
 
     private:
-        std::int64_t hour, minute, seconds;
+        std::int32_t hour, minute, seconds;
 
-        bool checkInRange(std::int64_t val, std::int64_t a, std::int64_t b) { return (val >= a && val <= b); }
+        bool checkInRange(std::int32_t val, std::int32_t a, std::int32_t b) { return (val >= a && val <= b); }
 
         double getFrac();
     };
@@ -131,22 +131,26 @@ namespace DT {
         ~DateTime() = default;
 
         // Return integer that represents day of week of .this date.
-        std::int64_t dayOfWeek() const;
+        std::int32_t dayOfWeek() const;
 
         // Return string day of week of .this date.
         std::string dayOfWeekString() const;
 
-        std::int64_t Month() const { return date.Month(); }
+        std::int32_t Month() const { return date.Month(); }
 
-        std::int64_t Day() const { return date.Day(); }
+        std::int32_t Day() const { return date.Day(); }
 
-        std::int64_t Year() const { return date.Year(); }
+        std::int32_t Year() const { return date.Year(); }
 
-        std::int64_t Hour() const { return time.Hour(); }
+        std::int32_t Hour() const { return time.Hour(); }
 
-        std::int64_t Minute() const { return time.Minute(); }
+        std::int32_t Minute() const { return time.Minute(); }
 
-        std::int64_t Seconds() const { return time.Seconds(); }
+        std::int32_t Seconds() const { return time.Seconds(); }
+
+        Date getDate() const { return date; }
+
+        Time getTime() const { return time; }
 
         void print() const;
 

@@ -18,7 +18,7 @@ DT::DateTimeDelta::DateTimeDelta(DateTime dt1, DateTime dt2) {
 
 
     // Date part.
-    int monthDay[] = {31, 31, -1, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
+    int32_t monthDay[] = {31, 31, -1, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
 
     if (dt1 > dt2) {
         fromDate = dt2;
@@ -69,9 +69,9 @@ DT::DateTimeDelta::DateTimeDelta(DateTime dt1, DateTime dt2) {
 
 
     // Final assignment.
-    this->day = (_day - 1);
-    this->month = (_month);
-    this->year = (_year);
+    this->day = static_cast<int32_t>(_day - 1);
+    this->month = static_cast<int32_t>(_month);
+    this->year = static_cast<int32_t>(_year);
 
 
     // Time part.
@@ -79,9 +79,15 @@ DT::DateTimeDelta::DateTimeDelta(DateTime dt1, DateTime dt2) {
     std::int64_t totSec2 = toDate.Hour() * 3600 + toDate.Minute() * 60 + toDate.Seconds();
 
     std::int64_t timeDiff = totSec1 + totSec2;
-    this->hour = timeDiff / 3600;
-    this->minute = ((timeDiff - ((this->hour) * 3600)) / 60);
-    this->seconds = (timeDiff - ((this->hour) * 3600) - (this->minute) * 60);
+
+    this->hour = static_cast<int32_t>
+            (timeDiff / 3600);
+
+    this->minute = static_cast<int32_t>
+            ((timeDiff - ((this->hour) * 3600)) / 60);
+
+    this->seconds = static_cast<int32_t>
+            (timeDiff - ((this->hour) * 3600) - (this->minute) * 60);
 
     if (this->hour >= 24) {
         this->day = this->day + 1;
@@ -105,7 +111,7 @@ void DT::DateTimeDelta::print() const {
 }
 
 std::int64_t
-DT::DateTimeDelta::daysIn(std::int64_t d, std::int64_t m, std::int64_t y) { /* Rata Die day one is 0001-01-01 */
+DT::DateTimeDelta::daysIn(std::int32_t d, std::int32_t m, std::int32_t y) { /* Rata Die day one is 0001-01-01 */
     if (m < 3)
         y--, m += 12;
     return 365 * y + y / 4 - y / 100 + y / 400 + (153 * m - 457) / 5 + d - 306;
@@ -116,9 +122,9 @@ void DT::DateTimeDelta::println() const {
     std::cout << '\n';
 }
 
-DT::DateTimeDelta::DateTimeDelta(std::int64_t seconsDiff) {
-    totalSeconds = seconsDiff;
-    totalDays = seconsDiff / (3600 * 24);
+DT::DateTimeDelta::DateTimeDelta(std::int64_t secondsDiff) {
+    totalSeconds = secondsDiff;
+    totalDays = secondsDiff / (3600 * 24);
 }
 
 
