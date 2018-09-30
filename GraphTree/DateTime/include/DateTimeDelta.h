@@ -17,7 +17,6 @@ namespace DT {
 
         explicit DateTimeDelta(std::int64_t secondsDiff);
 
-
         ~DateTimeDelta() = default;
 
         void print() const;

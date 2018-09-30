@@ -24,16 +24,21 @@ namespace GraphTree {
     template<typename T>
     class Vertex {
     public:
+        /// Create an empty vertex.
         Vertex<T>() : vertexData() {}
 
+        /// Create vertex with data as stored value.
         explicit Vertex<T>(T data) : vertexData(data) {}
 
         ~Vertex<T>() = default;
+
+        bool operator==(const Vertex<T> &rsv);
 
         Vertex &operator=(const Vertex<T> &rsv);
 
         Vertex &operator=(const T &value);
 
+        /// Returns const reference to the stored value.
         const T &readData() const;
 
         friend T &Graph<T>::accessVertex(Vertex<T> *v);
@@ -84,10 +89,16 @@ namespace GraphTree {
         /// Connect u with v (numeration from 0, DOESN'T supports multiedges and loops).
         void addEdge(std::size_t u, std::size_t v);
 
-        /// Returns by value new graph that contains forest of spanning trees of the graph.
+        /// Returns new graph by value that contains forest of spanning trees of the graph.
         Graph<T> getSpanningTree();
 
-        /* FRIEND*/
+        /** Returns new graph by value that contains spanning tree of the graph that has root at startVertex.
+        /// WARNING: numeration of vertexes might change.
+        /// Result graph will be homeomorphic to one of the
+        /// forest span trees obtained frop getSpanningTree().**/
+        Graph<T> getSpanningTree(std::size_t startVertex);
+
+        /* FRIEND */
         T &accessVertex(Vertex<T> *v);
 
     private:
@@ -100,8 +111,15 @@ namespace GraphTree {
         /// Adjacency list.
         std::vector<std::set<std::size_t> > adjList;
 
+        /// Help function that runs DFS from v vertex and adds found spanning
+        /// tree connections into resGraph.
         void spanningDFS(Graph<T> &resGraph, std::vector<bool> &visited, std::size_t v);
 
+        /// Help function that runs DFS from v vertex and adds found spanning
+        /// tree connections and verticies into resGraph.
+        void singleSpanningDFS(Graph<T> &resGraph, std::vector<bool> &visited, std::size_t v);
+
+        /// Copy vertex data into .this graph from rhs, delete any data that was in .this.
         void copyVertexData(Graph<T> *rhs);
     };
 

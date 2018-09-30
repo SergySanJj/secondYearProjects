@@ -3,7 +3,7 @@
 // Created by sju on 24.09.18.
 //
 
-#include <DateTime.h>
+#include<ctime>
 
 #include "DateTime.h"
 
@@ -74,6 +74,8 @@ namespace DT {
     }
 
     Time &Time::operator=(const Time &rhs) {
+        if (*this == rhs)
+            return *this;
         hour = rhs.hour;
         minute = rhs.minute;
         seconds = rhs.seconds;
@@ -185,6 +187,8 @@ namespace DT {
     }
 
     Date &Date::operator=(const Date &rsv) {
+        if (*this == rsv)
+            return *this;
         day = rsv.day;
         month = rsv.month;
         year = rsv.year;
@@ -220,6 +224,9 @@ namespace DT {
     }
 
     DateTime &DateTime::operator=(const DateTime &rsv) {
+        if (*this == rsv)
+            return *this;
+
         date = Date(rsv.Day(), rsv.Month(), rsv.Year());
         time = Time(rsv.Hour(), rsv.Minute(), rsv.Seconds());
         return *this;
@@ -373,5 +380,30 @@ namespace DT {
                  static_cast<int32_t>(newMinute),
                  static_cast<int32_t>(newSeconds));
         return res;
+    }
+
+    Date randomDate(const Date &d1, const Date &d2) {
+        std::int64_t v1 = numberOfDays(DateTime(d1, Time(0, 0, 0)));
+        std::int64_t v2 = numberOfDays(DateTime(d2, Time(0, 0, 0)));
+        if (v1 > v2) {
+            std::int64_t tmp = v2;
+            v2 = v1;
+            v1 = v2;
+        }
+        //std::srand(std::time(0));
+        return (daysToDate(rand() % v2 + v1));
+    }
+
+    Time randomTime(const Time &t1, const Time &t2) {
+        std::int64_t v1 = t1.Hour() * 3600 + t1.Minute() * 60 + t1.Seconds();
+        std::int64_t v2 = t2.Hour() * 3600 + t2.Minute() * 60 + t2.Seconds();
+
+        if (v1 > v2) {
+            std::int64_t tmp = v2;
+            v2 = v1;
+            v1 = v2;
+        }
+        // std::srand(std::time(0));
+        return (secondsToTime(rand() % v2 + v1));
     }
 }

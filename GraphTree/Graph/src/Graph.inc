@@ -138,6 +138,16 @@ Graph<T> Graph<T>::getSpanningTree() {
 }
 
 template<typename T>
+Graph<T> Graph<T>::getSpanningTree(std::size_t startVertex) {
+    std::vector<bool> visited(N, false);
+    Graph<T> resTree(0);
+
+    singleSpanningDFS(resTree, visited, startVertex);
+
+    return resTree;
+}
+
+template<typename T>
 void Graph<T>::spanningDFS(Graph<T> &resGraph, std::vector<bool> &visited, std::size_t v) {
     // We will do it non-recursive.
 
@@ -165,9 +175,48 @@ void Graph<T>::spanningDFS(Graph<T> &resGraph, std::vector<bool> &visited, std::
 
 }
 
+template<typename T>
+void Graph<T>::singleSpanningDFS(Graph<T> &resGraph, std::vector<bool> &visited, std::size_t v) {
+    // We will do it non-recursive.
+
+    // Emulate recursion with stack.
+    std::stack<std::size_t> S;
+
+    std::vector<std::size_t> association(N, 0);
+
+    association[v] = 0;
+    resGraph.addVertex(Vertex(vertexList[v].readData()));
+
+    S.push(v);
+
+    while (!S.empty()) {
+        v = S.top();
+        S.pop();
+
+        if (!visited[v]) {
+            visited[v] = true;
+        }
+
+        for (auto w: this->adjList[v]) {
+            if (!visited[w]) {
+                if (association[w] == 0) {
+                    resGraph.addVertex(Vertex(vertexList[w].readData()));
+                    association[w] = resGraph.size()-1;
+                }
+                resGraph.addEdge(association[v], association[w]);
+                S.push(w);
+                visited[w] = true;
+            }
+        }
+    }
+
+}
 
 template<typename T>
 Graph<T> &Graph<T>::operator=(const Graph<T> &rhs) {
+    if (this == &rhs)
+        return *this;
+
     vertexList.clear();
     adjList.clear();
 
@@ -199,6 +248,11 @@ std::size_t Graph<T>::edgeCount() const { return E; }
 template<typename T>
 T &Graph<T>::accessVertex(Vertex<T> *v) {
     return v->vertexData;
+}
+
+template<typename T>
+bool Vertex<T>::operator==(const Vertex<T> &rsv) {
+    return (vertexData == rsv.vertexData);
 }
 
 

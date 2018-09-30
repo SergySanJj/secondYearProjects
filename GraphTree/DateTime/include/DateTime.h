@@ -10,6 +10,7 @@
 #include <cstdint>
 #include <tuple>
 #include <string>
+#include <ctime>
 
 #include "DateTimeDelta.h"
 
@@ -48,6 +49,12 @@ namespace DT {
 
     /// Returns absolute value.
     std::int64_t abs64(std::int64_t val);
+
+    /// Returns random date in range d1..d2.
+    Date randomDate(const Date &d1, const Date &d2);
+
+    /// Returns random time in range t1..t2.
+    Time randomTime(const Time &t1, const Time &t2);
 
     class Date {
     public:
@@ -152,8 +159,11 @@ namespace DT {
 
         Time getTime() const { return time; }
 
+        /// Prints DateTime into iostream in format dd/mm/yy h/m/s .
         void print() const;
 
+        /// Prints DateTime into iostream in format dd/mm/yy h/m/s
+        /// and moves to the next line.
         void println() const;
 
         /// Return number of seconds that passed from the beginning of the .this date.
