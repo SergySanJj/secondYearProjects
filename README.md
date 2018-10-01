@@ -3,6 +3,19 @@
 ## Lab 1 var(8,7)
 ## Tested on Ubuntu 18.04
 
+## How to run
+1) Install CMake 3.8.0 and higher and C++ compiler that supports C++17
+2) Go to the directory where you cloned Graph-master
+3) Then run next commands in terminal:
+```
+cmake .
+make
+```
+4) To run type:
+```
+./GraphTree
+```
+
 # Graph
 
  Graph is a C++ module that implements graph datasructure and provides different 
