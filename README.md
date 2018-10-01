@@ -3,13 +3,13 @@
 
 # Graph
 
- Graph is a simple C++ module that implements graph datasructure and different 
-methods that can help you to easily imlement your own derived graph class.
+ Graph is a C++ module that implements graph datasructure and provides different 
+methods that can help you to easily work with graphs.
 
 # DateTime
 
- DateTime is a sample class that contains data about date and time in Unix date
-format and can convert in in two sides.
+ DateTime is a class that contains data about date and time date and provides
+ methods to solve different tasks that can appear during working with dates.
 
 ## Usage of Graph module
 #### usage is shown in samples part of demo main file (intGraphSample):
@@ -58,7 +58,7 @@ g3.size(); // will return 6
 ```
 
 To add edge between two verticies u and v use:
-####WARNING: Graph doesn't support multiedges and loops
+#### WARNING: Graph doesn't support multiedges and loops
 ```c++
     v = 1;
     std::size_t u = 2;
@@ -102,7 +102,7 @@ g3.print();
 To print graph g3 djacency list with data stored in verticies
 you first need to implement the function that will be called for each vertex
 and print it in any form you want. As an example we use intPrintHelper() function.
-Helper function with signature void (*)(some_type) that will be passed as argument
+Helper function with signature void ()(some_type) that will be passed as argument
 to the print function to print each element in the way you want.
 After that use:
 ```c++
