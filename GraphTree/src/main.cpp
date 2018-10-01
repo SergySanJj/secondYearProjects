@@ -206,6 +206,7 @@ void DateTimeSample() {
     /// To get month,day,year,hour,minute,second from
     /// DateTime, Time or Date use .Month(), .Year() .. etc.
     date1.Month();
+    time1.Seconds(); // Note Seconds NOT Second.
 
     /*---operations---*/
 
