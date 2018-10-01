@@ -1,5 +1,7 @@
 
+
 ## Lab 1 var(8,7)
+## Tested on Ubuntu 18.04
 
 # Graph
 
