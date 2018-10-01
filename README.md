@@ -125,7 +125,7 @@ std::cout << "\nrndG in number form:\n";
 rndG.print();
 ```
 
-#### usage with std::vector<> and analogicly any class is shown in (vectorGraphSample):
+#### usage with std::vector<> and analogically any class is shown in (vectorGraphSample):
 You can store any class/type in Graph datastruct unless it has:
     -constructor
     -destructor
