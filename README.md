@@ -1,3 +1,6 @@
+
+## Lab 1 var(8,7)
+
 # Graph
 
  Graph is a simple C++ module that implements graph datasructure and different 
@@ -32,7 +35,7 @@ int newValue = 1;
 g2.addVertex(GraphTree::Vertex(newValue));
 ```
 To initialize new graph object with values from vector use:
-```c++    
+```c++
 std::vector<int> values = {1, 2, 3, 4, 5, 6};
 GraphTree::Graph<int> g3(values);
 ```
@@ -254,6 +257,9 @@ result will be 1/1/0000 00:00:00
 
 You can also use ==, !=, <, > for Date, Time, DateTime and DateTimeDelta
 to compare same type values.
+
+## Watch other samples in:
+<a href="https://github.com/secondYearProjects/Graph/blob/master/GraphTree/src/main.cpp">Other samples</a>
 
 #### Feel free to post issues, fork, star etc.
  

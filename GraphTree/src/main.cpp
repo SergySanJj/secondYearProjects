@@ -1,6 +1,7 @@
 //
 // DEMO MAIN
 // Created by sergei on 21.09.18.
+// Lab 1 var(8,7)
 //
 
 #include <iostream>
@@ -36,6 +37,13 @@ void dateTimePrintHelper(DT::DateTime val) {
 
 void stringPrintHelper(std::string val) {
     std::cout << "\"" << val << "\" ";
+}
+
+void doublePrintHelper(double val) {
+    std::cout.precision(3);
+    std::cout << std::fixed;
+    std::cout << val << " ";
+
 }
 /*-----------------------------------------------*/
 
@@ -255,25 +263,44 @@ void DateGraphSample() {
 
 }
 
-std::string GraphStringSample() {
+void GraphStringSample() {
 
     std::cout << "\n--GraphStringSample--\n";
 
-
-    std::vector<std::string> strVec = {static_cast<std::string>("aa"),
-                                       static_cast<std::string>("ab"),
-                                       static_cast<std::string>("ba")};
+    std::vector<std::string> strVec = {"aa", "ab", "ba", "bb"};
 
     GraphTree::Graph<std::string> strG(strVec);
     std::string lft = "~(@-@~)";
     std::string rgh = "(~@-@)~";
+
     strG[0] = lft;
     strG[1] = rgh;
 
+    strG[3] = "lab 1 var (8,7) ~(*-*)~";
+    strG[2] = strG[2]; // won't change
     strG.addEdge(0, 1);
     strG.print(stringPrintHelper);
 
 }
+
+
+void doubleGraphSample() {
+    std::cout << "\n--doubleGraphSample--\n";
+
+    // innit graph g with double vector values
+    std::vector<double> doubleVec = {2.33234, 64.434, 1.0, 343.01, 12.332, 11, 0101, 10, 01};
+    GraphTree::Graph<double> g(doubleVec);
+
+    g.addEdge(0, 1);
+    g.addEdge(2, 1);
+    g.addEdge(3, 1);
+    g.addEdge(5, 2);
+    g.addEdge(0, 1);
+
+    // print double valued graph with format defined by doublePrintHelper().
+    g.print(doublePrintHelper);
+}
+
 
 /*-----------------------------------------------*/
 /*-----------------------------------------------*/
@@ -290,6 +317,8 @@ int main() {
     DateGraphSample();
 
     GraphStringSample();
+
+    doubleGraphSample();
 
 #endif
     return 0;
