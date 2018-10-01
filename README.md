@@ -92,7 +92,7 @@ To get a spanning forest from graph g3 use:
 GraphTree::Graph<int> spanForestG3 = g3.getSpanningTree();
 ```
 
-####PRINTING
+#### PRINTING
 
 To print graph g3 to the iostream console use .print()it will print adjacency list
 with vertex numbers.
@@ -207,7 +207,7 @@ Use .println() to print stored values and move to the next line.
 To validate date use:
 ```c++
     DT::validateDate(29, 9, 2018);
-```c++
+```
 
 To get number of week day use:
 ```c++
