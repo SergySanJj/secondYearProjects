@@ -5,9 +5,10 @@
 
 ## How to run
 1) Install CMake 3.8.0 and higher and C++ compiler that supports C++17
-2) Go to the directory where you cloned Graph-master
+2) Go to the directory where you have cloned Graph-master
 3) Then run next commands in terminal:
 ```
+cd GraphTree
 cmake .
 make
 ```
