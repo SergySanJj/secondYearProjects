@@ -15,12 +15,17 @@
 #include "DateTimeDelta.h"
 
 namespace DT {
+
+    /// Stores time in format h/m/s
     class Time;
 
+    /// Stores date in format dd/mm/yy
     class Date;
 
+    /// Stores both Date and Time
     class DateTime;
 
+    /// Stores DateTime difference and gives methods to get it in many formats.
     class DateTimeDelta;
 
     /// Return true if date is valid, return false otherwise.

@@ -81,13 +81,13 @@ DT::DateTimeDelta::DateTimeDelta(DateTime dt1, DateTime dt2) {
     std::int64_t timeDiff = totSec1 + totSec2;
 
     this->hour = static_cast<int32_t>
-            (timeDiff / 3600);
+    (timeDiff / 3600);
 
     this->minute = static_cast<int32_t>
-            ((timeDiff - ((this->hour) * 3600)) / 60);
+    ((timeDiff - ((this->hour) * 3600)) / 60);
 
     this->seconds = static_cast<int32_t>
-            (timeDiff - ((this->hour) * 3600) - (this->minute) * 60);
+    (timeDiff - ((this->hour) * 3600) - (this->minute) * 60);
 
     if (this->hour >= 24) {
         this->day = this->day + 1;

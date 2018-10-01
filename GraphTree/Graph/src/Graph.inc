@@ -201,7 +201,7 @@ void Graph<T>::singleSpanningDFS(Graph<T> &resGraph, std::vector<bool> &visited,
             if (!visited[w]) {
                 if (association[w] == 0) {
                     resGraph.addVertex(Vertex(vertexList[w].readData()));
-                    association[w] = resGraph.size()-1;
+                    association[w] = resGraph.size() - 1;
                 }
                 resGraph.addEdge(association[v], association[w]);
                 S.push(w);
