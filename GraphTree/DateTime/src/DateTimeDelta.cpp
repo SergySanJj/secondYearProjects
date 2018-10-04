@@ -6,7 +6,7 @@
 #include "DateTime.h"
 
 #include <cmath>
-#include <DateTimeDelta.h>
+
 
 
 std::int64_t DT::abs64(std::int64_t val) { return (val > 0 ? val : (-val)); }

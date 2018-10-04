@@ -9,7 +9,7 @@ include_directories(DateTime/src)
 include_directories(Graph/include)
 include_directories(Graph/src)
 
-set(SOURCE_FILES src/main.cpp DateTime/src/DateTime.cpp DateTime/include/DateTime.h DateTime/include/DateTimeDelta.h DateTime/src/DateTimeDelta.cpp Graph/include/Graph.h Graph/src/Graph.inc)
+set(SOURCE_FILES src/main.cpp DateTime/src/DateTime.cpp DateTime/include/DateTime.h DateTime/include/DateTimeDelta.h DateTime/src/DateTimeDelta.cpp Graph/include/Graph.h)
 
 add_executable(GraphTree ${SOURCE_FILES})
 

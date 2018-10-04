@@ -3,9 +3,9 @@
 // Created by sju on 24.09.18.
 //
 
-#include<ctime>
-
 #include "DateTime.h"
+
+#include<ctime>
 
 
 namespace DT {
@@ -27,8 +27,8 @@ namespace DT {
             else
                 throw ("Second value must be between 0 and 60");
 
-        } catch (const char *msg) {
-            std::cerr << msg << '\n';
+        } catch (std::string msg) {
+            std::cerr << msg << std::endl;
         }
     }
 
@@ -92,7 +92,7 @@ namespace DT {
 
     void Time::println() const {
         print();
-        std::cout << '\n';
+        std::cout << std::endl;
     }
 
 
@@ -144,12 +144,16 @@ namespace DT {
     }
 
     Date::Date(const std::int32_t d, const std::int32_t m, const std::int32_t y) {
-        if (validateDate(d, m, y)) {
-            month = m;
-            day = d;
-            year = y;
-        } else
-            throw ("Invalid Date\n");
+        try {
+            if (validateDate(d, m, y)) {
+                month = m;
+                day = d;
+                year = y;
+            } else
+                throw ("Invalid Date");
+        } catch (std::string msg){
+            std::cerr << msg << std::endl;
+        }
     }
 
     bool const Date::operator==(const Date &rsv) {
@@ -208,7 +212,7 @@ namespace DT {
 
     void Date::println() const {
         print();
-        std::cout << '\n';
+        std::cout << std::endl;
     }
 
     void DateTime::print() const {
@@ -299,7 +303,7 @@ namespace DT {
 
     void DateTime::println() const {
         print();
-        std::cout << '\n';
+        std::cout << std::endl;
     }
 
     std::string DateTime::dayOfWeekString() const {

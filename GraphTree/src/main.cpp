@@ -4,14 +4,15 @@
 // Lab 1 var(8,7)
 //
 
+#include "Graph.h"
+#include "DateTime.h"
+
 #include <iostream>
 #include <vector>
 #include <iomanip>
 #include <string>
-#include <cstdlib>
 
-#include "Graph.h"
-#include "DateTime.h"
+#include <cstdlib>
 
 #define RUN_SAMPLES 1
 
@@ -51,7 +52,7 @@ void doublePrintHelper(double val) {
 
 void intGraphSample() {
 
-    std::cout << "\n----intGraphSample----\n";
+    std::cout << "\n----intGraphSample----" << std::endl;
 
     /// To work with Graph module use GraphTree namespace.
     /// Then create graph object with 0 verticies that stores int values by:
@@ -110,33 +111,33 @@ void intGraphSample() {
 
     /// To print graph g3 to the iostream console use .print()
     /// it will print adjacency list with vertex numbers.
-    std::cout << "\ng3 in number form:\n";
+    std::cout << "\ng3 in number form:" << std::endl;
     g3.print();
 
     /// To print graph g3 djacency list with data stored in verticies
     /// you first need to implement the function that will be called for each vertex
     /// and print it in any form you want. As an example we use intPrintHelper() function.
     /// After that use:
-    std::cout << "\ng3 in special form:\n";
+    std::cout << "\ng3 in special form:" << std::endl;
     g3.print(intPrintHelper);
 
-    std::cout << "\nspanTreeG3 in number form:\n";
+    std::cout << "\nspanTreeG3 in number form:" << std::endl;
     spanTreeG3.print();
 
-    std::cout << "\nspanForestG3 in number form:\n";
+    std::cout << "\nspanForestG3 in number form:" << std::endl;
     spanForestG3.print();
 
     /// To build random connection graph with n verticies use:
     n = 10;
     GraphTree::Graph<int> rndG = GraphTree::buildRandomGraph<int>(n);
 
-    std::cout << "\nrndG in number form:\n";
+    std::cout << "\nrndG in number form:" << std::endl;
     rndG.print();
 
 }
 
 void vectorGraphSample() {
-    std::cout << "\n--vectorGraphSample--\n";
+    std::cout << "\n--vectorGraphSample--" << std::endl;
 
     /// You can store any class/type in Graph datastruct unless it has:
     /// -constructor
@@ -164,17 +165,17 @@ void vectorGraphSample() {
     vecG[0] = std::vector({3, 2, 1});
 
     // print
-    std::cout << "\nvecG in number form:\n";
+    std::cout << "\nvecG in number form:" << std::endl;
     vecG.print();
 
     // print in special form:
-    std::cout << "\nvecG in special form:\n";
+    std::cout << "\nvecG in special form:" << std::endl;
     vecG.print(vecPrintHelper<int>);
 
 }
 
 void DateTimeSample() {
-    std::cout << "\n--DateTimeSample--\n";
+    std::cout << "\n--DateTimeSample--" << std::endl;
 
     /// To work with Graph module use DT namespace.
 
@@ -201,15 +202,15 @@ void DateTimeSample() {
     dt1.println();
 
     /// To validate date use:
-    DT::validateDate(29, 9, 2018);
+    bool validateRes = DT::validateDate(29, 9, 2018);
 
     /// To get number of week day use:
-    std::cout << "\n" << dt1.dayOfWeek() << "\n";
-    std::cout << DT::getDayOfWeek(29, 9, 2018) << "\n";
+    std::cout << "\n" << dt1.dayOfWeek() << std::endl;
+    std::cout << DT::getDayOfWeek(29, 9, 2018) << std::endl;
 
     /// To get day of week string use:
-    std::cout << "\n" << dt1.dayOfWeekString() << "\n";
-    std::cout << DT::toDayOfWeek(DT::getDayOfWeek(29, 9, 2018)) << "\n";
+    std::cout << "\n" << dt1.dayOfWeekString() << std::endl;
+    std::cout << DT::toDayOfWeek(DT::getDayOfWeek(29, 9, 2018)) << std::endl;
 
     /// To get month,day,year,hour,minute,second from
     /// DateTime, Time or Date use .Month(), .Year() .. etc.
@@ -223,9 +224,9 @@ void DateTimeSample() {
     /// Usage of DateTimeDelta clas:
     std::cout << "\nTo NY from 29/09/2018 10:25:56:    ";
     toNY.print();
-    std::cout << "\n";
-    std::cout << "delta in days :" << toNY.TotalDays() << "\n";
-    std::cout << "delta in seconds :" << toNY.TotalSeconds() << "\n";
+    std::cout << std::endl;
+    std::cout << "delta in days :" << toNY.TotalDays() << std::endl;
+    std::cout << "delta in seconds :" << toNY.TotalSeconds() << std::endl;
 
     /// To add/subtract delta from DateTime use:
     /// WARNING: if after subtracting Date goes below 1/1/0000
@@ -247,7 +248,7 @@ void DateTimeSample() {
 
 void DateGraphSample() {
 
-    std::cout << "\n--DateGraphSample--\n";
+    std::cout << "\n--DateGraphSample--" << std::endl;
     /// Make vector of random DateTimes:
     std::vector<DT::DateTime> dtVec;
     DT::DateTime startdt(DT::Date(1, 1, 1), DT::Time(0, 0, 0));
@@ -265,7 +266,7 @@ void DateGraphSample() {
 
 void GraphStringSample() {
 
-    std::cout << "\n--GraphStringSample--\n";
+    std::cout << "\n--GraphStringSample--" << std::endl;
 
     std::vector<std::string> strVec = {"aa", "ab", "ba", "bb"};
 
@@ -285,7 +286,7 @@ void GraphStringSample() {
 
 
 void doubleGraphSample() {
-    std::cout << "\n--doubleGraphSample--\n";
+    std::cout << "\n--doubleGraphSample--" << std::endl;
 
     // innit graph g with double vector values
     std::vector<double> doubleVec = {2.33234, 64.434, 1.0, 343.01, 12.332, 11, 0101, 10, 01};

@@ -5,13 +5,13 @@
 
 #pragma once
 
-#include <cstdlib>
 #include <iostream>
 #include <array>
 #include <vector>
 #include <set>
 #include <stack>
 
+#include <cstdlib>
 
 namespace GraphTree {
 

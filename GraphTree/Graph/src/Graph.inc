@@ -1,11 +1,3 @@
-#include "Graph.h"
-
-
-#include<ctime>
-// start using namespace GraphTree
-
-using namespace GraphTree;
-
 
 /********--------Implementation--------********/
 
@@ -60,12 +52,12 @@ void Graph<T>::addEdge(std::size_t u, std::size_t v) {
                 E++;
             }
         } else if (u != v) {
-            std::cerr << "\n Error: u or v vertex not in graph.";
-            throw ("\nError: u or v vertex not in graph.\n");
+            std::cerr << std::endl << "Error: u or v vertex not in graph.";
+            throw ("Error: u or v vertex not in graph.");
         }
 
-    } catch (const char *msg) {
-        std::cerr << msg << '\n';
+    } catch (std::string msg) {
+        std::cerr << msg << std::endl;
     }
 }
 
@@ -73,7 +65,7 @@ void Graph<T>::addEdge(std::size_t u, std::size_t v) {
 template<typename T>
 void Graph<T>::print() const {
     if (!N) {
-        std::cout << "----EMPTY GRAPH----\n";
+        std::cout << "----EMPTY GRAPH----" << std::endl;
         return;
     }
     for (std::size_t i = 0; i < N; i++) {
@@ -85,7 +77,7 @@ void Graph<T>::print() const {
                 std::cout << connection << " ";
             }
         }
-        std::cout << ";\n";
+        std::cout << ";" << std::endl;
     }
 }
 
@@ -93,7 +85,7 @@ template<typename T>
 template<typename OP>
 void Graph<T>::print(OP op) const {
     if (!N) {
-        std::cout << "----EMPTY GRAPH----\n";
+        std::cout << "----EMPTY GRAPH----" << std::endl;
         return;
     }
     for (std::size_t i = 0; i < N; i++) {
@@ -107,7 +99,7 @@ void Graph<T>::print(OP op) const {
                 std::cout << " ";
             }
         }
-        std::cout << ";\n";
+        std::cout << ";" << std::endl;
     }
 }
 
@@ -234,7 +226,7 @@ Vertex<T> &Graph<T>::operator[](std::size_t index) {
     if (index < N)
         return (vertexList[index]);
     else {
-        std::cerr << "\n out of range";
+        std::cerr << std::endl << "out of range" << std::endl;
         static_assert(1, "out of range");
     }
 }
@@ -258,7 +250,7 @@ bool Vertex<T>::operator==(const Vertex<T> &rsv) {
 
 template<typename T>
 Graph<T> buildRandomGraph(std::size_t n) {
-    std::srand(static_cast<unsigned int>(std::time(0)));
+    std::srand(static_cast<unsigned int>(time(0)));
     Graph<T> res(n);
     std::size_t edgeCount = rand() % ((n * n - n) / 2);
     for (std::size_t i = 0; i < edgeCount; i++) {

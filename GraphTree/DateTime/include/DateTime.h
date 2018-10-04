@@ -6,13 +6,15 @@
 
 #pragma once
 
+#include "DateTimeDelta.h"
+
 #include <iostream>
 #include <cstdint>
 #include <tuple>
 #include <string>
+
 #include <ctime>
 
-#include "DateTimeDelta.h"
 
 namespace DT {
 

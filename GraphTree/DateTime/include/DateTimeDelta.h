@@ -5,8 +5,9 @@
 
 #pragma once
 
-#include <cstdint>
 #include "DateTime.h"
+
+#include <cstdint>
 
 
 namespace DT {
