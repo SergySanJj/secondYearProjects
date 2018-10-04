@@ -150,10 +150,10 @@ You can store any class/type in Graph datastruct unless it has:
 Next sample shows how to use Graph that stores vectors as values in verticies:
 innit with vector of vectors:
 ```c++
-    GraphTree::Graph<std::vector<int> > vecG({{1,    3, 3, 7},
-                                              {19,   -91},
-                                              {0,    0, 0, 0, 0},
-                                              {1000, 1}});
+    GraphTree::Graph<std::vector<int> > vecG({ {1,    3, 3, 7},
+                                               {19,   -91},
+                                               {0,    0, 0, 0, 0},
+                                               {1000, 1} });
 ```
 
 add one more vector:
