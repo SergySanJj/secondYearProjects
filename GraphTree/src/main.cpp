@@ -55,10 +55,10 @@ void intGraphSample() {
     std::cout << "\n----intGraphSample----" << std::endl;
 
     /// To work with Graph module use GraphTree namespace.
-    /// Then create graph object with 0 verticies that stores int values by:
+    /// Then create graph object with 0 vertexes that stores int values by:
     GraphTree::Graph<int> g1(0);
 
-    /// If you want to crate graph object with n=10 verticies:
+    /// If you want to crate graph object with n=10 vertexes:
     std::size_t n = 10;
     GraphTree::Graph<int> g2(n);
 
@@ -78,12 +78,12 @@ void intGraphSample() {
     g1 = g3;
     g1 = g1;
 
-    /// To get number of verticies use:
+    /// To get number of vertexes use:
     g1.size(); // will return 6
     g2.size(); // will return 10
     g3.size(); // will return 6
 
-    /// To add edge between two verticies u and v use:
+    /// To add edge between two vertexes u and v use:
     /// WARNING: Graph doesn't support multiedges and loops
     v = 1;
     std::size_t u = 2;
@@ -114,7 +114,7 @@ void intGraphSample() {
     std::cout << "\ng3 in number form:" << std::endl;
     g3.print();
 
-    /// To print graph g3 djacency list with data stored in verticies
+    /// To print graph g3 adjacency list with data stored in vertexes
     /// you first need to implement the function that will be called for each vertex
     /// and print it in any form you want. As an example we use intPrintHelper() function.
     /// After that use:
@@ -127,7 +127,7 @@ void intGraphSample() {
     std::cout << "\nspanForestG3 in number form:" << std::endl;
     spanForestG3.print();
 
-    /// To build random connection graph with n verticies use:
+    /// To build random connection graph with n vertexes use:
     n = 10;
     GraphTree::Graph<int> rndG = GraphTree::buildRandomGraph<int>(n);
 
@@ -144,7 +144,7 @@ void vectorGraphSample() {
     /// -destructor
     /// -assignment operator
 
-    /// Next sample shows how to use Graph that stores vectors as values in verticies:
+    /// Next sample shows how to use Graph that stores vectors as values in vertexes:
     // innit with vector of vectors:
     GraphTree::Graph<std::vector<int> > vecG({{1,    3, 3, 7},
                                               {19,   -91},
@@ -221,7 +221,7 @@ void DateTimeSample() {
 
     /// To store date time difference use DateTimeDelta class
     DT::DateTimeDelta toNY = dt3 - dt2;
-    /// Usage of DateTimeDelta clas:
+    /// Usage of DateTimeDelta class:
     std::cout << "\nTo NY from 29/09/2018 10:25:56:    ";
     toNY.print();
     std::cout << std::endl;
@@ -258,7 +258,7 @@ void DateGraphSample() {
                                      DT::randomTime(startdt.getTime(), enddt.getTime())));
     }
 
-    // iinit graph with dtVec.
+    // init graph with dtVec.
     GraphTree::Graph<DT::DateTime> gDates(dtVec);
     gDates.print(dateTimePrintHelper);
 

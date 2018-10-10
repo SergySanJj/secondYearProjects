@@ -95,7 +95,7 @@ namespace GraphTree {
         /** Returns new graph by value that contains spanning tree of the graph that has root at startVertex.
         /// WARNING: numeration of vertexes might change.
         /// Result graph will be homeomorphic to one of the
-        /// forest span trees obtained frop getSpanningTree().**/
+        /// forest span trees obtained from getSpanningTree().**/
         Graph<T> getSpanningTree(std::size_t startVertex);
 
         /* FRIEND */
@@ -116,7 +116,7 @@ namespace GraphTree {
         void spanningDFS(Graph<T> &resGraph, std::vector<bool> &visited, std::size_t v);
 
         /// Help function that runs DFS from v vertex and adds found spanning
-        /// tree connections and verticies into resGraph.
+        /// tree connections and vertexes into resGraph.
         void singleSpanningDFS(Graph<T> &resGraph, std::vector<bool> &visited, std::size_t v);
 
         /// Copy vertex data into .this graph from rhs, delete any data that was in .this.
