@@ -13,6 +13,8 @@
 
 #include <cstdlib>
 
+#include "../../dependencies/random.hpp"
+
 namespace GraphTree {
 
     template<typename T>
@@ -127,7 +129,7 @@ namespace GraphTree {
     template<typename T>
     Graph<T> buildRandomGraph(std::size_t n);
 
-#include "Graph.inc"
+#include "Graph.hpp"
 
 }
 

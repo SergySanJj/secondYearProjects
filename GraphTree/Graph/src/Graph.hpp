@@ -1,3 +1,13 @@
+#include <iostream>
+#include <array>
+#include <vector>
+#include <set>
+#include <stack>
+
+#include <cstdlib>
+
+
+using Random = effolkronium::random_static;
 
 /********--------Implementation--------********/
 
@@ -250,12 +260,13 @@ bool Vertex<T>::operator==(const Vertex<T> &rsv) {
 
 template<typename T>
 Graph<T> buildRandomGraph(std::size_t n) {
-    std::srand(static_cast<unsigned int>(time(0)));
+
     Graph<T> res(n);
-    std::size_t edgeCount = rand() % ((n * n - n) / 2);
+
+    std::size_t edgeCount = Random::get<int>(0, ((n * n - n) / 2));
     for (std::size_t i = 0; i < edgeCount; i++) {
-        std::size_t u = rand() % n;
-        std::size_t v = rand() % n;
+        std::size_t u = Random::get<int>(0,n);
+        std::size_t v = Random::get<int>(0,n);
         res.addEdge(u, v);
     }
     return res;
