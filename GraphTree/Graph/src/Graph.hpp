@@ -53,21 +53,13 @@ const T &Vertex<T>::readData() const { return vertexData; }
 
 template<typename T>
 void Graph<T>::addEdge(std::size_t u, std::size_t v) {
-    try {
-        if (u < N && v < N && u != v) {
-            // Won't insert once more if and create multiedge.
-            if (adjList[u].find(v) == adjList[u].end()) {
-                adjList[u].insert(v);
-                adjList[v].insert(u);
-                E++;
-            }
-        } else if (u != v) {
-            std::cerr << std::endl << "Error: u or v vertex not in graph.";
-            throw ("Error: u or v vertex not in graph.");
+    if (u < N && v < N && u != v) {
+        // Won't insert once more if and create multiedge.
+        if (adjList[u].find(v) == adjList[u].end()) {
+            adjList[u].insert(v);
+            adjList[v].insert(u);
+            E++;
         }
-
-    } catch (std::string msg) {
-        std::cerr << msg << std::endl;
     }
 }
 
@@ -265,8 +257,8 @@ Graph<T> buildRandomGraph(std::size_t n) {
 
     std::size_t edgeCount = Random::get<int>(0, ((n * n - n) / 2));
     for (std::size_t i = 0; i < edgeCount; i++) {
-        std::size_t u = Random::get<int>(0,n);
-        std::size_t v = Random::get<int>(0,n);
+        std::size_t u = Random::get<int>(0, n);
+        std::size_t v = Random::get<int>(0, n);
         res.addEdge(u, v);
     }
     return res;
