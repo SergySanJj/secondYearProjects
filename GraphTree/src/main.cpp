@@ -4,6 +4,9 @@
 // Lab 1 var(8,7)
 //
 
+#include <gtest/gtest.h>
+#include <gmock/gmock.h>
+
 #include "Graph.h"
 #include "DateTime.h"
 
@@ -14,7 +17,7 @@
 
 #include <cstdlib>
 
-#define RUN_SAMPLES 1
+#define RUN_SAMPLES 0
 
 /************************************************/
 /******** EXAMPLES OF PRINT HELPERS *************/
@@ -322,5 +325,8 @@ int main() {
     doubleGraphSample();
 
 #endif
+
+    testing::InitGoogleTest();
+    RUN_ALL_TESTS();
     return 0;
 }
