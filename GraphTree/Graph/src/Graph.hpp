@@ -227,10 +227,8 @@ template<typename T>
 Vertex<T> &Graph<T>::operator[](std::size_t index) {
     if (index < N)
         return (vertexList[index]);
-    else {
-        std::cerr << std::endl << "out of range" << std::endl;
-        static_assert(1, "out of range");
-    }
+    else
+        throw std::range_error("out of range");
 }
 
 template<typename T>

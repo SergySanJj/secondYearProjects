@@ -11,25 +11,21 @@
 namespace DT {
 
     Time::Time(const std::int32_t h, const std::int32_t m, const std::int32_t s) {
-        try {
-            if (checkInRange(h, 0, 23))
-                hour = h;
-            else
-                throw ("Hour val must be between 0 and 23");
 
-            if (checkInRange(m, 0, 59))
-                minute = m;
-            else
-                throw ("Minute val must be between 0 and 60");
+        if (checkInRange(h, 0, 23))
+            hour = h;
+        else
+            throw std::range_error("Hour val must be between 0 and 23");
 
-            if (checkInRange(s, 0, 60))
-                seconds = s;
-            else
-                throw ("Second value must be between 0 and 60");
+        if (checkInRange(m, 0, 59))
+            minute = m;
+        else
+            throw std::range_error("Minute val must be between 0 and 60");
 
-        } catch (std::string msg) {
-            std::cerr << msg << std::endl;
-        }
+        if (checkInRange(s, 0, 60))
+            seconds = s;
+        else
+            throw std::range_error("Second value must be between 0 and 60");
     }
 
     double Time::getFrac() {
@@ -84,15 +80,26 @@ namespace DT {
 
     void Time::print() const {
         using std::cout;
-        cout << hour << ":" << minute << ":";
-        if (seconds < 10)
-            cout << "0";
-        cout << seconds;
+        cout << toString();
     }
 
     void Time::println() const {
         print();
         std::cout << std::endl;
+    }
+
+    std::string Time::toString() const {
+        std::string res = "";
+        if (hour < 10)
+            res += "0";
+        res += std::to_string(hour) + ":";
+        if (minute < 10)
+            res += "0";
+        res += std::to_string(minute) + ":";
+        if (seconds < 10)
+            res += "0";
+        res += std::to_string(seconds);
+        return res;
     }
 
 
@@ -144,16 +151,12 @@ namespace DT {
     }
 
     Date::Date(const std::int32_t d, const std::int32_t m, const std::int32_t y) {
-        try {
-            if (validateDate(d, m, y)) {
-                month = m;
-                day = d;
-                year = y;
-            } else
-                throw ("Invalid Date");
-        } catch (std::string msg){
-            std::cerr << msg << std::endl;
-        }
+        if (validateDate(d, m, y)) {
+            month = m;
+            day = d;
+            year = y;
+        } else
+            throw std::range_error("Invalid Date");
     }
 
     bool const Date::operator==(const Date &rsv) {
@@ -202,12 +205,7 @@ namespace DT {
 
     void Date::print() const {
         using std::cout;
-        if (day < 10)
-            cout << 0;
-        cout << day << "/";
-        if (month < 10)
-            cout << 0;
-        cout << month << "/" << year;
+        cout << toString();
     }
 
     void Date::println() const {
@@ -215,12 +213,20 @@ namespace DT {
         std::cout << std::endl;
     }
 
-    void DateTime::print() const {
+    std::string Date::toString() const {
+        std::string res = "";
+        if (day < 10)
+            res += "0";
+        res += std::to_string(day) + "/";
+        if (month < 10)
+            res += "0";
+        res += std::to_string(month) + "/" + std::to_string(year);
+        return res;
+    }
+
+    void DateTime::print(bool useDayOfWeek) const {
         using std::cout;
-        cout << toDayOfWeek(getDayOfWeek(date.Day(), date.Month(), date.Year())) << " ";
-        date.print();
-        cout << " ";
-        time.print();
+        cout << toString(useDayOfWeek);
     }
 
     std::int32_t DateTime::dayOfWeek() const {
@@ -301,13 +307,22 @@ namespace DT {
         return DateTime(daysToDate(newDays), secondsToTime(newSeconds));
     }
 
-    void DateTime::println() const {
-        print();
+    void DateTime::println(bool useDayOfWeek) const {
+        print(useDayOfWeek);
         std::cout << std::endl;
     }
 
     std::string DateTime::dayOfWeekString() const {
         return toDayOfWeek(dayOfWeek());
+    }
+
+    std::string DateTime::toString(bool useDayOfWeek) const {
+        std::string res = "";
+        if (useDayOfWeek)
+            res += toDayOfWeek(getDayOfWeek(date.Day(), date.Month(), date.Year())) + " ";
+        res += date.toString() + " ";
+        res += time.toString();
+        return res;
     }
 
 
