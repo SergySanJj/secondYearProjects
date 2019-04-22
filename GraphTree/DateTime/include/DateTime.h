@@ -34,10 +34,12 @@ namespace DT {
     bool validateDate(std::int32_t d, std::int32_t m, std::int32_t y);
 
     // Returns an integer that represents week day (Mon=1, Tue=2...) if date is invalid return -1.
-    std::int32_t getDayOfWeek(std::int32_t d, std::int32_t m, std::int32_t y);
+    std::int32_t DayOfWeekNumber(std::int32_t d, std::int32_t m, std::int32_t y);
 
     // Returns day name from integer 1..7.
-    std::string toDayOfWeek(std::int32_t day);
+    std::string DayOfWeekString(std::int32_t day);
+
+    std::string DayOfWeekString(std::int32_t d, std::int32_t m, std::int32_t y);
 
     // Return true if year is a leap year, false otherwise.
     bool isLeapYear(std::int32_t year);
@@ -171,13 +173,13 @@ namespace DT {
         Time getTime() const { return time; }
 
         // Prints DateTime into iostream in format dd/mm/yy h/m/s .
-        void print(bool useDayOfWeek= false) const;
+        void print(bool useDayOfWeek = false) const;
 
         // Prints DateTime into iostream in format dd/mm/yy h/m/s
         // and moves to the next line.
-        void println(bool useDayOfWeek= false) const;
+        void println(bool useDayOfWeek = false) const;
 
-        std::string toString(bool useDayOfWeek= false) const;
+        std::string toString(bool useDayOfWeek = false) const;
 
         // Return number of seconds that passed from the beginning of the .this date.
         std::int64_t LastDaySeconds() const;

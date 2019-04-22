@@ -45,7 +45,7 @@ include_directories(DateTime/src)
 include_directories(Graph/include)
 include_directories(Graph/src)
 
-set(SOURCE_FILES src/main.cpp DateTime/src/DateTime.cpp DateTime/include/DateTime.h DateTime/include/DateTimeDelta.h DateTime/src/DateTimeDelta.cpp Graph/include/Graph.h dependencies/random.hpp Tests/tests.cpp)
+set(SOURCE_FILES src/main.cpp DateTime/src/DateTime.cpp DateTime/include/DateTime.h DateTime/include/DateTimeDelta.h DateTime/src/DateTimeDelta.cpp Graph/include/Graph.h dependencies/random.hpp Tests/DateTimeTests.cpp Tests/GraphTests.cpp Tests/GraphTests.cpp)
 
 add_executable(GraphTree ${SOURCE_FILES})
 

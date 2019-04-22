@@ -1,6 +1,7 @@
 //
-// Created by isara on 15-Apr-19.
+// Created by isara on 22-Apr-19.
 //
+
 #include "gtest/gtest.h"
 
 #include "Graph.h"
@@ -227,90 +228,4 @@ void doubleGraphSample() {
 
     // print double valued graph with format defined by doublePrintHelper().
     g.print(doublePrintHelper);
-}
-
-
-TEST(DateTimeTests,Creation){
-    // To work with Graph module use DT namespace.
-
-    // To create Date object use:
-    // where values are ordered dd/mm/yy
-    // WARNING: works with dates from 01/01/0000 to 31/12/9999
-    DT::Date date1(29, 9, 2018);
-    ASSERT_EQ("29/09/2018", date1.toString());
-    ASSERT_EQ("01/01/0", DT::Date(1,1,0).toString());
-    ASSERT_EQ("31/12/9999", DT::Date(31,12,9999).toString());
-    ASSERT_THROW(DT::Date(0,0,0), std::range_error);
-    ASSERT_THROW(DT::Date(0,0,10000), std::range_error);
-
-    // To create Time object use:
-    // where values are ordered hh/mm/ss
-    DT::Time time1(10, 25, 56);
-    ASSERT_EQ("10:25:56", time1.toString());
-    ASSERT_EQ("00:00:00", DT::Time(0,0,0).toString());
-    ASSERT_EQ("01:05:09", DT::Time(1,5,9).toString());
-    ASSERT_THROW(DT::Time(-1,0,0), std::range_error);
-    ASSERT_THROW(DT::Time(25,0,0), std::range_error);
-    ASSERT_THROW(DT::Time(24,61,0), std::range_error);
-    ASSERT_THROW(DT::Time(24,60,-1), std::range_error);
-
-    // To create DateTime object use:
-    DT::DateTime dt1(date1, time1);
-    ASSERT_EQ(date1.toString() + " " + time1.toString(), dt1.toString());
-    // Or simply:
-    DT::DateTime dt2(DT::Date(29, 9, 2018), DT::Time(10, 25, 56));
-    ASSERT_EQ("29/09/2018 10:25:56",dt2.toString());
-    DT::DateTime dt3(DT::Date(31, 12, 2018), DT::Time(23, 59, 59)); // yeah 1 sec before NY
-    ASSERT_EQ("31/12/2018 23:59:59",dt3.toString());
-
-    // Use .print() to print stored values.
-    // Use .println() to print stored values and move to the next line.
-
-    // To validate date use:
-    bool validateRes = DT::validateDate(29, 9, 2018);
-    ASSERT_TRUE(validateRes);
-    ASSERT_FALSE(DT::validateDate(33, 9, 2018));
-
-    // TODO: here
-
-    // To get number of week day use:
-    std::cout << "\n" << dt1.dayOfWeek() << std::endl;
-    std::cout << DT::getDayOfWeek(29, 9, 2018) << std::endl;
-
-    // To get day of week string use:
-    std::cout << "\n" << dt1.dayOfWeekString() << std::endl;
-    std::cout << DT::toDayOfWeek(DT::getDayOfWeek(29, 9, 2018)) << std::endl;
-
-    // To get month,day,year,hour,minute,second from
-    // DateTime, Time or Date use .Month(), .Year() .. etc.
-    date1.Month();
-    time1.Seconds(); // Note Seconds NOT Second.
-
-    /*---operations---*/
-
-    // To store date time difference use DateTimeDelta class
-    DT::DateTimeDelta toNY = dt3 - dt2;
-    // Usage of DateTimeDelta class:
-    std::cout << "\nTo NY from 29/09/2018 10:25:56:    ";
-    toNY.print();
-    std::cout << std::endl;
-    std::cout << "delta in days :" << toNY.TotalDays() << std::endl;
-    std::cout << "delta in seconds :" << toNY.TotalSeconds() << std::endl;
-
-    // To add/subtract delta from DateTime use:
-    // WARNING: if after subtracting Date goes below 1/1/0000
-    // result will be 1/1/0000 00:00:00
-    DT::DateTime addDT = dt1 + toNY;
-    DT::DateTime subDT = dt1 - toNY;
-    DT::DateTime zeroDate = dt1 - (DT::DateTime() - dt3); // overlap through 1/1/0 00/00/00
-    std::cout << "addDT :";
-    addDT.println();
-    std::cout << "subDT :";
-    subDT.println();
-    std::cout << "zeroDate :";
-    zeroDate.println();
-
-
-    // You can also use ==, !=, <, > for Date, Time, DateTime and DateTimeDelta
-    // to compare same type values.
 }

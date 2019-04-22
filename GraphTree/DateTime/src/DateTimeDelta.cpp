@@ -18,7 +18,7 @@ DT::DateTimeDelta::DateTimeDelta(DateTime dt1, DateTime dt2) {
 
 
     // Date part.
-    int32_t monthDay[] = {31, 31, -1, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
+    static int32_t monthDay[] = {31, 31, -1, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
 
     if (dt1 > dt2) {
         fromDate = dt2;
@@ -125,6 +125,8 @@ void DT::DateTimeDelta::println() const {
 DT::DateTimeDelta::DateTimeDelta(std::int64_t secondsDiff) {
     totalSeconds = secondsDiff;
     totalDays = secondsDiff / (3600 * 24);
+
+
 }
 
 

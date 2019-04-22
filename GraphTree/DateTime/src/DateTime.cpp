@@ -136,7 +136,7 @@ namespace DT {
 
     }
 
-    std::int32_t getDayOfWeek(std::int32_t d, std::int32_t m, std::int32_t y) {
+    std::int32_t DayOfWeekNumber(std::int32_t d, std::int32_t m, std::int32_t y) {
         if (!validateDate(d, m, y)) {
             return -1;
         }
@@ -230,7 +230,7 @@ namespace DT {
     }
 
     std::int32_t DateTime::dayOfWeek() const {
-        return DT::getDayOfWeek(date.Day(), date.Month(), date.Year());
+        return DT::DayOfWeekNumber(date.Day(), date.Month(), date.Year());
     }
 
     DateTime &DateTime::operator=(const DateTime &rsv) {
@@ -313,20 +313,20 @@ namespace DT {
     }
 
     std::string DateTime::dayOfWeekString() const {
-        return toDayOfWeek(dayOfWeek());
+        return DayOfWeekString(dayOfWeek());
     }
 
     std::string DateTime::toString(bool useDayOfWeek) const {
         std::string res = "";
         if (useDayOfWeek)
-            res += toDayOfWeek(getDayOfWeek(date.Day(), date.Month(), date.Year())) + " ";
+            res += DayOfWeekString(DayOfWeekNumber(date.Day(), date.Month(), date.Year())) + " ";
         res += date.toString() + " ";
         res += time.toString();
         return res;
     }
 
 
-    std::string toDayOfWeek(const std::int32_t day) {
+    std::string DayOfWeekString(int32_t day) {
         switch (day) {
             case -1:
                 return "INVALID";
@@ -347,6 +347,10 @@ namespace DT {
             default:
                 return "INVALID";
         }
+    }
+
+    std::string DayOfWeekString(std::int32_t d, std::int32_t m, std::int32_t y) {
+        return DayOfWeekString(DayOfWeekNumber(d, m, y));
     }
 
     bool isLeapYear(std::int32_t year) {
