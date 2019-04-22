@@ -8,17 +8,16 @@
 #include <cmath>
 
 
-
 std::int64_t DT::abs64(std::int64_t val) { return (val > 0 ? val : (-val)); }
 
-DT::DateTimeDelta::DateTimeDelta(DateTime dt1, DateTime dt2) {
+DT::DateTimeDelta::DateTimeDelta(const DateTime &dt1, const DateTime &dt2) {
     // Innit with some values.
     DateTime fromDate(Date(1, 1, 0), Time(10, 10, 10));
     DateTime toDate(Date(1, 1, 0), Time(10, 10, 10));
 
 
     // Date part.
-    int32_t monthDay[] = {31, 31, -1, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
+    static int32_t monthDay[] = {31, 31, -1, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
 
     if (dt1 > dt2) {
         fromDate = dt2;
@@ -125,6 +124,10 @@ void DT::DateTimeDelta::println() const {
 DT::DateTimeDelta::DateTimeDelta(std::int64_t secondsDiff) {
     totalSeconds = secondsDiff;
     totalDays = secondsDiff / (3600 * 24);
+}
+
+DT::DateTimeDelta DT::DateTimeDelta::operator-(const DT::DateTimeDelta &rsv) const {
+    return DT::DateTimeDelta(totalSeconds - rsv.TotalSeconds());
 }
 
 

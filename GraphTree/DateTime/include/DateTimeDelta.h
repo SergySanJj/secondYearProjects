@@ -15,7 +15,7 @@ namespace DT {
 
     class DateTimeDelta {
     public:
-        DateTimeDelta(DT::DateTime dt1, DT::DateTime dt2);
+        DateTimeDelta(const DateTime &dt1, const DateTime &dt2);
 
         explicit DateTimeDelta(std::int64_t secondsDiff);
 
@@ -44,6 +44,8 @@ namespace DT {
         std::int64_t TotalSeconds() const { return totalSeconds; }
 
         std::int64_t LastDaySeconds() const { return (hour * 3600 + minute * 60 + seconds); }
+
+        DateTimeDelta operator-(const DateTimeDelta &rsv) const;
 
     private:
         std::int32_t day;

@@ -11,25 +11,21 @@
 namespace DT {
 
     Time::Time(const std::int32_t h, const std::int32_t m, const std::int32_t s) {
-        try {
-            if (checkInRange(h, 0, 23))
-                hour = h;
-            else
-                throw ("Hour val must be between 0 and 23");
 
-            if (checkInRange(m, 0, 59))
-                minute = m;
-            else
-                throw ("Minute val must be between 0 and 60");
+        if (checkInRange(h, 0, 23))
+            hour = h;
+        else
+            throw std::range_error("Hour val must be between 0 and 23");
 
-            if (checkInRange(s, 0, 60))
-                seconds = s;
-            else
-                throw ("Second value must be between 0 and 60");
+        if (checkInRange(m, 0, 59))
+            minute = m;
+        else
+            throw std::range_error("Minute val must be between 0 and 60");
 
-        } catch (std::string msg) {
-            std::cerr << msg << std::endl;
-        }
+        if (checkInRange(s, 0, 60))
+            seconds = s;
+        else
+            throw std::range_error("Second value must be between 0 and 60");
     }
 
     double Time::getFrac() {
@@ -39,11 +35,11 @@ namespace DT {
         return days / 24.0;
     }
 
-    bool const Time::operator==(const Time &rsv) {
+    bool Time::operator==(const Time &rsv) const {
         return ((hour == rsv.hour) && (minute == rsv.minute) && (seconds == rsv.seconds));
     }
 
-    bool const Time::operator<(const Time &rsv) {
+    bool  Time::operator<(const Time &rsv) const{
         if (hour < rsv.hour)
             return true;
         if (hour > rsv.hour)
@@ -60,11 +56,11 @@ namespace DT {
             return false;
     }
 
-    bool const Time::operator!=(const Time &rsv) {
+    bool Time::operator!=(const Time &rsv) const {
         return (!(*this == rsv));
     }
 
-    bool const Time::operator>(const Time &rsv) {
+    bool Time::operator>(const Time &rsv) const{
         if (*this == rsv)
             return false;
         if (*this < rsv)
@@ -84,15 +80,26 @@ namespace DT {
 
     void Time::print() const {
         using std::cout;
-        cout << hour << ":" << minute << ":";
-        if (seconds < 10)
-            cout << "0";
-        cout << seconds;
+        cout << toString();
     }
 
     void Time::println() const {
         print();
         std::cout << std::endl;
+    }
+
+    std::string Time::toString() const {
+        std::string res = "";
+        if (hour < 10)
+            res += "0";
+        res += std::to_string(hour) + ":";
+        if (minute < 10)
+            res += "0";
+        res += std::to_string(minute) + ":";
+        if (seconds < 10)
+            res += "0";
+        res += std::to_string(seconds);
+        return res;
     }
 
 
@@ -129,7 +136,7 @@ namespace DT {
 
     }
 
-    std::int32_t getDayOfWeek(std::int32_t d, std::int32_t m, std::int32_t y) {
+    std::int32_t DayOfWeekNumber(std::int32_t d, std::int32_t m, std::int32_t y) {
         if (!validateDate(d, m, y)) {
             return -1;
         }
@@ -144,23 +151,19 @@ namespace DT {
     }
 
     Date::Date(const std::int32_t d, const std::int32_t m, const std::int32_t y) {
-        try {
-            if (validateDate(d, m, y)) {
-                month = m;
-                day = d;
-                year = y;
-            } else
-                throw ("Invalid Date");
-        } catch (std::string msg){
-            std::cerr << msg << std::endl;
-        }
+        if (validateDate(d, m, y)) {
+            month = m;
+            day = d;
+            year = y;
+        } else
+            throw std::range_error("Invalid Date");
     }
 
-    bool const Date::operator==(const Date &rsv) {
+    bool Date::operator==(const Date &rsv) const {
         return ((month == rsv.month) && (day == rsv.day) && (year == rsv.year));
     }
 
-    bool const Date::operator<(const Date &rsv) {
+    bool Date::operator<(const Date &rsv) const {
         if (year < rsv.year)
             return true;
         if (year > rsv.year)
@@ -177,11 +180,11 @@ namespace DT {
             return false;
     }
 
-    bool const Date::operator!=(const Date &rsv) {
+    bool Date::operator!=(const Date &rsv) const {
         return (!(*this == rsv));
     }
 
-    bool const Date::operator>(const Date &rsv) {
+    bool Date::operator>(const Date &rsv) const {
         if (*this == rsv)
             return false;
         if (*this < rsv)
@@ -202,12 +205,7 @@ namespace DT {
 
     void Date::print() const {
         using std::cout;
-        if (day < 10)
-            cout << 0;
-        cout << day << "/";
-        if (month < 10)
-            cout << 0;
-        cout << month << "/" << year;
+        cout << toString();
     }
 
     void Date::println() const {
@@ -215,16 +213,24 @@ namespace DT {
         std::cout << std::endl;
     }
 
-    void DateTime::print() const {
+    std::string Date::toString() const {
+        std::string res = "";
+        if (day < 10)
+            res += "0";
+        res += std::to_string(day) + "/";
+        if (month < 10)
+            res += "0";
+        res += std::to_string(month) + "/" + std::to_string(year);
+        return res;
+    }
+
+    void DateTime::print(bool useDayOfWeek) const {
         using std::cout;
-        cout << toDayOfWeek(getDayOfWeek(date.Day(), date.Month(), date.Year())) << " ";
-        date.print();
-        cout << " ";
-        time.print();
+        cout << toString(useDayOfWeek);
     }
 
     std::int32_t DateTime::dayOfWeek() const {
-        return DT::getDayOfWeek(date.Day(), date.Month(), date.Year());
+        return DT::DayOfWeekNumber(date.Day(), date.Month(), date.Year());
     }
 
     DateTime &DateTime::operator=(const DateTime &rsv) {
@@ -236,12 +242,12 @@ namespace DT {
         return *this;
     }
 
-    bool const DateTime::operator==(const DateTime &rsv) {
+    bool DateTime::operator==(const DateTime &rsv) const {
 
         return ((time == rsv.time) && (date == rsv.date));
     }
 
-    bool const DateTime::operator<(const DateTime &rsv) {
+    bool DateTime::operator<(const DateTime &rsv) const {
         if (date < rsv.date)
             return true;
         if (date == rsv.date) {
@@ -252,11 +258,11 @@ namespace DT {
             return false;
     }
 
-    bool const DateTime::operator!=(const DateTime &rsv) {
+    bool DateTime::operator!=(const DateTime &rsv) const {
         return (!(*this == rsv));
     }
 
-    bool const DateTime::operator>(const DateTime &rsv) {
+    bool DateTime::operator>(const DateTime &rsv) const {
         if (*this == rsv)
             return false;
         if (*this < rsv)
@@ -265,7 +271,7 @@ namespace DT {
             return true;
     }
 
-    DateTimeDelta DateTime::operator-(const DateTime &rsv) {
+    DateTimeDelta DateTime::operator-(const DateTime &rsv) const {
         return DateTimeDelta(*this, rsv);
     }
 
@@ -283,7 +289,7 @@ namespace DT {
         return (time.Hour() * 3600 + time.Minute() * 60 + time.Seconds());
     }
 
-    DateTime DateTime::operator-(const DateTimeDelta &rsv) {
+    DateTime DateTime::operator-(const DateTimeDelta &rsv) const {
         std::int64_t newDays = numberOfDays(*this) - rsv.TotalDays();
         std::int64_t newSeconds = LastDaySeconds() - rsv.LastDaySeconds();
         if (newDays <= 0 || (newDays == 1 && newSeconds < 0)) {
@@ -301,17 +307,26 @@ namespace DT {
         return DateTime(daysToDate(newDays), secondsToTime(newSeconds));
     }
 
-    void DateTime::println() const {
-        print();
+    void DateTime::println(bool useDayOfWeek) const {
+        print(useDayOfWeek);
         std::cout << std::endl;
     }
 
     std::string DateTime::dayOfWeekString() const {
-        return toDayOfWeek(dayOfWeek());
+        return DayOfWeekString(dayOfWeek());
+    }
+
+    std::string DateTime::toString(bool useDayOfWeek) const {
+        std::string res = "";
+        if (useDayOfWeek)
+            res += DayOfWeekString(DayOfWeekNumber(date.Day(), date.Month(), date.Year())) + " ";
+        res += date.toString() + " ";
+        res += time.toString();
+        return res;
     }
 
 
-    std::string toDayOfWeek(const std::int32_t day) {
+    std::string DayOfWeekString(int32_t day) {
         switch (day) {
             case -1:
                 return "INVALID";
@@ -332,6 +347,10 @@ namespace DT {
             default:
                 return "INVALID";
         }
+    }
+
+    std::string DayOfWeekString(std::int32_t d, std::int32_t m, std::int32_t y) {
+        return DayOfWeekString(DayOfWeekNumber(d, m, y));
     }
 
     bool isLeapYear(std::int32_t year) {
