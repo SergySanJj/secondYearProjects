@@ -35,11 +35,11 @@ namespace DT {
         return days / 24.0;
     }
 
-    bool const Time::operator==(const Time &rsv) {
+    bool Time::operator==(const Time &rsv) const {
         return ((hour == rsv.hour) && (minute == rsv.minute) && (seconds == rsv.seconds));
     }
 
-    bool const Time::operator<(const Time &rsv) {
+    bool  Time::operator<(const Time &rsv) const{
         if (hour < rsv.hour)
             return true;
         if (hour > rsv.hour)
@@ -56,11 +56,11 @@ namespace DT {
             return false;
     }
 
-    bool const Time::operator!=(const Time &rsv) {
+    bool Time::operator!=(const Time &rsv) const {
         return (!(*this == rsv));
     }
 
-    bool const Time::operator>(const Time &rsv) {
+    bool Time::operator>(const Time &rsv) const{
         if (*this == rsv)
             return false;
         if (*this < rsv)
@@ -159,11 +159,11 @@ namespace DT {
             throw std::range_error("Invalid Date");
     }
 
-    bool const Date::operator==(const Date &rsv) {
+    bool Date::operator==(const Date &rsv) const {
         return ((month == rsv.month) && (day == rsv.day) && (year == rsv.year));
     }
 
-    bool const Date::operator<(const Date &rsv) {
+    bool Date::operator<(const Date &rsv) const {
         if (year < rsv.year)
             return true;
         if (year > rsv.year)
@@ -180,11 +180,11 @@ namespace DT {
             return false;
     }
 
-    bool const Date::operator!=(const Date &rsv) {
+    bool Date::operator!=(const Date &rsv) const {
         return (!(*this == rsv));
     }
 
-    bool const Date::operator>(const Date &rsv) {
+    bool Date::operator>(const Date &rsv) const {
         if (*this == rsv)
             return false;
         if (*this < rsv)
@@ -242,12 +242,12 @@ namespace DT {
         return *this;
     }
 
-    bool const DateTime::operator==(const DateTime &rsv) {
+    bool DateTime::operator==(const DateTime &rsv) const {
 
         return ((time == rsv.time) && (date == rsv.date));
     }
 
-    bool const DateTime::operator<(const DateTime &rsv) {
+    bool DateTime::operator<(const DateTime &rsv) const {
         if (date < rsv.date)
             return true;
         if (date == rsv.date) {
@@ -258,11 +258,11 @@ namespace DT {
             return false;
     }
 
-    bool const DateTime::operator!=(const DateTime &rsv) {
+    bool DateTime::operator!=(const DateTime &rsv) const {
         return (!(*this == rsv));
     }
 
-    bool const DateTime::operator>(const DateTime &rsv) {
+    bool DateTime::operator>(const DateTime &rsv) const {
         if (*this == rsv)
             return false;
         if (*this < rsv)
@@ -271,7 +271,7 @@ namespace DT {
             return true;
     }
 
-    DateTimeDelta DateTime::operator-(const DateTime &rsv) {
+    DateTimeDelta DateTime::operator-(const DateTime &rsv) const {
         return DateTimeDelta(*this, rsv);
     }
 
@@ -289,7 +289,7 @@ namespace DT {
         return (time.Hour() * 3600 + time.Minute() * 60 + time.Seconds());
     }
 
-    DateTime DateTime::operator-(const DateTimeDelta &rsv) {
+    DateTime DateTime::operator-(const DateTimeDelta &rsv) const {
         std::int64_t newDays = numberOfDays(*this) - rsv.TotalDays();
         std::int64_t newSeconds = LastDaySeconds() - rsv.LastDaySeconds();
         if (newDays <= 0 || (newDays == 1 && newSeconds < 0)) {

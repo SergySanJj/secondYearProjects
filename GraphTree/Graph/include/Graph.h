@@ -40,7 +40,7 @@ namespace GraphTree {
         Vertex &operator=(const T &value);
 
         // Returns const reference to the stored value.
-        const T &data() const;
+        T data() const;
 
         friend T &Graph<T>::accessVertex(Vertex<T> *v);
 

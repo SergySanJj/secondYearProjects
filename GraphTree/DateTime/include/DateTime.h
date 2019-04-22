@@ -87,13 +87,13 @@ namespace DT {
 
         Date &operator=(const Date &rsv);
 
-        bool const operator==(const Date &rsv);
+        bool operator==(const Date &rsv) const;
 
-        bool const operator!=(const Date &rsv);
+        bool operator!=(const Date &rsv) const;
 
-        bool const operator<(const Date &rsv);
+        bool operator<(const Date &rsv) const;
 
-        bool const operator>(const Date &rsv);
+        bool operator>(const Date &rsv) const;
 
     private:
         std::int32_t month;
@@ -117,13 +117,13 @@ namespace DT {
 
         void println() const;
 
-        bool const operator==(const Time &rsv);
+        bool operator==(const Time &rsv) const;
 
-        bool const operator!=(const Time &rsv);
+        bool operator!=(const Time &rsv) const;
 
-        bool const operator<(const Time &rsv);
+        bool operator<(const Time &rsv) const;
 
-        bool const operator>(const Time &rsv);
+        bool operator>(const Time &rsv) const;
 
         std::int32_t Hour() const { return hour; }
 
@@ -186,19 +186,19 @@ namespace DT {
 
         DateTime &operator=(const DateTime &rsv);
 
-        bool const operator==(const DateTime &rsv);
+        bool operator==(const DateTime &rsv) const;
 
-        bool const operator!=(const DateTime &rsv);
+        bool operator!=(const DateTime &rsv) const;
 
-        bool const operator<(const DateTime &rsv);
+        bool operator<(const DateTime &rsv) const;
 
-        bool const operator>(const DateTime &rsv);
+        bool operator>(const DateTime &rsv) const;
 
-        DateTimeDelta operator-(const DateTime &rsv);
+        DateTimeDelta operator-(const DateTime &rsv) const;
 
         DateTime operator+(const DateTimeDelta &rsv);
 
-        DateTime operator-(const DateTimeDelta &rsv);
+        DateTime operator-(const DateTimeDelta &rsv) const;
 
     private:
 

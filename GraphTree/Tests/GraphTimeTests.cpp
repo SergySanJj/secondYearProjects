@@ -19,20 +19,18 @@ void dateTimePrintHelper(DT::DateTime val) {
     std::cout << " ";
 }
 
-void DateGraphSample() {
+TEST(GraphTimeTests, Creation) {
+    std::vector<DT::DateTime> dateTimeVec = {DT::DateTime(DT::Date(1, 1, 0), DT::Time(0, 0, 0)),
+                                             DT::DateTime(DT::Date(10, 1, 0), DT::Time(0, 0, 0)),
+                                             DT::DateTime(DT::Date(3, 1, 0), DT::Time(0, 0, 0)),
+                                             DT::DateTime(DT::Date(5, 1, 0), DT::Time(0, 0, 0))};
+    GraphTree::Graph<DT::DateTime> g1;
+    for (int i = 0; i < 4; i++)
+        g1.addVertex(GraphTree::Vertex(dateTimeVec[i]));
 
-    std::cout << "\n--DateGraphSample--" << std::endl;
-    // Make vector of random DateTimes:
-    std::vector<DT::DateTime> dtVec;
-    DT::DateTime startdt(DT::Date(1, 1, 1), DT::Time(0, 0, 0));
-    DT::DateTime enddt(DT::Date(28, 12, 9999), DT::Time(23, 59, 59));
-    for (std::size_t i = 0; i < 10; i++) {
-        dtVec.push_back(DT::DateTime(DT::randomDate(startdt.getDate(), enddt.getDate()),
-                                     DT::randomTime(startdt.getTime(), enddt.getTime())));
-    }
-
-    // init graph with dtVec.
-    GraphTree::Graph<DT::DateTime> gDates(dtVec);
-    gDates.print(dateTimePrintHelper);
-
+    auto expZero = g1[3].data() - g1[2].data();
+    ASSERT_EQ(3600 * 24 * 2, expZero.TotalSeconds());
+    auto t = expZero - (g1[1].data() - g1[0].data());
+    ASSERT_EQ(-7 * 24 * 3600, t.TotalSeconds());
 }
+

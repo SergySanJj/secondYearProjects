@@ -48,7 +48,7 @@ Vertex<T> &Vertex<T>::operator=(const T &value) {
 }
 
 template<typename T>
-const T &Vertex<T>::data() const { return vertexData; }
+T Vertex<T>::data() const { return vertexData; }
 
 
 template<typename T>
