@@ -5,7 +5,7 @@
 #include <stack>
 
 #include <cstdlib>
-
+#include <Graph.h>
 
 using Random = effolkronium::random_static;
 
@@ -48,7 +48,7 @@ Vertex<T> &Vertex<T>::operator=(const T &value) {
 }
 
 template<typename T>
-const T &Vertex<T>::readData() const { return vertexData; }
+const T &Vertex<T>::data() const { return vertexData; }
 
 
 template<typename T>
@@ -66,7 +66,7 @@ void Graph<T>::addEdge(std::size_t u, std::size_t v) {
 
 template<typename T>
 void Graph<T>::print() const {
-    if (!N) {
+    if (N <= 0) {
         std::cout << "----EMPTY GRAPH----" << std::endl;
         return;
     }
@@ -91,13 +91,13 @@ void Graph<T>::print(OP op) const {
         return;
     }
     for (std::size_t i = 0; i < N; i++) {
-        op(vertexList[i].readData());
+        op(vertexList[i].data());
         std::cout << ": ";
         if (adjList[i].empty())
             std::cout << "--empty--";
         else {
             for (auto connection : adjList[i]) {
-                op(vertexList[connection].readData());
+                op(vertexList[connection].data());
                 std::cout << " ";
             }
         }
@@ -179,7 +179,7 @@ void Graph<T>::singleSpanningDFS(Graph<T> &resGraph, std::vector<bool> &visited,
     std::vector<std::size_t> association(N, 0);
 
     association[v] = 0;
-    resGraph.addVertex(Vertex(vertexList[v].readData()));
+    resGraph.addVertex(Vertex(vertexList[v].data()));
 
     S.push(v);
 
@@ -194,7 +194,7 @@ void Graph<T>::singleSpanningDFS(Graph<T> &resGraph, std::vector<bool> &visited,
         for (auto w: this->adjList[v]) {
             if (!visited[w]) {
                 if (association[w] == 0) {
-                    resGraph.addVertex(Vertex(vertexList[w].readData()));
+                    resGraph.addVertex(Vertex(vertexList[w].data()));
                     association[w] = resGraph.size() - 1;
                 }
                 resGraph.addEdge(association[v], association[w]);
@@ -228,7 +228,7 @@ Vertex<T> &Graph<T>::operator[](std::size_t index) {
     if (index < N)
         return (vertexList[index]);
     else
-        throw std::range_error("out of range");
+        throw std::range_error("Graph vertex index out of range");
 }
 
 template<typename T>
@@ -243,8 +243,19 @@ T &Graph<T>::accessVertex(Vertex<T> *v) {
 }
 
 template<typename T>
-bool Vertex<T>::operator==(const Vertex<T> &rsv) {
+std::vector<Vertex<T>> Graph<T>::getVertexList() { return vertexList; }
+
+template<typename T>
+std::vector<std::set<std::size_t>> Graph<T>::getAdjacencyList() { return adjList; }
+
+template<typename T>
+bool Vertex<T>::operator==(const Vertex<T> &rsv) const {
     return (vertexData == rsv.vertexData);
+}
+
+template<typename T>
+bool Vertex<T>::operator!=(const Vertex<T> &rsv) const {
+    return (vertexData != rsv.vertexData);
 }
 
 

@@ -1,11 +1,10 @@
 //
 // Created by isara on 15-Apr-19.
 //
-#include "gtest/gtest.h"
-
 #include "DateTime.h"
 #include "DateTimeDelta.h"
 
+#include "gtest/gtest.h"
 
 TEST(DateValidationTests, Validation) {
     // To validate date use:
