@@ -1,7 +1,7 @@
 
 
 ## Lab 1 var(8,7)
-## Tested on Ubuntu 18.04
+## Tested on Ubuntu 18.04, Windows 10
 
 ## How to run
 1) Install CMake 3.8.0 and higher and C++ compiler that supports C++17
@@ -212,7 +212,7 @@ Or simply:
 
 Use .print() to print stored values.
 Use .println() to print stored values and move to the next line.
-```c++
+```C++
     date1.println();
     time1.println();
     dt1.println();
@@ -275,7 +275,7 @@ You can also use ==, !=, <, > for Date, Time, DateTime and DateTimeDelta
 to compare same type values.
 
 ## Watch other samples in:
-<a href="https://github.com/secondYearProjects/Graph/blob/master/GraphTree/src/main.cpp">Other samples</a>
+<a href="https://github.com/secondYearProjects/GraphTime/tree/master/GraphTree/Tests">Other samples</a>
 
 #### Feel free to post issues, fork, star etc.
  
