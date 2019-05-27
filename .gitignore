@@ -6,6 +6,7 @@
 *.lock
 tmp/*
 
+images/*
 
 GraphTree/\.idea/
 
